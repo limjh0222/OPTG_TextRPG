@@ -14,7 +14,22 @@ public class GameManager
 
     private void InitializeGame()
     {
-        player = new Player("Jiwon", "Programmer", 1, 10, 5, 100, 15000);
+        Console.WriteLine("직업을 선택하세요:");
+        Console.WriteLine("1. 전사");
+        Console.WriteLine("2. 마법사");
+        Console.WriteLine("3. 도적");
+        Console.WriteLine("4. 궁수");
+
+        int choice = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("이름을 입력하세요:");
+        string name = Console.ReadLine();
+
+        // 클래스 레벨의 player 변수 초기화
+        player = Player.ChooseJob(choice, name);
+
+        Console.WriteLine($"선택된 직업: {player.Job}");
+        Console.WriteLine($"이름: {player.Name}, 레벨: {player.Level}, 공격력: {player.Atk}, 방어력: {player.Def}, 체력: {player.Hp}, 골드: {player.Gold}");
 
         inventory = new List<Item>();
 

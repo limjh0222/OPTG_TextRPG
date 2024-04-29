@@ -39,22 +39,22 @@
         }
     }
 
-    public  Player Warrior(string name)
+    public static Player Warrior(string name)
     {
         return new Player(name, "전사", 1, 25, 15, 120, 1500);
     }
 
-    public  Player Mage(string name)
+    public  static  Player Mage(string name)
     {
         return new Player(name, "마법사", 1, 15, 10, 80, 1500);
     }
 
-    public  Player Rogue(string name)
+    public  static Player Rogue(string name)
     {
         return new Player(name, "도적", 1, 20, 12, 90, 1500);
     }
 
-    public  Player Archer(string name)
+    public  static Player Archer(string name)
     {
         return new Player(name, "궁수", 1, 18, 18, 100, 1500);
     }
