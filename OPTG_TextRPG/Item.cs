@@ -81,6 +81,7 @@ internal class Item
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write("{0} ", idx);
             Console.ResetColor();
+            Console.Write(ConsoleUtility.PadRightForMixedText(Name, 12));
         }
         else Console.Write(ConsoleUtility.PadRightForMixedText(Name, 12));
 
