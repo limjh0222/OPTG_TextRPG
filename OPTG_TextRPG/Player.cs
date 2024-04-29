@@ -32,11 +32,11 @@
             case 4:
                 return Archer(name);
             default:
-                Console.WriteLine("직업을 선택해주세요");
-                Console.WriteLine("직업을 다시 선택해주세요:");
-                int newChoice = int.Parse(Console.ReadLine());
-                return ChooseJob(newChoice, name); // 다시 직업 선택
+                Console.WriteLine("잘못된 선택입니다. 1부터 4 사이의 숫자를 입력하세요.");
+                return ChooseJob(int.Parse(Console.ReadLine()), name);
+
         }
+      
     }
 
     public static Player Warrior(string name)
