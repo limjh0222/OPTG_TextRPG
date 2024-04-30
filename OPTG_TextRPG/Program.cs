@@ -12,7 +12,7 @@ public class GameManager
         InitializeGame();
 
         // 데이터매니저 테스트 코드
-        DataManager.Instance.InitJob();
+        DataManager.Instance.InitJob("이름");
         DataManager.Instance.InitMonster();
         DataManager.Instance.InitItem();
 

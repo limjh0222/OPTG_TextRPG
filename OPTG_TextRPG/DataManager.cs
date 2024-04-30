@@ -23,7 +23,7 @@ class DataManager
     // 플레이어 정보, 직업 정보, 스킬 정보
 
     public Dictionary<int, Player> JobDB = new Dictionary<int, Player>();
-    public Dictionary<int, Player> SkillDB = new Dictionary<int, Player>();
+    // public Dictionary<int, Player> SkillDB = new Dictionary<int, Player>(); // 추가기능 - 스킬 만들기
 
     public void InitJob(string name)
     {
@@ -43,7 +43,6 @@ class DataManager
             Console.WriteLine("DataManager: 해당하는 플레이어 데이터가 없습니다.");
         return null;
     }
-
 
     // 몬스터 정보
 
