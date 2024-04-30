@@ -55,15 +55,15 @@ internal class Item
             Console.Write("E");
             Console.ResetColor();
             Console.Write("]");
-            Console.Write(ConsoleUtility.PadRightForMixedText(Name, 9));
+            Console.Write(ConsoleUtility.PadRightForMixedText(Name, 17));
         }
-        else Console.Write(ConsoleUtility.PadRightForMixedText(Name, 12));
+        else Console.Write(ConsoleUtility.PadRightForMixedText(Name, 20));
 
         Console.Write(" | ");
 
-        if (Atk != 0) Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{Atk} ");
-        if (Def != 0) Console.Write($"방어력 {(Atk >= 0 ? "+" : "")}{Def} ");
-        if (Hp != 0) Console.Write($"체  력 {(Atk >= 0 ? "+" : "")}{Hp} ");
+        if (Atk != 0) Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{ConsoleUtility.PadRightForMixedText(Atk.ToString(), 3)} ");
+        if (Def != 0) Console.Write($"방어력 {(Atk >= 0 ? "+" : "")}{ConsoleUtility.PadRightForMixedText(Def.ToString(), 3)} ");
+        if (Hp != 0) Console.Write($"체  력 {(Atk >= 0 ? "+" : "")}{ConsoleUtility.PadRightForMixedText(Hp.ToString(), 3)} ");
 
         Console.Write(" | ");
 
@@ -81,19 +81,19 @@ internal class Item
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write("{0} ", idx);
             Console.ResetColor();
-            Console.Write(ConsoleUtility.PadRightForMixedText(Name, 12));
+            
         }
-        else Console.Write(ConsoleUtility.PadRightForMixedText(Name, 12));
+        Console.Write(ConsoleUtility.PadRightForMixedText(Name, 20));
 
         Console.Write(" | ");
 
-        if (Atk != 0) Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{Atk} ");
-        if (Def != 0) Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{Def} ");
-        if (Hp != 0) Console.Write($"체  력 {(Hp >= 0 ? "+" : "")}{Hp}");
+        if (Atk != 0) Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{ConsoleUtility.PadRightForMixedText(Atk.ToString(), 3)}");
+        if (Def != 0) Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{ConsoleUtility.PadRightForMixedText(Def.ToString(), 3)}");
+        if (Hp != 0) Console.Write($"체  력 {(Hp >= 0 ? "+" : "")}{ConsoleUtility.PadRightForMixedText(Hp.ToString(), 3)}");
 
         Console.Write(" | ");
 
-        Console.Write(ConsoleUtility.PadRightForMixedText(Desc, 12));
+        Console.Write(ConsoleUtility.PadRightForMixedText(Desc, 30));
 
         Console.Write(" | ");
 
@@ -103,7 +103,7 @@ internal class Item
         }
         else
         {
-            ConsoleUtility.PrintTextHighlights("", Price.ToString(), " G");
+            ConsoleUtility.PrintYellowHighlights("", Price.ToString(), " G\n");
         }
     }
 

@@ -4,31 +4,47 @@ internal class ConsoleUtility
 {
     public static int PromptMenuChoice(int min, int max)
     {
-        while (true)
+        PrintYellowHighlights("원하시는 ", "번호", "를 입력해주세요: ");
+        if (int.TryParse(Console.ReadLine(), out int choice) && choice >= min && choice <= max)
         {
-            Console.Write("원하시는 번호를 입력해주세요: ");
-            if(int.TryParse(Console.ReadLine(), out int choice) && choice >= min && choice <= max)
-            {
-                return choice;
-            }
-            Console.WriteLine("잘못된 입력입니다. 다시 시도해주세요.\n");
+            return choice;
         }
+        Console.Clear();
+        PrintRed("잘못된 입력입니다. 다시 시도해주세요.\n");
+        Thread.Sleep(800);
+        return -1;
     }
 
-    internal static void ShowTitle(string title)
+    public static void PrintRed(string str)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(str);
+        Console.ResetColor();
+    }
+    
+
+    internal static void PrintMagenta(string str)
     {
         Console.ForegroundColor = ConsoleColor.Magenta;
-        Console.WriteLine(title);
+        Console.WriteLine(str);
         Console.ResetColor();
     }
 
-    public static void PrintTextHighlights(string s1, string s2, string s3 = "")
+    public static void PrintGreenHighlights(string str1, string str2, string str3 = "")
     {
-        Console.Write(s1);
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.Write(s2);
+        Console.Write(str1);
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.Write(str2);
         Console.ResetColor();
-        Console.WriteLine(s3);
+        Console.Write(str3);
+    }
+    public static void PrintYellowHighlights(string str1, string str2, string str3 = "")
+    {
+        Console.Write(str1);
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write(str2);
+        Console.ResetColor();
+        Console.Write(str3);
     }
 
     public static int GetPrintableLength(string str)
