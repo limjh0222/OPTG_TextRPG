@@ -1,37 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace OPTG_TextRPG
 {
+
     public class Dungeon
     {
-        Stage stage { get; set; }
-        Player player { get; set; }
+        Random random = new Random();
+        int stage = 1;
+        private DataManager dataManager;
 
-        //테스트용 몬스터(나중에 지워야함)
-        Monster dummy = new Monster("더미", 1, 1, 1);
-        
-        int stageLv {  get; set; }
-        
-        
-        
-        List<Monster> monsterList = new List<Monster>();
-
-        //몬스터 생성방식을 정하고 스테이지에 저장
-        public Dungeon(Player player, List<Monster> monsterDB)
+        private Dungeon(DataManager dataManager)
         {
-            this.player = player;
+            this.dataManager = dataManager;
+        }
+        //던전을 생성하는 정적 매서드
+        public static Dungeon CreateDungeon()
+        {
+            DataManager dataManager = DataManager.Instance;
+            return new Dungeon(dataManager);
+        }
 
-            //데이터매니저에서 몬스터를 받아와서 랜덤으로 몬스터리스트 넣기
-            //몬스터 수 정하기 1~4
-            //몬스터 종류 정하기(역량에따라 중복가능)
-            //스테이지 레벨에 따라 몬스터 레벨 조정
-            //만든 몬스터를 리스트에 저장(montserList.Add(몬스터객체); )
+        public List<Monster> SpawnMonstersForStage()
+        {
+            List<Monster> monsters = new List<Monster>();
 
-            stage = new Stage(monsterList, player, stageLv);
+            // 랜덤한 수의 몬스터 생성
+            int numMonsters = random.Next(1, 5); // 1부터 4 사이의 랜덤한 수
+            for (int i = 0; i < numMonsters; i++)
+            {
+                monsters.Add(domMonster());
+            }
+
+            return monsters;
+        }
+
+        private Monster domMonster()
+        {
+            // 데이터 매니저에서 몬스터 정보를 가져와서 랜덤하게 선택
+            List<Monster> randomMonsters = new List<Monster>(dataManager.MonsterDB.Values);
+            Monster selectedMonster = randomMonsters[random.Next(randomMonsters.Count)];
+
+            // 스테이지에 따라 몬스터 스탯을 조정
+            int stageHp = selectedMonster.Hp + (stage - 1) * 5;
+            int stageAtk = selectedMonster.Atk + (stage - 1) * 2;
+
+            // 조정된 스탯으로 몬스터 생성
+            return new Monster(selectedMonster.Name, stage, stageHp, stageAtk);
+        }
+        // 스테이지 진행
+        public void ProceedToNextStage()
+        {
+            stage++;
         }
     }
 }
