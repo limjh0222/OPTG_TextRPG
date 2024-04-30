@@ -12,6 +12,16 @@ public class GameManager
     public GameManager()
     {
         InitializeGame();
+
+        // 데이터매니저 테스트 코드
+        DataManager.Instance.InitJob();
+        DataManager.Instance.InitMonster();
+        DataManager.Instance.InitItem();
+
+        DataManager.Instance.GetJob(1);
+        DataManager.Instance.GetMonster("미니언");
+        DataManager.Instance.GetItem("무쇠갑옷");
+
     }
 
     private void InitializeGame()
