@@ -11,7 +11,8 @@ namespace OPTG_TextRPG
         List<Monster> monsterList { get; set; }
         Player player { get; set; }
         int stageLv { get; }
-
+        
+        //전투에 필요한 정보를 받아옴
         public Stage(List<Monster> monsterList, Player player, int stageLv)
         {
             this.monsterList = monsterList;
@@ -19,7 +20,7 @@ namespace OPTG_TextRPG
             this.stageLv = stageLv;
         }
         
-
+        //전투 시작화면
         public void PrintStage()
         {
             Console.WriteLine($"Battle!! Stage {stageLv}\n");

@@ -8,22 +8,26 @@ namespace OPTG_TextRPG
 {
     public class Monster
     {
-        string name { get; }
-        int lv { get; }
-        int hp { get; }
-        int atk { get; }
+        string Name { get; }
+        int Lv { get; }
+        int Hp { get; }
+        int Atk { get; }
+        //atk가 없는이유는 과제에 몬스터 atk표기가 없고
+        //공격할때 데미지를 표기가 될 예정 입니다.
 
+        public Monster() { }
         public Monster(string name, int lv, int hp, int atk)
         {
-            this.name = name;
-            this.lv = lv;
-            this.hp = hp;
-            this.atk = atk;
+            this.Name = name;
+            this.Lv = lv;
+            this.Hp = hp;
+            this.Atk = atk;
         }
 
+        //몬스터 객체를 출력
         public override string ToString()
         {
-            return $"Lv.{lv} {name} HP {hp}";
+            return $"Lv.{Lv} {Name} HP {Hp}";
         }
     }
 }

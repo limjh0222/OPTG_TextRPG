@@ -12,14 +12,15 @@ namespace OPTG_TextRPG
         Player player { get; set; }
 
         //테스트용 몬스터(나중에 지워야함)
-        Monster dummy = new Monster("dummy", 1, 1, 1);
+        Monster dummy = new Monster("더미", 1, 1, 1);
         
         int stageLv {  get; set; }
         
         
-
+        
         List<Monster> monsterList = new List<Monster>();
 
+        //몬스터 생성방식을 정하고 스테이지에 저장
         public Dungeon(Player player, List<Monster> monsterDB)
         {
             this.player = player;
