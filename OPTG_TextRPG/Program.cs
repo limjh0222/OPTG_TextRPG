@@ -14,11 +14,11 @@ public class GameManager
         InitializeGame();
 
         // 데이터매니저 테스트 코드
-        DataManager.Instance.InitJob("이름");
+       
         DataManager.Instance.InitMonster();
         DataManager.Instance.InitItem();
 
-        DataManager.Instance.GetJob(1);
+      
         DataManager.Instance.GetMonster("미니언");
         DataManager.Instance.GetItem("무쇠갑옷");
 
@@ -43,8 +43,9 @@ public class GameManager
 
         ConsoleUtility.PrintYellowHighlights("\n", "이름", "을 입력해주세요: ");
         name = Console.ReadLine();
+        DataManager.Instance.InitJob(name);
 
-        player = Player.ChooseJob(choice, name);
+        player = DataManager.Instance.JobDB[choice];
 
         inventory = new List<Item>();
 
