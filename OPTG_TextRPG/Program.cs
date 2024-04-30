@@ -17,26 +17,19 @@ public class GameManager
         int choice;
         string name;
 
-        
-        
-            Console.WriteLine("직업을 선택하세요:");
-            Console.WriteLine("1. 전사");
-            Console.WriteLine("2. 마법사");
-            Console.WriteLine("3. 도적");
-            Console.WriteLine("4. 궁수");
-            
-            while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 4)
-            {
-                Console.WriteLine("잘못된 선택입니다. 1부터 4 사이의 숫자를 입력하세요.");
-            }
+        Console.WriteLine("직업을 선택해주세요.");
+        Console.WriteLine("1. 전사");
+        Console.WriteLine("2. 마법사");
+        Console.WriteLine("3. 도적");
+        Console.WriteLine("4. 궁수\n");
 
-            Console.WriteLine("이름을 입력하세요:");
-            name = Console.ReadLine();
+        choice = ConsoleUtility.PromptMenuChoice(1, 4);
 
-            player = Player.ChooseJob(choice, name);
+        Console.Write("\n이름을 입력하세요:");
+        name = Console.ReadLine();
 
-          
-         
+        player = Player.ChooseJob(choice, name);
+
         inventory = new List<Item>();
 
         storeInventory = new List<Item>();

@@ -11,7 +11,7 @@ internal class ConsoleUtility
             {
                 return choice;
             }
-            Console.WriteLine("잘못된 입력입니다. 다시 시도해주세요.");
+            Console.WriteLine("잘못된 입력입니다. 다시 시도해주세요.\n");
         }
     }
 
