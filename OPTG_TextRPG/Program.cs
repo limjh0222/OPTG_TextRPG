@@ -19,8 +19,8 @@ public class GameManager
         DataManager.Instance.InitItem();
 
       
-        DataManager.Instance.GetMonster("미니언");
-        DataManager.Instance.GetItem("무쇠갑옷");
+        DataManager.Instance.GetMonster(0);
+        DataManager.Instance.GetItem(1);
 
     }
 

@@ -75,21 +75,21 @@ class DataManager
 
     // 아이템 정보
 
-    public Dictionary<string, Item> ItemDB = new Dictionary<string, Item>();
+    public Dictionary<int, Item> ItemDB = new Dictionary<int, Item>();
 
     public void InitItem()
     {
-        ItemDB.Add("무쇠갑옷", new Item("무쇠갑옷", "튼튼한 갑옷", ItemType.ARMOR, 0, 5, 0, 500));
-        ItemDB.Add("낡은 검", new Item("낡은 검", "낡은 검", ItemType.WEAPON, 2, 0, 0, 1000));
-        ItemDB.Add("골든 헬름", new Item("골든 헬름", "희귀한 투구", ItemType.ARMOR, 0, 9, 0, 2000));
+        ItemDB.Add(1, new Item("무쇠갑옷", "튼튼한 갑옷", ItemType.ARMOR, 0, 5, 0, 500));
+        ItemDB.Add(2, new Item("낡은 검", "낡은 검", ItemType.WEAPON, 2, 0, 0, 1000));
+        ItemDB.Add(3, new Item("골든 헬름", "희귀한 투구", ItemType.ARMOR, 0, 9, 0, 2000));
 
         //추가 아이템 견본
-        ItemDB.Add("가벼운 갑옷", new Item("가벼운 갑옷", "돌격에 용이", ItemType.ARMOR, 2, 3, 0, 500));
-        ItemDB.Add("단단한 도끼", new Item("단단한 도끼", "무겁고 치명적인 무기", ItemType.WEAPON, 9, -2, 0, 1500));
-        ItemDB.Add("검과 방패", new Item("검과 방패", "공격과 방어를 동시에", ItemType.WEAPON, 4, 4, 0, 2000));
+        ItemDB.Add(4, new Item("가벼운 갑옷", "돌격에 용이", ItemType.ARMOR, 2, 3, 0, 500));
+        ItemDB.Add(5, new Item("단단한 도끼", "무겁고 치명적인 무기", ItemType.WEAPON, 9, -2, 0, 1500));
+        ItemDB.Add(6, new Item("검과 방패", "공격과 방어를 동시에", ItemType.WEAPON, 4, 4, 0, 2000));
     }
 
-    public Item GetItem(string index)
+    public Item GetItem(int index)
     {
         if (ItemDB.ContainsKey(index))
         {
