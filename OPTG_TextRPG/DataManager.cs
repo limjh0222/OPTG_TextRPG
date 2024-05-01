@@ -20,7 +20,7 @@ class DataManager
         } 
     }
 
-    // 플레이어 직업 정보
+    // 플레이어 정보, 직업 정보, 스킬 정보
 
     public Dictionary<int, Player> JobDB = new Dictionary<int, Player>();
     // public Dictionary<int, Player> SkillDB = new Dictionary<int, Player>(); // 추가기능 - 스킬 만들기
@@ -44,27 +44,6 @@ class DataManager
         return null;
     }
 
-    // 스킬 정보
-    /*
-    public Dictionary<string, Skill> SkillDB = new Dictionary<string, Skill>();
-
-    public void InitSkill()
-    {
-        SkillDB.Add("스킬명", new Skill("스킬명", 소비MP, 스탯변화, 사용대상, 스킬설명));
-    }
-
-    public Skill GetSkill(string index)
-    {
-        if (ItemDB.ContainsKey(index))
-        {
-            return SkillDB[index];
-        }
-        else
-            Console.WriteLine("DataManager: 해당하는 스킬이 없습니다.");
-        return null;
-    }
-    */
-
     // 몬스터 정보
 
     public Dictionary<string, Monster> MonsterDB = new Dictionary<string, Monster>();
@@ -75,13 +54,8 @@ class DataManager
         MonsterDB.Add("공허충", new Monster("공허충", 3, 10, 9));
         MonsterDB.Add("대포미니언", new Monster("미니언", 5, 25, 8));
 
-        //추가 몬스터 견본 - 편하게 수정하세요
-        MonsterDB.Add("먼지", new Monster("먼지", 2, 16, 3));
-        MonsterDB.Add("재훈님네고양이", new Monster("재훈님네고양이", 3, 6, 11));
-        MonsterDB.Add("후다닭", new Monster("후다닭", 5, 15, 9));
-
         //보스몹 견본
-        MonsterDB.Add("강동욱 튜터님", new Monster("강동욱 튜터님", 10, 25, 15));
+        MonsterDB.Add("강동욱 튜터님", new Monster("강동욱 튜터님", 10, 15, 10));
     }
 
     public Monster GetMonster(string index)
@@ -94,12 +68,6 @@ class DataManager
             Console.WriteLine("DataManager: 해당하는 몬스터가 없습니다.");
         return null;
     }
-
-
-
-    // 스테이지 정보
-
-
 
 
     // 아이템 정보
