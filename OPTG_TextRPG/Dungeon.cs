@@ -1,37 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace OPTG_TextRPG
 {
+
     public class Dungeon
     {
-        Stage stage { get; set; }
-        Player player { get; set; }
+        Dictionary<int,Monster> monsterDB = new Dictionary<int, Monster>();
+        Dictionary<int, Monster> bossMonsterDB = new Dictionary<int, Monster>();
+        List<Monster> monsters = new List<Monster>();
+        Random random = new Random();
+        public int stage = 1;
 
-        //테스트용 몬스터(나중에 지워야함)
-        Monster dummy = new Monster("더미", 1, 1, 1);
-        
-        int stageLv {  get; set; }
-        
-        
-        
-        List<Monster> monsterList = new List<Monster>();
 
-        //몬스터 생성방식을 정하고 스테이지에 저장
-        public Dungeon(Player player, List<Monster> monsterDB)
+        public Dungeon()
         {
-            this.player = player;
+            monsterDB = DataManager.Instance.MonsterDB;
+            bossMonsterDB = DataManager.Instance.BossMonsterDB;
+        }
 
-            //데이터매니저에서 몬스터를 받아와서 랜덤으로 몬스터리스트 넣기
-            //몬스터 수 정하기 1~4
-            //몬스터 종류 정하기(역량에따라 중복가능)
-            //스테이지 레벨에 따라 몬스터 레벨 조정
-            //만든 몬스터를 리스트에 저장(montserList.Add(몬스터객체); )
+        public List<Monster> SpawnMonster()
+        {
+            monsters.Clear(); //몬스터 초기화
+            stage = 5;
+            //스테이지별 몬스터 생성 방식
+            if (stage % 5 == 0) //스테이지가 5단위 마다 보스 몬스터 생성
+            {    
+                monsters.Add(RandomBossMonster());
+            }
+            else //그 외일때 1~4마리 사이 랜덤한 몬스터 생성
+            {
+                int numMonsters = random.Next(1, 5);
+                for (int i = 0; i < numMonsters; i++)
+                {    
+                    monsters.Add(RandomNormalMonster());
+                }
+            }
 
-            stage = new Stage(monsterList, player, stageLv);
+            return monsters;
+        }
+        
+        
+        private Monster RandomNormalMonster()
+        {
+            //몬스터 정보를 랜덤하게 섞어줌
+            return monsterDB[random.Next(monsterDB.Count)];
+        }
+        public Monster RandomBossMonster()
+        {
+            //보스몬스터 선택
+            return bossMonsterDB[0];
+        }
+        // 스테이지 진행
+        public void NextStage()
+        {
+            if(stage < 6) //현재 스테이지는 5까지 구현
+            {
+                stage++;
+            }
         }
     }
 }
