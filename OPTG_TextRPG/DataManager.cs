@@ -44,21 +44,24 @@ class DataManager
         return null;
     }
 
-    // 몬스터 정보
-
-    public Dictionary<string, Monster> MonsterDB = new Dictionary<string, Monster>();
-
+    // 몬스터정보
+    // 구성의 사용편의성을 위해서 key값을 int형으로 변경
+    // 보스몬스터의 사용편의성을 위해 BossMonsterDB 별도로 생성
+    public Dictionary<int, Monster> MonsterDB = new Dictionary<int, Monster>();
+    public Dictionary<int, Monster> BossMonsterDB = new Dictionary<int, Monster>();
     public void InitMonster()
     {
-        MonsterDB.Add("미니언", new Monster("미니언", 2, 15, 5));
-        MonsterDB.Add("공허충", new Monster("공허충", 3, 10, 9));
-        MonsterDB.Add("대포미니언", new Monster("미니언", 5, 25, 8));
+        MonsterDB.Add(0, new Monster("슬라임", 2, 10, 23));
+        MonsterDB.Add(1, new Monster("고블린", 3, 12, 25));
+        MonsterDB.Add(2, new Monster("오크", 5, 18, 28));
+        MonsterDB.Add(3, new Monster("미믹", 5, 15, 35));
+        MonsterDB.Add(4, new Monster("골렘", 6, 22, 55));
+        MonsterDB.Add(5, new Monster("오우거", 8, 25, 60));
 
-        //보스몹 견본
-        MonsterDB.Add("강동욱 튜터님", new Monster("강동욱 튜터님", 10, 15, 10));
+        BossMonsterDB.Add(0, new Monster("바실리스크", 15, 30, 150));
     }
 
-    public Monster GetMonster(string index)
+    public Monster GetMonster(int index)
     {
         if (MonsterDB.ContainsKey(index))
         {

@@ -8,20 +8,19 @@ namespace OPTG_TextRPG
 {
     public class Monster
     {
-        string Name { get; }
-        int Lv { get; }
-        int Hp { get; }
-        int Atk { get; }
-        //atk가 없는이유는 과제에 몬스터 atk표기가 없고
-        //공격할때 데미지를 표기가 될 예정 입니다.
+        public string Name { get; }
+        public int Lv { get; }
+        public int Atk { get; }
+        public int Hp { get; private set; }
 
         public Monster() { }
-        public Monster(string name, int lv, int hp, int atk)
+        public Monster(string name, int lv, int atk, int hp)
         {
             this.Name = name;
             this.Lv = lv;
-            this.Hp = hp;
             this.Atk = atk;
+            this.Hp = hp;
+            
         }
 
         //몬스터 객체를 출력
