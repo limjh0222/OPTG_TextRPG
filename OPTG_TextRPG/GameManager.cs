@@ -21,11 +21,6 @@ public class GameManager
     public GameManager()
     {
         InitializeGame();
-
-        // 데이터매니저 테스트 코드
-       
-        DataManager.Instance.InitMonster();
-        DataManager.Instance.GetMonster(0);
     }
 
     private void InitializeGame()
@@ -50,16 +45,12 @@ public class GameManager
         DataManager.Instance.InitJob(name);
 
         player = DataManager.Instance.JobDB[choice];
-        player.Gold = 99999; // 상점 테스트용
+        //player.Gold = 99999; // 테스트용 골드
 
         inventory = new List<Item>();
 
         DataManager.Instance.InitItem();
         storeInventory = DataManager.Instance.ItemDB;
-        //storeInventory = new List<Item>();
-        //storeInventory.Add(new Item("무쇠갑옷", "튼튼한 갑옷", ItemType.ARMOR, 0, 5, 0, 500));
-        //storeInventory.Add(new Item("낡은 검", "낡은 검", ItemType.WEAPON, 2, 0, 0, 1000));
-        //storeInventory.Add(new Item("골든 헬름", "희귀한 투구", ItemType.ARMOR, 0, 9, 0, 2000));
     }
 
     public void StartGame()
