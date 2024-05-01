@@ -11,52 +11,58 @@ namespace OPTG_TextRPG
 
     public class Dungeon
     {
+        Dictionary<int,Monster> monsterDB = new Dictionary<int, Monster>();
+        Dictionary<int, Monster> bossMonsterDB = new Dictionary<int, Monster>();
+        List<Monster> monsters = new List<Monster>();
         Random random = new Random();
-        int stage = 1;
-        private DataManager dataManager;
+        public int stage = 1;
 
-        private Dungeon(DataManager dataManager)
+
+        public Dungeon()
         {
-            this.dataManager = dataManager;
-        }
-        //던전을 생성하는 정적 매서드
-        public static Dungeon CreateDungeon()
-        {
-            DataManager dataManager = DataManager.Instance;
-            return new Dungeon(dataManager);
+            monsterDB = DataManager.Instance.MonsterDB;
+            bossMonsterDB = DataManager.Instance.BossMonsterDB;
         }
 
-        public List<Monster> SpawnMonstersForStage()
+        public List<Monster> SpawnMonster()
         {
-            List<Monster> monsters = new List<Monster>();
-
-            // 랜덤한 수의 몬스터 생성
-            int numMonsters = random.Next(1, 5); // 1부터 4 사이의 랜덤한 수
-            for (int i = 0; i < numMonsters; i++)
+            monsters.Clear(); //몬스터 초기화
+            stage = 5;
+            //스테이지별 몬스터 생성 방식
+            if (stage % 5 == 0) //스테이지가 5단위 마다 보스 몬스터 생성
+            {    
+                monsters.Add(RandomBossMonster());
+            }
+            else //그 외일때 1~4마리 사이 랜덤한 몬스터 생성
             {
-                monsters.Add(domMonster());
+                int numMonsters = random.Next(1, 5);
+                for (int i = 0; i < numMonsters; i++)
+                {    
+                    monsters.Add(RandomNormalMonster());
+                }
             }
 
             return monsters;
         }
-
-        private Monster domMonster()
+        
+        
+        private Monster RandomNormalMonster()
         {
-            // 데이터 매니저에서 몬스터 정보를 가져와서 랜덤하게 선택
-            List<Monster> randomMonsters = new List<Monster>(dataManager.MonsterDB.Values);
-            Monster selectedMonster = randomMonsters[random.Next(randomMonsters.Count)];
-
-            // 스테이지에 따라 몬스터 스탯을 조정
-            int stageHp = selectedMonster.Hp + (stage - 1) * 5;
-            int stageAtk = selectedMonster.Atk + (stage - 1) * 2;
-
-            // 조정된 스탯으로 몬스터 생성
-            return new Monster(selectedMonster.Name, stage, stageHp, stageAtk);
+            //몬스터 정보를 랜덤하게 섞어줌
+            return monsterDB[random.Next(monsterDB.Count)];
+        }
+        public Monster RandomBossMonster()
+        {
+            //보스몬스터 선택
+            return bossMonsterDB[0];
         }
         // 스테이지 진행
-        public void ProceedToNextStage()
+        public void NextStage()
         {
-            stage++;
+            if(stage < 6) //현재 스테이지는 5까지 구현
+            {
+                stage++;
+            }
         }
     }
 }

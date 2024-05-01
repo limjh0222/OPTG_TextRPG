@@ -10,16 +10,17 @@ namespace OPTG_TextRPG
     {
         public string Name { get; }
         public int Lv { get; }
-        public int Hp { get; private set; }
         public int Atk { get; }
+        public int Hp { get; private set; }
 
         public Monster() { }
-        public Monster(string name, int lv, int hp, int atk)
+        public Monster(string name, int lv, int atk, int hp)
         {
             this.Name = name;
             this.Lv = lv;
-            this.Hp = hp;
             this.Atk = atk;
+            this.Hp = hp;
+            
         }
 
         //몬스터 객체를 출력
