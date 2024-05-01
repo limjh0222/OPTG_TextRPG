@@ -3,6 +3,15 @@
 
 using System.Xml.Serialization;
 
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        GameManager gameManager = new GameManager();
+        gameManager.StartGame();
+    }
+}
+
 public class GameManager
 {
     private Player player;
@@ -41,13 +50,16 @@ public class GameManager
         DataManager.Instance.InitJob(name);
 
         player = DataManager.Instance.JobDB[choice];
+        player.Gold = 99999; // 상점 테스트용
 
         inventory = new List<Item>();
 
-        storeInventory = new List<Item>();
-        storeInventory.Add(new Item("무쇠갑옷", "튼튼한 갑옷", ItemType.ARMOR, 0, 5, 0, 500));
-        storeInventory.Add(new Item("낡은 검", "낡은 검", ItemType.WEAPON, 2, 0, 0, 1000));
-        storeInventory.Add(new Item("골든 헬름", "희귀한 투구", ItemType.ARMOR, 0, 9, 0, 2000));
+        DataManager.Instance.InitItem();
+        storeInventory = DataManager.Instance.ItemDB;
+        //storeInventory = new List<Item>();
+        //storeInventory.Add(new Item("무쇠갑옷", "튼튼한 갑옷", ItemType.ARMOR, 0, 5, 0, 500));
+        //storeInventory.Add(new Item("낡은 검", "낡은 검", ItemType.WEAPON, 2, 0, 0, 1000));
+        //storeInventory.Add(new Item("골든 헬름", "희귀한 투구", ItemType.ARMOR, 0, 9, 0, 2000));
     }
 
     public void StartGame()
@@ -112,9 +124,9 @@ public class GameManager
             int bonusAtk = inventory.Select(item => item.IsEquipped ? item.Atk : 0).Sum();
             int bonusDef = inventory.Select(item => item.IsEquipped ? item.Def : 0).Sum();
             int bonusHp = inventory.Select(item => item.IsEquipped ? item.Hp : 0).Sum();
-            ConsoleUtility.PrintYellowHighlights("공격력 : ", (player.Atk + bonusAtk).ToString(), bonusAtk > 0 ? $" (+{bonusAtk})\n" : "\n");
-            ConsoleUtility.PrintYellowHighlights("방어력 : ", (player.Def + bonusDef).ToString(), bonusDef > 0 ? $" (+{bonusDef})\n" : "\n");
-            ConsoleUtility.PrintYellowHighlights("체 력 : ", (player.Hp + bonusHp).ToString(), bonusHp > 0 ? $" (+{bonusHp})\n" : "\n");
+            ConsoleUtility.PrintYellowHighlights("공격력 : ", (player.Atk + bonusAtk).ToString(), bonusAtk != 0 ? (bonusAtk > 0 ? $" (+{bonusAtk})\n" : $" ({bonusAtk})\n") : "\n");
+            ConsoleUtility.PrintYellowHighlights("방어력 : ", (player.Def + bonusDef).ToString(), bonusDef != 0 ? (bonusDef > 0 ? $" (+{bonusDef})\n" : $" ({bonusDef})\n") : "\n");
+            ConsoleUtility.PrintYellowHighlights("체 력 : ", (player.Hp + bonusHp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
 
             ConsoleUtility.PrintYellowHighlights("Gold : ", player.Gold.ToString(), "\n");
 
@@ -297,11 +309,4 @@ public class GameManager
     }
 }
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        GameManager gameManager = new GameManager();
-        gameManager.StartGame();
-    }
-}
+

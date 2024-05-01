@@ -74,19 +74,17 @@ class DataManager
 
     // 아이템 정보 - 리스트
 
-    private List<Item> ItemDB;
+    public List<Item> ItemDB = new List<Item>();
 
-    public void ItemList()
+    public void InitItem()
     {
+        ItemDB.Add(new Item("낡은 검", "흔한 낡은 검.", ItemType.WEAPON, 2, 0, 0, 1000));
+        ItemDB.Add(new Item("단단한 도끼", "무겁고 치명적인 무기.", ItemType.WEAPON, 9, -2, 0, 3000));
+        ItemDB.Add(new Item("검과 방패", "공격과 방어를 동시에!", ItemType.WEAPON, 4, 4, 0, 3500));
 
-        ItemDB = new List<Item>();
-
-        ItemDB.Add(new Item("무쇠갑옷", "튼튼한 갑옷", ItemType.ARMOR, 0, 5, 0, 500));
-        ItemDB.Add(new Item("낡은 검", "낡은 검", ItemType.WEAPON, 2, 0, 0, 1000));
-        ItemDB.Add(new Item("골든 헬름", "희귀한 투구", ItemType.ARMOR, 0, 9, 0, 2000));
-        ItemDB.Add(new Item("가벼운 갑옷", "돌격에 용이", ItemType.ARMOR, 2, 3, 0, 500));
-        ItemDB.Add(new Item("단단한 도끼", "무겁고 치명적인 무기", ItemType.WEAPON, 9, -2, 0, 1500));
-        ItemDB.Add(new Item("검과 방패", "공격과 방어를 동시에", ItemType.WEAPON, 4, 4, 0, 2000));
+        ItemDB.Add(new Item("허름한 가운", "누군가 버린 가운.", ItemType.ARMOR, 0, 0, 10, 500));
+        ItemDB.Add(new Item("가벼운 갑옷", "돌격에 용이!", ItemType.ARMOR, 2, 3, 0, 2500));
+        ItemDB.Add(new Item("무쇠 갑옷", "튼튼한 갑옷.", ItemType.ARMOR, 0, 6, 0, 3000));
     }
 
 
