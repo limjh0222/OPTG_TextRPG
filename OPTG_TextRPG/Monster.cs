@@ -11,7 +11,8 @@ namespace OPTG_TextRPG
         public string Name { get; }
         public int Lv { get; }
         public int Atk { get; }
-        public int Hp { get; private set; }
+        public float Hp { get; set; }
+        public bool IsDead { get; set; }
 
         public Monster() { }
         public Monster(string name, int lv, int atk, int hp)
@@ -20,13 +21,29 @@ namespace OPTG_TextRPG
             this.Lv = lv;
             this.Atk = atk;
             this.Hp = hp;
-            
+
         }
 
-        //몬스터 객체를 출력
+        // 몬스터 정보 출력을 위한 ToString 메서드 수정
         public override string ToString()
         {
-            return $"Lv.{Lv} {Name} HP {Hp}";
+            return $"몬스터: {Name}, 레벨: {Lv}, 체력: {Hp}, 공격력: {Atk}";
+        }
+
+        public void CheckDead()
+        {
+            if (Hp <= 0)
+            {
+                IsDead = true;
+            }
+        }
+
+        public static int MonsterAttack(float attack)
+        {
+            double minAttack = attack * 0.9;
+            double maxAttack = attack * 1.1;
+
+            return (int)Math.Ceiling(new Random().NextDouble() * (maxAttack - minAttack) + minAttack);
         }
     }
 }
