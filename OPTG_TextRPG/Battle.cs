@@ -10,20 +10,21 @@ public class Battle
     private List<Monster> monsters = new List<Monster>();
     private Dungeon dungeon;
     private Random random = new Random();
-    private int stage;
+    private int stage = 0;
     public Battle(Dungeon dungeon)
     {
         this.dungeon = dungeon;
         this.monsters = new List<Monster>();
+
     }
 
     public void StartDungeon(Player player)
     {
-        dungeon.NextStage(); // 스테이지를 업데이트합니다.
-        stage = dungeon.GetStage(); // 업데이트된 스테이지를 가져옵니다.
-
+        //dungeon.NextStage(); // 스테이지를 업데이트합니다.
+        //stage = dungeon.GetStage(); // 업데이트된 스테이지를 가져옵니다.
+        stage++;
         monsters.Clear();
-
+        Console.WriteLine(stage);
         if (stage % 5 == 0)
         {
             monsters.Add(dungeon.RandomBossMonster());
@@ -41,7 +42,6 @@ public class Battle
             }
         }
         Console.Clear();
-
         Console.WriteLine("던전에 진입하였습니다!\n");
         Console.WriteLine($"Stage {stage}에 진입하였습니다!\n");
 
@@ -85,18 +85,44 @@ public class Battle
                         Console.WriteLine("\n[내정보]");
                         Console.WriteLine($"{player.Name} Lv.{player.Level} ({player.Job})");
                         Console.WriteLine($"HP {player.Hp}/{player.MaxHp}\n");
-                        
+
                         Console.WriteLine("1. 공격하기\n");
                         Console.WriteLine("0. 취소\n");
-                        int backchoice = int.Parse(Console.ReadLine());
-                        if (backchoice == 0)
+                        int backchoice;
+                        do
                         {
-                            return;
-                        }
+                            backchoice = ConsoleUtility.PromptMenuChoice(0, 1);
+                            if (backchoice == 0)
+                            {
+                                return;
+                            }
+                            else if (backchoice == 1)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("다시 입력하세요");
+
+                                Console.WriteLine("몬스터 목록:");
+                                for (int i = 0; i < monsters.Count; i++)
+                                {
+                                    if (monsters[i].IsDead)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                                    }
+                                    Console.WriteLine($"[{i + 1}] {monsters[i].Name} Lv.{monsters[i].Lv} HP {monsters[i].Hp} {(monsters[i].IsDead ? "Dead" : "")}");
+                                    Console.ResetColor();
+                                }
+                                Console.WriteLine("");
+                                Console.WriteLine("1. 공격하기\n");
+                                Console.WriteLine("0. 취소\n");
+                            }
+                        } while (true);
                         int monsterChoice;
                         do
                         {
-                            
+
                             for (int i = 0; i < monsters.Count; i++)
                             {
                                 if (monsters[i].IsDead)
@@ -108,7 +134,7 @@ public class Battle
                             }
                             Console.WriteLine("대상을 선택해주세요.");
                             monsterChoice = ConsoleUtility.PromptMenuChoice(0, monsters.Count);
-                            
+
                         } while (monsterChoice < 0 || monsterChoice > monsters.Count);
 
                         if (monsterChoice == 0)
@@ -141,7 +167,7 @@ public class Battle
                             Console.WriteLine($"{selectedMonster.Name}\nHP {selectedMonster.Hp} -> {(selectedMonster.IsDead ? "Dead" : selectedMonster.Hp.ToString())}\n");
                         }
 
-                       
+
 
                         if (monsters.All(monster => monster.IsDead))
                             break;
@@ -162,7 +188,7 @@ public class Battle
 
                                 if (player.Hp <= 0)
                                 {
-                                   break;
+                                    break;
                                 }
                             }
                         }
