@@ -11,7 +11,7 @@ namespace OPTG_TextRPG
 
     public class Dungeon
     {
-        Dictionary<int,Monster> monsterDB = new Dictionary<int, Monster>();
+        Dictionary<int, Monster> monsterDB = new Dictionary<int, Monster>();
         Dictionary<int, Monster> bossMonsterDB = new Dictionary<int, Monster>();
         List<Monster> monsters = new List<Monster>();
         Random random = new Random();
@@ -24,11 +24,10 @@ namespace OPTG_TextRPG
             bossMonsterDB = DataManager.Instance.BossMonsterDB;
         }
 
-        public List<Monster> SpawnMonster()
+        public List<Monster> SpawnMonster() //스테이지별 몬스터 생성 방식
         {
             monsters.Clear(); //몬스터 초기화
-            stage = 5;
-            //스테이지별 몬스터 생성 방식
+
             if (stage % 5 == 0) //스테이지가 5단위 마다 보스 몬스터 생성
             {    
                 monsters.Add(RandomBossMonster());
@@ -41,23 +40,19 @@ namespace OPTG_TextRPG
                     monsters.Add(RandomNormalMonster());
                 }
             }
-
             return monsters;
         }
         
-        
         private Monster RandomNormalMonster()
         {
-            //몬스터 정보를 랜덤하게 섞어줌
-            return monsterDB[random.Next(monsterDB.Count)];
+            return monsterDB[random.Next(monsterDB.Count)]; //랜덤하게 일반몬스터를 선택하여 반환
         }
         public Monster RandomBossMonster()
         {
-            //보스몬스터 선택
-            return bossMonsterDB[0];
+            return bossMonsterDB[0]; //정해진 보스몬스터를 선택하여 반환
         }
-        // 스테이지 진행
-        public void NextStage()
+        
+        public void NextStage() //스테이지 진행
         {
             if(stage < 6) //현재 스테이지는 5까지 구현
             {
