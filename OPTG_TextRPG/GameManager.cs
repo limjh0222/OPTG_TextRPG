@@ -21,15 +21,17 @@ public class GameManager
     public static GameManager Instance { get { return instance; } }
 
     public Player player;
+    public Battle battle;
     public List<Item> inventory {  get; set; }
     public List<Item> storeInventory;
-
+    
     public GameManager()
     {
         if (instance == null)
         {
             instance = this;
         }
+        battle = new Battle();
         InitializeGame();
     }
 
@@ -47,10 +49,11 @@ public class GameManager
             Console.WriteLine("3. 도적");
             Console.WriteLine("4. 궁수\n");
 
-            choice = ConsoleUtility.PromptMenuChoice(1, 4);
+            choice = ConsoleUtility.PromptJobChoice(1, 4);
         }
 
-        ConsoleUtility.PrintYellowHighlights("\n", "이름", "을 입력해주세요: ");
+        ConsoleUtility.PrintYellowHighlights("\n플레이어의 ", "이름", "을 입력해주세요.\n");
+        Console.Write(">> ");
         name = Console.ReadLine();
         DataManager.Instance.InitJob(name);
 
@@ -87,7 +90,7 @@ public class GameManager
             Console.WriteLine("\n1. 상태보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
-            Console.WriteLine("4. 던전");
+            Console.WriteLine("4. 던전 입장\n");
 
             // 2. 선택한 결과를 검증함
             choice = ConsoleUtility.PromptMenuChoice(1, 4);
@@ -106,8 +109,6 @@ public class GameManager
                 Store.StoreMenu();
                 break;
             case 4:
-                Dungeon dungeon = new Dungeon();
-                Battle battle = new Battle(dungeon);
                 battle.StartDungeon(player);
                 break;
         }

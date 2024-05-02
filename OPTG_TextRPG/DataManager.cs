@@ -51,14 +51,14 @@ class DataManager
     public Dictionary<int, Monster> BossMonsterDB = new Dictionary<int, Monster>();
     public void InitMonster()
     {
-        MonsterDB.Add(0, new Monster("슬라임", 2, 10, 23));
-        MonsterDB.Add(1, new Monster("고블린", 3, 12, 25));
-        MonsterDB.Add(2, new Monster("오크", 5, 18, 28));
-        MonsterDB.Add(3, new Monster("미믹", 5, 15, 35));
-        MonsterDB.Add(4, new Monster("골렘", 6, 22, 55));
-        MonsterDB.Add(5, new Monster("오우거", 8, 25, 60));
+        MonsterDB.Add(0, new Monster("슬라임", 2, 3, 23));
+        MonsterDB.Add(1, new Monster("고블린", 3, 5, 25));
+        MonsterDB.Add(2, new Monster("오크", 5, 7, 28));
+        MonsterDB.Add(3, new Monster("미믹", 5, 5, 35));
+        MonsterDB.Add(4, new Monster("골렘", 6, 8, 42));
+        MonsterDB.Add(5, new Monster("오우거", 8, 10, 50));
 
-        BossMonsterDB.Add(0, new Monster("바실리스크", 15, 30, 150));
+        BossMonsterDB.Add(0, new Monster("바실리스크", 15, 15, 100));
     }
 
     public Monster GetMonster(int index)

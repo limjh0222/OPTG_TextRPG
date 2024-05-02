@@ -12,7 +12,6 @@ namespace OPTG_TextRPG
     {
         List<Item> itemDB;
         private GameManager gameManager;
-        Player player;
         Random random = new Random();
         public DungeonEvent() { }
         public DungeonEvent(GameManager Manager)
@@ -137,7 +136,7 @@ namespace OPTG_TextRPG
 
         }
 
-        public static void FootPrint()
+        public void FootPrint()
         {
             Console.Clear();
             FootPrint1();
@@ -146,7 +145,7 @@ namespace OPTG_TextRPG
             Thread.Sleep(500);
         }
 
-        public static void FootPrint1()
+        public void FootPrint1()
         {
             Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             Console.WriteLine("\t\t\t\t ==");
@@ -160,7 +159,7 @@ namespace OPTG_TextRPG
             Thread.Sleep(300);
             Console.Clear();
         }
-        public static void FootPrint2()
+        public void FootPrint2()
         {
             Console.WriteLine("\n\n\n\n\n\n\n\n\n");
             Console.WriteLine("\t\t\t  ==");
@@ -182,7 +181,7 @@ namespace OPTG_TextRPG
             Thread.Sleep(300);
             Console.Clear();
         }
-        public static void FootPrint3()
+        public void FootPrint3()
         {
             Console.WriteLine("\n\t\t\t\t ==");
             Console.WriteLine("\t\t\t\t#@@#");

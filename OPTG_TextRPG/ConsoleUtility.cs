@@ -2,19 +2,32 @@
 
 internal class ConsoleUtility
 {
-    public static int PromptMenuChoice(int min, int max)
+    public static int PromptJobChoice(int min, int max)
     {
-        PrintYellowHighlights("원하시는 ", "번호", "를 입력해주세요: ");
+        PrintYellowHighlights("원하시는 ", "직업", "을 선택해주세요.\n");
+        Console.Write(">> ");
         if (int.TryParse(Console.ReadLine(), out int choice) && choice >= min && choice <= max)
         {
             return choice;
         }
         Console.Clear();
-        PrintRed("잘못된 입력입니다. 다시 시도해주세요.\n");
-        Thread.Sleep(800);
+        PrintRed("잘못된 입력입니다.\n");
+        Thread.Sleep(500);
         return -1;
     }
-
+    public static int PromptMenuChoice(int min, int max)
+    {
+        PrintYellowHighlights("원하시는 ", "행동", "을 선택해주세요.\n");
+        Console.Write(">> ");
+        if (int.TryParse(Console.ReadLine(), out int choice) && choice >= min && choice <= max)
+        {
+            return choice;
+        }
+        Console.Clear();
+        PrintRed("잘못된 입력입니다.\n");
+        Thread.Sleep(500);
+        return -1;
+    }
     public static void PrintRed(string str)
     {
         Console.ForegroundColor = ConsoleColor.Red;
