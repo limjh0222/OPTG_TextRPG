@@ -1,6 +1,7 @@
 ﻿
 
 
+using OPTG_TextRPG;
 using System.Xml.Serialization;
 
 public class Program
@@ -14,12 +15,21 @@ public class Program
 
 public class GameManager
 {
+    //// 싱글톤
+    private static GameManager instance;
+
+    public static GameManager Instance { get { return instance; } }
+
     private Player player;
-    private List<Item> inventory;
+    public List<Item> inventory {  get; set; }
     private List<Item> storeInventory;
 
     public GameManager()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
         InitializeGame();
     }
 
@@ -59,7 +69,7 @@ public class GameManager
         MainMenu();
     }
 
-    private void MainMenu()
+    public void MainMenu()
     {
         // 구성
         int choice = -1;
@@ -87,7 +97,7 @@ public class GameManager
                 StatusMenu();
                 break;
             case 2:
-                InventoryMenu();
+                Inventory.InventoryMenu();
                 break;
             case 3:
                 StoreMenu();
@@ -130,74 +140,6 @@ public class GameManager
         {
             case 0:
                 MainMenu();
-                break;
-        }
-    }
-
-    private void InventoryMenu()
-    {
-        int choice = -1;
-
-        while(choice < 0)
-        {
-            Console.Clear();
-
-            ConsoleUtility.PrintMagenta("■ 인벤토리 ■");
-            ConsoleUtility.PrintYellowHighlights("보유 중인 아이템을 ", "관리", "할 수 있습니다.\n");
-
-            Console.WriteLine("\n[아이템 목록]");
-
-            for (int i = 0; i < inventory.Count; i++)
-            {
-                inventory[i].PrintItemStatDescription();
-            }
-
-            Console.WriteLine("\n1. 장착관리");
-            Console.WriteLine("0. 나가기\n");
-
-            choice = ConsoleUtility.PromptMenuChoice(0, 1);
-        }
-        
-        switch (choice)
-        {
-            case 0:
-                MainMenu();
-                break;
-            case 1:
-                EquipMenu();
-                break;
-        }
-    }
-
-    private void EquipMenu()
-    {
-        int choice = -1;
-        while(choice < 0 )
-        {
-            Console.Clear();
-
-            ConsoleUtility.PrintMagenta("■ 인벤토리 - 장착 관리 ■");
-            ConsoleUtility.PrintYellowHighlights("보유 중인 아이템을 ", "관리", "할 수 있습니다.\n");
-
-            Console.WriteLine("\n[아이템 목록]");
-            for (int i = 0; i < inventory.Count; i++)
-            {
-                inventory[i].PrintItemStatDescription(true, i + 1); // 나가기가 0번 고정, 나머지가 1번부터 배정
-            }
-
-            Console.WriteLine("\n0. 나가기\n");
-
-            choice = ConsoleUtility.PromptMenuChoice(0, inventory.Count);
-        }
-
-        switch (choice)
-        {
-            case 0:
-                InventoryMenu();
-                break;
-            default:
-                inventory[choice - 1].ToggleEquipStatus();
-                EquipMenu();
                 break;
         }
     }
