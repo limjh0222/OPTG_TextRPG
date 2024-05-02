@@ -10,20 +10,21 @@ public class Battle
     private List<Monster> monsters = new List<Monster>();
     private Dungeon dungeon;
     private Random random = new Random();
-    private int stage;
+    private int stage = 0;
     public Battle(Dungeon dungeon)
     {
         this.dungeon = dungeon;
         this.monsters = new List<Monster>();
+
     }
 
     public void StartDungeon(Player player)
     {
-        dungeon.NextStage(); // 스테이지를 업데이트합니다.
-        stage = dungeon.GetStage(); // 업데이트된 스테이지를 가져옵니다.
-
+        //dungeon.NextStage(); // 스테이지를 업데이트합니다.
+        //stage = dungeon.GetStage(); // 업데이트된 스테이지를 가져옵니다.
+        stage++;
         monsters.Clear();
-
+        Console.WriteLine(stage);
         if (stage % 5 == 0)
         {
             monsters.Add(dungeon.RandomBossMonster());
@@ -41,11 +42,20 @@ public class Battle
             }
         }
         Console.Clear();
-
         Console.WriteLine("던전에 진입하였습니다!\n");
         Console.WriteLine($"Stage {stage}에 진입하였습니다!\n");
 
-        Console.WriteLine("\n1. 전투 시작");
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (monsters[i].IsDead)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+            }
+            Console.WriteLine($"[{i + 1}] {monsters[i].Name} Lv.{monsters[i].Lv} HP {monsters[i].Hp} {(monsters[i].IsDead ? "Dead" : "")}");
+            Console.ResetColor();
+        }
+
+        Console.WriteLine("\n1. 진입 하기");
         Console.WriteLine("2. 던전 나가기");
         int choice = ConsoleUtility.PromptMenuChoice(1, 2);
         if (choice == 1)
@@ -74,12 +84,58 @@ public class Battle
 
                         Console.WriteLine("\n[내정보]");
                         Console.WriteLine($"{player.Name} Lv.{player.Level} ({player.Job})");
-                        Console.WriteLine($"HP {player.MaxHp}/{player.Hp}\n");
+                        Console.WriteLine($"HP {player.Hp}/{player.MaxHp}\n");
 
+                        Console.WriteLine("1. 공격하기\n");
                         Console.WriteLine("0. 취소\n");
+                        int backchoice;
+                        do
+                        {
+                            backchoice = ConsoleUtility.PromptMenuChoice(0, 1);
+                            if (backchoice == 0)
+                            {
+                                return;
+                            }
+                            else if (backchoice == 1)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("다시 입력하세요");
 
-                        Console.WriteLine("대상을 선택해주세요.");
-                        int monsterChoice = ConsoleUtility.PromptMenuChoice(0, monsters.Count);
+                                Console.WriteLine("몬스터 목록:");
+                                for (int i = 0; i < monsters.Count; i++)
+                                {
+                                    if (monsters[i].IsDead)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                                    }
+                                    Console.WriteLine($"[{i + 1}] {monsters[i].Name} Lv.{monsters[i].Lv} HP {monsters[i].Hp} {(monsters[i].IsDead ? "Dead" : "")}");
+                                    Console.ResetColor();
+                                }
+                                Console.WriteLine("");
+                                Console.WriteLine("1. 공격하기\n");
+                                Console.WriteLine("0. 취소\n");
+                            }
+                        } while (true);
+                        int monsterChoice;
+                        do
+                        {
+
+                            for (int i = 0; i < monsters.Count; i++)
+                            {
+                                if (monsters[i].IsDead)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                                }
+                                Console.WriteLine($"[{i + 1}] {monsters[i].Name} Lv.{monsters[i].Lv} HP {monsters[i].Hp} {(monsters[i].IsDead ? "Dead" : "")}");
+                                Console.ResetColor();
+                            }
+                            Console.WriteLine("대상을 선택해주세요.");
+                            monsterChoice = ConsoleUtility.PromptMenuChoice(0, monsters.Count);
+
+                        } while (monsterChoice < 0 || monsterChoice > monsters.Count);
 
                         if (monsterChoice == 0)
                             break;
@@ -111,8 +167,7 @@ public class Battle
                             Console.WriteLine($"{selectedMonster.Name}\nHP {selectedMonster.Hp} -> {(selectedMonster.IsDead ? "Dead" : selectedMonster.Hp.ToString())}\n");
                         }
 
-                        Console.WriteLine("\n0. 다음");
-                        ConsoleUtility.PromptMenuChoice(0, 0);
+
 
                         if (monsters.All(monster => monster.IsDead))
                             break;
@@ -127,13 +182,12 @@ public class Battle
                                 player.Hp -= (int)Math.Floor(monsterDamage);
 
                                 Console.WriteLine($"{monster.Name}이(가) {player.Name}을(를) 공격했습니다. [데미지 : {(int)Math.Floor(monsterDamage)}]\n");
-                                Thread.Sleep(1000); // 1초 딜레이
-                                Console.WriteLine($"{player.Name}\nHP {player.Hp} -> {(player.Hp > 0 ? player.Hp.ToString() : "Dead")}\n");
+                                Thread.Sleep(3000); // 1초 딜레이
+                                Console.WriteLine($"{player.Name}\nHP {(player.Hp > 0 ? $"-{(int)Math.Floor(monsterDamage)}" : "")}, {(player.Hp > 0 ? player.Hp.ToString() : "Dead")} -> {player.Hp - (int)Math.Floor(monsterDamage)}\n");
+
 
                                 if (player.Hp <= 0)
                                 {
-                                    Console.WriteLine("0. 다음");
-                                    ConsoleUtility.PromptMenuChoice(0, 0);
                                     break;
                                 }
                             }
@@ -159,7 +213,7 @@ public class Battle
                 Console.WriteLine("**Victory**\n");
                 Console.WriteLine($"던전에서 모든 몬스터를 잡았습니다.\n");
                 Console.WriteLine($"{player.Name}\nHP {player.MaxHp} -> {player.Hp}\n");
-
+                Thread.Sleep(1000); // 1초 딜레이
                 Console.WriteLine("\n0. 다음");
 
                 return;
