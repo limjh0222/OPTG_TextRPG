@@ -6,7 +6,7 @@
     public int Atk { get; set; }
     public int Def { get; set; }
 
-    public int hp;
+    private int hp;
     public int Hp
     {   // 최대값을 100으로 제한
         get { return hp; }

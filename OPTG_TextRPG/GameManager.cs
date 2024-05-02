@@ -2,6 +2,7 @@
 
 
 using OPTG_TextRPG;
+using System.Threading;
 using System.Xml.Serialization;
 
 public class Program
@@ -22,6 +23,7 @@ public class GameManager
 
     public Player player;
     public Battle battle;
+    public StageBattle stageBattle;
     public List<Item> inventory {  get; set; }
     public List<Item> storeInventory;
     
@@ -31,6 +33,7 @@ public class GameManager
         {
             instance = this;
         }
+        stageBattle = new StageBattle();
         battle = new Battle();
         InitializeGame();
     }
@@ -109,7 +112,7 @@ public class GameManager
                 Store.StoreMenu();
                 break;
             case 4:
-                battle.StartDungeon(player);
+                stageBattle.BatteleStart(player);
                 break;
         }
         MainMenu();

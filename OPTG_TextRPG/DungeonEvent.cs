@@ -143,6 +143,7 @@ namespace OPTG_TextRPG
             FootPrint2();
             FootPrint3();
             Thread.Sleep(500);
+            Console.Clear();
         }
 
         public void FootPrint1()

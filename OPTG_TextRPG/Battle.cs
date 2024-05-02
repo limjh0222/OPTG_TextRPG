@@ -121,6 +121,8 @@ public class Battle
                                 Console.WriteLine("0. 취소\n");
                             }
                         } while (true);
+
+
                         int monsterChoice;
                         do
                         {

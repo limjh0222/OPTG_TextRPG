@@ -24,10 +24,8 @@ namespace OPTG_TextRPG
 
         public List<Monster> SpawnMonster()
         {
-            Console.Clear();
-            dungeonEvent.FootPrint();
             monsters.Clear(); //몬스터 초기화
-            stage = 5;
+            stage = 1;
             //스테이지별 몬스터 생성 방식
             if (stage % 5 == 0) //스테이지가 5단위 마다 보스 몬스터 생성
             {

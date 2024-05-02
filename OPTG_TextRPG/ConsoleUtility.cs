@@ -10,8 +10,7 @@ internal class ConsoleUtility
         {
             return choice;
         }
-        Console.Clear();
-        PrintRed("잘못된 입력입니다.\n");
+        PrintRed("\n잘못된 입력입니다.");
         Thread.Sleep(500);
         return -1;
     }
@@ -23,11 +22,24 @@ internal class ConsoleUtility
         {
             return choice;
         }
-        Console.Clear();
-        PrintRed("잘못된 입력입니다.\n");
+        PrintRed("\n잘못된 입력입니다.");
         Thread.Sleep(500);
         return -1;
     }
+
+    public static int PromptBattleChoice(int min, int max)
+    {
+        PrintYellowHighlights("원하시는 ", "행동", "을 선택해주세요.\n");
+        Console.Write(">> ");
+        if (int.TryParse(Console.ReadLine(), out int choice) && choice >= min && choice <= max)
+        {
+            return choice;
+        }
+        PrintRed("\n잘못된 입력입니다.");
+        Thread.Sleep(500);
+        return -1;
+    }
+
     public static void PrintRed(string str)
     {
         Console.ForegroundColor = ConsoleColor.Red;
