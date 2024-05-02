@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 namespace OPTG_TextRPG
 {
 
+   
+
     public class Dungeon
     {
-        Dictionary<int, Monster> monsterDB = new Dictionary<int, Monster>();
-        Dictionary<int, Monster> bossMonsterDB = new Dictionary<int, Monster>();
-        List<Monster> monsters = new List<Monster>();
-        Random random = new Random();
+        private Dictionary<int, Monster> monsterDB = new Dictionary<int, Monster>();
+        private Dictionary<int, Monster> bossMonsterDB = new Dictionary<int, Monster>();
+        private List<Monster> monsters = new List<Monster>();
+        private Random random = new Random();
         public int stage = 1;
 
 
@@ -22,42 +24,50 @@ namespace OPTG_TextRPG
         {
             monsterDB = DataManager.Instance.MonsterDB;
             bossMonsterDB = DataManager.Instance.BossMonsterDB;
+
         }
 
-        public List<Monster> SpawnMonster() //스테이지별 몬스터 생성 방식
-        {
-            monsters.Clear(); //몬스터 초기화
 
-            if (stage % 5 == 0) //스테이지가 5단위 마다 보스 몬스터 생성
-            {    
-                monsters.Add(RandomBossMonster());
-            }
-            else //그 외일때 1~4마리 사이 랜덤한 몬스터 생성
-            {
-                int numMonsters = random.Next(1, 5);
-                for (int i = 0; i < numMonsters; i++)
-                {    
-                    monsters.Add(RandomNormalMonster());
-                }
-            }
-            return monsters;
-        }
-        
-        private Monster RandomNormalMonster()
+
+        public Monster RandomNormalMonster()
         {
-            return monsterDB[random.Next(monsterDB.Count)]; //랜덤하게 일반몬스터를 선택하여 반환
+            if (monsterDB.Count == 0)
+                return null;
+
+            // 몬스터 키를 리스트로 저장
+            List<int> keys = new List<int>(monsterDB.Keys);
+
+            // 이미 선택된 몬스터를 제외하고 몬스터 선택
+            int randomIndex = random.Next(keys.Count);
+            Monster selectedMonster = monsterDB[keys[randomIndex]];
+
+            // 선택된 몬스터를 몬스터 목록에서 삭제
+            monsterDB.Remove(keys[randomIndex]);
+
+            return selectedMonster;
         }
+
         public Monster RandomBossMonster()
         {
-            return bossMonsterDB[0]; //정해진 보스몬스터를 선택하여 반환
+            return bossMonsterDB[0];
         }
-        
-        public void NextStage() //스테이지 진행
+
+        public int GetStage()
         {
-            if(stage < 6) //현재 스테이지는 5까지 구현
+            return stage;
+        }
+        public void NextStage()
+        {
+
+            if (stage < 6)
             {
+
                 stage++;
+
+
             }
         }
+
+
     }
 }

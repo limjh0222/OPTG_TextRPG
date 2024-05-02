@@ -59,6 +59,8 @@ public class GameManager
 
         inventory = new List<Item>();
 
+        DataManager.Instance.InitMonster(); // 테스트 몬스터 생성
+
         DataManager.Instance.InitItem();
         storeInventory = DataManager.Instance.ItemDB;
     }
@@ -87,7 +89,7 @@ public class GameManager
             Console.WriteLine("3. 상점\n");
 
             // 2. 선택한 결과를 검증함
-            choice = ConsoleUtility.PromptMenuChoice(1, 3);
+            choice = ConsoleUtility.PromptMenuChoice(1, 4);
         }
 
         // 3. 선택한 결과에 따라 보내줌
@@ -101,6 +103,11 @@ public class GameManager
                 break;
             case 3:
                 Store.StoreMenu();
+                break;
+            case 4:
+                Dungeon dungeon = new Dungeon();
+                Battle battle = new Battle(dungeon);
+                battle.StartDungeon(player);
                 break;
         }
         MainMenu();
