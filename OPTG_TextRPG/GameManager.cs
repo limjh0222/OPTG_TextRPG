@@ -102,6 +102,11 @@ public class GameManager
             case 3:
                 StoreMenu();
                 break;
+            case 4:
+                Dungeon dungeon = new Dungeon();
+                Battle battle = new Battle(dungeon);
+                battle.StartDungeon(player);
+                break;
         }
         MainMenu();
     }
