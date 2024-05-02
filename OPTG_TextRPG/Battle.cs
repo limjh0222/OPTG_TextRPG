@@ -9,14 +9,12 @@ public class Battle
 {
     private List<Monster> monsters = new List<Monster>();
     private DungeonEvent dungeonEvent = new DungeonEvent();
-    private Dungeon dungeon;
+    Dungeon dungeon = new Dungeon();
     private Random random = new Random();
     private int stage = 0;
-    public Battle(Dungeon dungeon)
+    public Battle()
     {
-        this.dungeon = dungeon;
         this.monsters = new List<Monster>();
-
     }
 
     public void StartDungeon(Player player)
@@ -109,7 +107,7 @@ public class Battle
 
                                 Console.Clear();
                                 Console.WriteLine("몬스터 목록:");
-                                for (int i = 0; i < monsters.Count; i++)
+                                for (int i = 0; i < monsters.Count; i++)  
                                 {
                                     if (monsters[i].IsDead)
                                     {
@@ -156,7 +154,7 @@ public class Battle
 
                         Console.WriteLine();
                         Console.WriteLine($"{player.Name}의 공격!");
-                        float damage = Player.PlayerAttack(player.Atk);
+                        float damage = player.PlayerAttack(player.Atk);
                         selectedMonster.Hp -= (int)Math.Floor(damage);
 
                         Console.WriteLine($"{selectedMonster.Name}을(를) 맞췄습니다. [데미지 : {(int)Math.Floor(damage)}]");
@@ -183,7 +181,7 @@ public class Battle
                             if (!monster.IsDead)
                             {
                                 Console.WriteLine($"{monster.Name}의 공격!");
-                                float monsterDamage = Monster.MonsterAttack(monster.Atk);
+                                float monsterDamage = monster.MonsterAttack(monster.Atk);
                                 player.Hp -= (int)Math.Floor(monsterDamage);
 
                                 Console.WriteLine($"{monster.Name}이(가) {player.Name}을(를) 공격했습니다. [데미지 : {(int)Math.Floor(monsterDamage)}]\n");

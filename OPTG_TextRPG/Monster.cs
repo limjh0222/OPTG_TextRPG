@@ -17,17 +17,17 @@ namespace OPTG_TextRPG
         public Monster() { }
         public Monster(string name, int lv, int atk, int hp)
         {
-            this.Name = name;
-            this.Lv = lv;
-            this.Atk = atk;
-            this.Hp = hp;
+            Name = name;
+            Lv = lv;
+            Atk = atk;
+            Hp = hp;
 
         }
 
         // 몬스터 정보 출력을 위한 ToString 메서드 수정
         public override string ToString()
         {
-            return $"몬스터: {Name}, 레벨: {Lv}, 체력: {Hp}, 공격력: {Atk}";
+            return $"Lv.{Lv} {Name} HP: {Hp} 공격력: {Atk}";
         }
 
         public void CheckDead()
@@ -38,7 +38,7 @@ namespace OPTG_TextRPG
             }
         }
 
-        public static int MonsterAttack(float attack)
+        public int MonsterAttack(float attack)
         {
             double minAttack = attack * 0.9;
             double maxAttack = attack * 1.1;

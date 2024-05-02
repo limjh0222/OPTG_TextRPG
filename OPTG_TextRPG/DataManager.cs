@@ -27,10 +27,10 @@ class DataManager
 
     public void InitJob(string name)
     {
-        JobDB.Add(1, new Player(name, "전사", 1, 200,10,50,1500));
-        JobDB.Add(2, new Player(name, "마법사", 1, 15, 10, 50, 1500));
-        JobDB.Add(3, new Player(name, "도적", 1, 20, 12, 50, 1500));
-        JobDB.Add(4, new Player(name, "궁수", 1, 18, 18, 50, 1500));
+        JobDB.Add(1, new Player  (name, "전사", 1, 30, 30, 100, 100, 30, 1500));
+        JobDB.Add(2, new Player(name, "마법사", 1, 10, 10, 100, 100, 100, 1500));
+        JobDB.Add(3, new Player  (name, "도적", 1, 25, 15, 100, 100, 60, 1500));
+        JobDB.Add(4, new Player  (name, "궁수", 1, 20, 20, 100, 100, 80, 1500));
     }
 
     public Player GetJob(int index)
