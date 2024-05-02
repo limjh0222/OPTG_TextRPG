@@ -23,6 +23,7 @@ public class Item
     public bool IsEquipped { get; private set; }
     public bool IsPurchased { get; private set; }
 
+    public Item() { }
     public Item(string name, string desc, ItemType type, int atk, int def, int hp, int price, bool isEquipped = false, bool isPurchased = false)
     {
         Name = name;

@@ -86,7 +86,8 @@ public class GameManager
 
             Console.WriteLine("\n1. 상태보기");
             Console.WriteLine("2. 인벤토리");
-            Console.WriteLine("3. 상점\n");
+            Console.WriteLine("3. 상점");
+            Console.WriteLine("4. 던전");
 
             // 2. 선택한 결과를 검증함
             choice = ConsoleUtility.PromptMenuChoice(1, 4);
