@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 public class Battle
 {
     private List<Monster> monsters = new List<Monster>();
+    private DungeonEvent dungeonEvent = new DungeonEvent();
     private Dungeon dungeon;
     private Random random = new Random();
     private int stage = 0;
@@ -41,6 +42,8 @@ public class Battle
                 }
             }
         }
+        Console.Clear();
+        dungeonEvent.FootPrint();
         Console.Clear();
         Console.WriteLine("던전에 진입하였습니다!\n");
         Console.WriteLine($"Stage {stage}에 진입하였습니다!\n");
@@ -104,6 +107,7 @@ public class Battle
                             {
                                 Console.WriteLine("다시 입력하세요");
 
+                                Console.Clear();
                                 Console.WriteLine("몬스터 목록:");
                                 for (int i = 0; i < monsters.Count; i++)
                                 {
@@ -132,6 +136,7 @@ public class Battle
                                 Console.WriteLine($"[{i + 1}] {monsters[i].Name} Lv.{monsters[i].Lv} HP {monsters[i].Hp} {(monsters[i].IsDead ? "Dead" : "")}");
                                 Console.ResetColor();
                             }
+                            
                             Console.WriteLine("대상을 선택해주세요.");
                             monsterChoice = ConsoleUtility.PromptMenuChoice(0, monsters.Count);
 
@@ -182,9 +187,9 @@ public class Battle
                                 player.Hp -= (int)Math.Floor(monsterDamage);
 
                                 Console.WriteLine($"{monster.Name}이(가) {player.Name}을(를) 공격했습니다. [데미지 : {(int)Math.Floor(monsterDamage)}]\n");
-                                Thread.Sleep(3000); // 1초 딜레이
                                 Console.WriteLine($"{player.Name}\nHP {(player.Hp > 0 ? $"-{(int)Math.Floor(monsterDamage)}" : "")}, {(player.Hp > 0 ? player.Hp.ToString() : "Dead")} -> {player.Hp - (int)Math.Floor(monsterDamage)}\n");
 
+                                Thread.Sleep(2000); // 1초 딜레이
 
                                 if (player.Hp <= 0)
                                 {
