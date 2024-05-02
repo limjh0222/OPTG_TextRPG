@@ -19,8 +19,8 @@
         Level = level;
         Atk = atk;
         Def = def;
-        MaxHp = 2000;
-        Hp = 500f;
+        MaxHp = 100; //테스트용 hp
+        Hp = 100f;
         Mp = mp;
         Gold = gold;
     }

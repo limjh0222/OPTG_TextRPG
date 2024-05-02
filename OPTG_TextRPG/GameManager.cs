@@ -59,7 +59,8 @@ public class GameManager
 
         inventory = new List<Item>();
 
-        DataManager.Instance.InitMonster();
+        DataManager.Instance.InitMonster(); // 테스트 몬스터 생성
+
         DataManager.Instance.InitItem();
         storeInventory = DataManager.Instance.ItemDB;
     }

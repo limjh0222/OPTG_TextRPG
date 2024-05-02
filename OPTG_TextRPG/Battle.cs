@@ -68,13 +68,13 @@ public class Battle
                             {
                                 Console.ForegroundColor = ConsoleColor.DarkGray;
                             }
-                            Console.WriteLine($"**{i + 1}** {monsters[i].Name} Lv.{monsters[i].Lv} HP {monsters[i].Hp} {(monsters[i].IsDead ? "Dead" : "")}");
+                            Console.WriteLine($"[{i + 1}] {monsters[i].Name} Lv.{monsters[i].Lv} HP {monsters[i].Hp} {(monsters[i].IsDead ? "Dead" : "")}");
                             Console.ResetColor();
                         }
 
                         Console.WriteLine("\n[내정보]");
                         Console.WriteLine($"{player.Name} Lv.{player.Level} ({player.Job})");
-                        Console.WriteLine($"HP {player.Hp}/{player.MaxHp}\n");
+                        Console.WriteLine($"HP {player.MaxHp}/{player.Hp}\n");
 
                         Console.WriteLine("0. 취소\n");
 
