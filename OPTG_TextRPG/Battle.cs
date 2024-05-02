@@ -14,6 +14,7 @@ public class Battle
     public Battle(Dungeon dungeon)
     {
         this.dungeon = dungeon;
+        this.monsters = new List<Monster>();
     }
 
     public void StartDungeon(Player player)

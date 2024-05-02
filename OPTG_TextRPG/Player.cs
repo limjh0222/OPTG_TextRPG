@@ -11,7 +11,7 @@
     public int Gold { get; set; }
     public bool IsDead { get; set; }
 
-    public Dictionary<int, Skill> skillList = new Dictionary<int, Skill>();
+    //public Dictionary<int, Skill> skillList = new Dictionary<int, Skill>();
     public Player(string name, string job, int level, int atk, int def, int mp, int gold)
     {
         Name = name;
@@ -49,10 +49,10 @@
     //            break;
     //    }
     //}
-    public void AddSkill(int index, Skill skill)
-    {
-        skillList.Add(index, skill);
-    }
+    //public void AddSkill(int index, Skill skill)
+    //{
+    //    skillList.Add(index, skill);
+    //}
 
 
     public static int PlayerAttack(float attack)
@@ -62,3 +62,4 @@
 
         return (int)Math.Ceiling(new Random().NextDouble() * (maxAttack - minAttack) + minAttack);
     }
+}

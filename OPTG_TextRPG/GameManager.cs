@@ -87,7 +87,7 @@ public class GameManager
             Console.WriteLine("3. 상점\n");
 
             // 2. 선택한 결과를 검증함
-            choice = ConsoleUtility.PromptMenuChoice(1, 3);
+            choice = ConsoleUtility.PromptMenuChoice(1, 4);
         }
 
         // 3. 선택한 결과에 따라 보내줌
