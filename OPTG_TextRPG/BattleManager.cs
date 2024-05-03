@@ -39,7 +39,7 @@ namespace OPTG_TextRPG
                 Console.WriteLine($"Lv.{player.Level} {player.Name} {player.Job}");
                 Console.WriteLine($"HP {player.Hp}/{player.MaxHp}\n");
                 Console.WriteLine("1. 공격\n");
-                choice = ConsoleUtility.PromptBattleChoice(1, 1);
+                choice = ConsoleUtility.PromptMenuChoice(1, 1);
                 switch (choice)
                 {
                     case 1:
@@ -73,7 +73,7 @@ namespace OPTG_TextRPG
                 Console.WriteLine("0. 취소\n");
                 Console.WriteLine("대상을 선택해주세요.");
                 Console.Write(">> ");
-                monsterChoice = ConsoleUtility.PromptBattleChoice(0, 1);
+                monsterChoice = ConsoleUtility.PromptMenuChoice(0, 1);
 
                 for (int index = 0; index < monsters.Count; index++)
                 {

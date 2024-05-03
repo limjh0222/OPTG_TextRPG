@@ -49,10 +49,8 @@ namespace OPTG_TextRPG
         {
             if (prompt != null)
             {
-                // 1초간 메시지를 띄운 다음에 다시 진행
-                Console.Clear();
                 ConsoleUtility.PrintMagenta(prompt);
-                Thread.Sleep(1000);
+                Console.ReadKey();
             }
 
             int choice = -1;
@@ -87,7 +85,7 @@ namespace OPTG_TextRPG
                     // 1 : 이미 구매한 경우
                     if (GameManager.Instance.storeInventory[choice - 1].IsPurchased) // index 맞추기
                     {
-                        PurchaseMenu("이미 구매한 아이템입니다.");
+                        PurchaseMenu("\n이미 구매한 아이템입니다.");
                     }
                     // 2 : 돈이 충분해서 살 수 있는 경우
                     else if (GameManager.Instance.player.Gold >= GameManager.Instance.storeInventory[choice - 1].Price)
