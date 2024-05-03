@@ -99,7 +99,7 @@ public class Item
     public void PrintStoreItemDescription(bool withNumber = false, int idx = 0)
     {
         Console.Write("- ");
-        // 장착관리 전용
+        
         if (withNumber)
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -154,6 +154,67 @@ public class Item
         }
     }
 
+    public void PrintSaleItemDescription(bool withNumber = false, int idx = 0)
+    {
+        Console.Write("- ");
+
+        if (withNumber)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("{0} ", idx);
+            Console.ResetColor();
+
+        }
+
+        if (IsEquipped)
+        {
+            Console.Write("[");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("E");
+            Console.ResetColor();
+            Console.Write("]");
+            Console.Write(ConsoleUtility.PadRightForMixedText(Name, 17));
+        }
+        else Console.Write(ConsoleUtility.PadRightForMixedText(Name, 20));
+
+        Console.Write(" | ");
+
+        if (Atk != 0)
+        {
+            Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{(Atk >= 0 ? ConsoleUtility.PadRightForMixedText(Atk.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Atk.ToString(), 4))}");
+        }
+        else
+        {
+            Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
+        }
+
+        if (Def != 0)
+        {
+            Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{(Def >= 0 ? ConsoleUtility.PadRightForMixedText(Def.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Def.ToString(), 4))}");
+        }
+        else
+        {
+            Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
+        }
+
+        if (Hp != 0)
+        {
+            Console.Write($"체  력 {(Hp >= 0 ? "+" : "")}{(Hp >= 0 ? ConsoleUtility.PadRightForMixedText(Hp.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Hp.ToString(), 4))}");
+        }
+        else
+        {
+            Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
+        }
+
+        Console.Write(" | ");
+
+        Console.Write(ConsoleUtility.PadRightForMixedText(Desc, 30));
+
+        Console.Write(" | ");
+
+        ConsoleUtility.PrintYellowHighlights("", (Price * 0.8).ToString(), " G\n");
+    }
+
     internal void ToggleEquipStatus()
     {
         IsEquipped = !IsEquipped;
@@ -162,5 +223,23 @@ public class Item
     internal void Purchase()
     {
         IsPurchased = true;
+    }
+
+    internal void Sale()
+    {
+        // 판매 시 장착중인지 판별
+        if(IsEquipped)
+        {
+            // 장착 중이면 판매 x
+            ConsoleUtility.PrintMagenta("\n장착 중인 아이템입니다. 장착을 해제해주세요.");
+            Console.ReadKey();
+        }
+        else
+        {
+            // 미장착 중이면 판매 o
+            GameManager.Instance.player.Gold += (int)(Price * 0.8);
+            IsPurchased = false;
+            GameManager.Instance.inventory.Remove(this);
+        }
     }
 }

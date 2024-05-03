@@ -49,7 +49,7 @@ public class GameManager
             Console.WriteLine("3. 도적");
             Console.WriteLine("4. 궁수\n");
 
-            choice = ConsoleUtility.PromptJobChoice(1, 4);
+            choice = ConsoleUtility.PromptMenuChoice(1, 4);
         }
 
         ConsoleUtility.PrintYellowHighlights("\n플레이어의 ", "이름", "을 입력해주세요.\n");
@@ -58,6 +58,7 @@ public class GameManager
         DataManager.Instance.InitJob(name);
 
         player = DataManager.Instance.JobDB[choice];
+        player.Gold = 9999;
 
         inventory = new List<Item>();
 
