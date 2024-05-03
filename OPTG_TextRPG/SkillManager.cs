@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using System;
 using System.Collections.Generic;
+using OPTG_TextRPG;
+using System.Xml.Linq;
 
 public class SkillManager
 {
@@ -72,5 +74,43 @@ public class SkillManager
             return new Dictionary<int, Skill>();
         }
     }
+
+    public void Attack(PlayerData player, MonsterData monster, int skillId)
+    {
+        if (int.TryParse(player.Job, out int jobId))
+        {
+            if (jobSkills.ContainsKey(jobId))
+            {
+                var skills = jobSkills[jobId];
+                if (skills.ContainsKey(skillId))
+                {
+                    Skill skill = skills[skillId];
+                    if (player.Mp >= skill.MpCost)
+                    {
+                        Console.WriteLine($"{player.Name}이(가) {monster.Name}을(를) {skill.Name}으로 공격합니다!");
+                        BattleManager(skill.Damage);
+                        player.Mp -= skill.MpCost;
+                    }
+                    else
+                    {
+                        Console.WriteLine("마나가 부족하여 스킬을 사용할 수 없습니다!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("해당 스킬이 존재하지 않습니다!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("해당 직업의 스킬이 존재하지 않습니다!");
+            }
+        }
+        else
+        {
+            Console.WriteLine("직업을 숫자로 변환할 수 없습니다!");
+        }
+    }
 }
+
 
