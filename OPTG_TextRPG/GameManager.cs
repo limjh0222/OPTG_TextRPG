@@ -110,7 +110,7 @@ public class GameManager
                 Store.StoreMenu();
                 break;
             case 4:
-                battleManager.BatteleStart();
+                battleManager.BattleStart();
                 break;
         }
         MainMenu();

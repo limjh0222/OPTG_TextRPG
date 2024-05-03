@@ -21,8 +21,9 @@ namespace OPTG_TextRPG
 
         public BattleManager() { }
         
-        public void BatteleStart()
+        public void BattleStart()
         {
+            bool isExit = false;
             dungeonEvent.FootPrint();
             player = GameManager.Instance.player; //참조
             monsterAppeared = dungeonManager.SpawnMonster();
@@ -44,7 +45,11 @@ namespace OPTG_TextRPG
                 int attackChoice;
                 if (int.TryParse(input, out attackChoice) && attackChoice == 1)
                 {
-                    Fight();
+                    isExit = Fight();
+                    if(isExit)
+                    {
+                        break;
+                    }
                 }
                 else
                 {
@@ -54,8 +59,10 @@ namespace OPTG_TextRPG
                 }
             }
         }
-        public void Fight()
+
+        public bool Fight()
         {
+
             int initialPlayerHp = player.Hp;
 
             while (true)
@@ -98,7 +105,6 @@ namespace OPTG_TextRPG
                     continue;
                 }
                 PlayerTurn(selectedMonster);
-                Console.ReadKey();
                 if (monsterAppeared.All(monster => monster.IsDead))
                 {
                     Console.Clear();
@@ -107,7 +113,7 @@ namespace OPTG_TextRPG
                     Console.WriteLine($"던전에서 몬스터를 {monsterAppeared.Count}마리를 잡았습니다.\n");
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     Console.WriteLine($"HP {initialPlayerHp} -> {player.Hp}\n");
-                    Console.WriteLine("통로 앞엔 올라갈 수 있는 계단이 보인다.\n");
+                    Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다. 어떻게 할까?\n");
                     Console.WriteLine("1. 새로운 모험을 위해 올라간다.");
                     Console.WriteLine("0. 포기하고 마을로 돌아간다.\n");
                     Console.Write(">> ");
@@ -138,7 +144,7 @@ namespace OPTG_TextRPG
                                 continue;
                             }
                         case "0":
-                            return;
+                            return true;
                         default:
                             Console.WriteLine("잘못된 입력입니다.");
                             Thread.Sleep(400);
@@ -158,14 +164,27 @@ namespace OPTG_TextRPG
                     Console.Write(">> ");
                 }
                 MonstersTurn();
-                //if (player.Hp <= 0) //임시
-                //    break;
 
                 int remainingPlayerHp = player.Hp; // 전투 종료 후 플레이어 체력 기록
                 int lostHp = initialPlayerHp - remainingPlayerHp; // 손실된 체력 계산
-            }
-        }
 
+                if (player.Hp <= 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nBattle!! - Result\n");
+                    Console.WriteLine("You Lose\n");
+                    Console.WriteLine($"Lv.{player.Level} {player.Name}");
+                    Console.WriteLine($"HP {initialPlayerHp} -> {player.Hp}\n");
+                    Console.WriteLine("눈앞이 캄캄하다. 여기서 죽는걸까..?");
+                    Console.WriteLine(">> Press any key...\n");
+                    Console.Write(">> ");
+                    Console.ReadLine();
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         public void PlayerTurn(MonsterData selectedMonster)
         {
             Console.Clear();
