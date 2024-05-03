@@ -18,10 +18,9 @@ public class GameManager
 {
     //// 싱글톤
     private static GameManager instance;
-
     public static GameManager Instance { get { return instance; } }
 
-    public Player player;
+    public PlayerData player;
     public Battle battle;
     public StageBattle stageBattle;
     public List<Item> inventory {  get; set; }
@@ -61,7 +60,6 @@ public class GameManager
         DataManager.Instance.InitJob(name);
 
         player = DataManager.Instance.JobDB[choice];
-        //player.Gold = 99999; // 테스트용 골드
 
         inventory = new List<Item>();
 

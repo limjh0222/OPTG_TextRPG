@@ -11,17 +11,17 @@ namespace OPTG_TextRPG
 {
     public class StageBattle
     {
-        List<Monster> monsters = new List<Monster>();
+        List<MonsterData> monsters = new List<MonsterData>();
         DungeonEvent dungeonEvent = new DungeonEvent();
         StageDungeon stageDungeon = new StageDungeon();
-        Player player;
-        Monster monster;
+        PlayerData player;
+        MonsterData monster;
         public StageBattle()
         {
 
         }
 
-        public void BatteleStart(Player player)
+        public void BatteleStart(PlayerData player)
         {
             int choice = -1;
             dungeonEvent.FootPrint();
@@ -30,7 +30,7 @@ namespace OPTG_TextRPG
                 Console.Clear();
                 Console.WriteLine($"\nBattle start!!");
                 Console.WriteLine($"스테이지[{stageDungeon.stage}]\n");
-                List<Monster> monsters = stageDungeon.SpawnMonster();
+                List<MonsterData> monsters = stageDungeon.SpawnMonster();
                 foreach (var monster in monsters)
                 {
                     Console.WriteLine($"Lv.{monster.Lv} {monster.Name} HP {monster.Hp}");
@@ -43,25 +43,70 @@ namespace OPTG_TextRPG
                 switch (choice)
                 {
                     case 1:
-                        Fight();
+                        Fight(player);
                         break;
                 }
-            }        
+                break;
+            }
         }
-        private void Fight()
+        private void Fight(PlayerData player)
         {
-            Console.Clear();
-            Console.WriteLine("기다려");
-            Console.ReadLine();
+            do
+            {
+                for (int index = 0; index < monsters.Count; index++)
+                {
+                    MonsterData battleMonster = monsters[index];
+
+                    while (player.Hp > 0 && !battleMonster.IsDead)
+                    {
+                        int monsterChoice;
+                        do
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"\nBattle start!!");
+                            Console.WriteLine($"스테이지[{stageDungeon.stage}]\n");
+                            for (int i = 0; i < monsters.Count; i++)
+                            {
+                                if (monsters[i].IsDead)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                                }
+                                Console.WriteLine($"[{i + 1}] Lv.{monsters[i].Lv} {monsters[i].Name}  HP {monsters[i].Hp} {(monsters[i].IsDead ? "[Dead]" : "")}");
+                                Console.ResetColor();
+                            }
+                            Console.WriteLine("\n[내정보]");
+                            Console.WriteLine($"Lv.{player.Level} {player.Name} {player.Job}");
+                            Console.WriteLine($"HP {player.Hp}/{player.MaxHp}\n");
+                            Console.WriteLine("0. 취소\n");
+                            Console.WriteLine("대상을 선택해주세요.");
+                            Console.Write(">> ");
+                            monsterChoice = ConsoleUtility.PromptBattleChoice(0, 1);
+                        }
+
+                    }
+                }
+            }
         }
-        
+   
 
 
 
 
 
-        private void PlayerTun()
+        private void PlayerTurn(PlayerData player)
         {
+            while (monsterChoice < 0 || monsterChoice > monsters.Count) ;
+
+            if (monsterChoice == 0)
+                break;
+            MonsterData selectedMonster = monsters[monsterChoice - 1];
+
+            if (selectedMonster.IsDead)
+            {
+                Console.WriteLine("죽은 몬스터를 선택하였습니다. 다시 선택하세요.");
+                Thread.Sleep(1000);
+                continue;
+            }
             Console.WriteLine($"{player.Name}의 공격!");
             int playerAttack = PlayerAttack(player);
             this.PlayerDamage(playerAttack);
@@ -74,20 +119,21 @@ namespace OPTG_TextRPG
                 Console.ResetColor();
             }
         }
-        private void MonstersTun()
+        private void MonstersTurn()
         {
-            foreach (Monster monster in monsters)
+            foreach (MonsterData monster in monsters)
             {
                 if (!monster.IsDead)
                 {
                     Console.WriteLine($"{monster.Name}의 공격!");
-                    float monsterDamage = monster.MonsterAttack(monster.Atk);
                     this.MonstersDamage(monster.Atk);
                     Console.WriteLine($"{player.Name}에게 -{monster.Atk}데미지!!\n");
+                    if (player.Hp <= 0) break;
                 }
             }
+            if (player.Hp <= 0)break;
         }
-        private int PlayerAttack(Player player)
+        private int PlayerAttack(PlayerData player)
         {
             float attack = player.Atk;
             double minAttack = attack * 0.9;

@@ -13,9 +13,9 @@ namespace OPTG_TextRPG
 
     public class Dungeon
     {
-        private Dictionary<int, Monster> monsterDB = new Dictionary<int, Monster>();
-        private Dictionary<int, Monster> bossMonsterDB = new Dictionary<int, Monster>();
-        private List<Monster> monsters = new List<Monster>();
+        private Dictionary<int, MonsterData> monsterDB = new Dictionary<int, MonsterData>();
+        private Dictionary<int, MonsterData> bossMonsterDB = new Dictionary<int, MonsterData>();
+        private List<MonsterData> monsters = new List<MonsterData>();
         private Random random = new Random();
         public int stage = 1;
 
@@ -29,7 +29,7 @@ namespace OPTG_TextRPG
 
 
 
-        public Monster RandomNormalMonster()
+        public MonsterData RandomNormalMonster()
         {
             if (monsterDB.Count == 0)
                 return null;
@@ -39,7 +39,7 @@ namespace OPTG_TextRPG
 
             // 이미 선택된 몬스터를 제외하고 몬스터 선택
             int randomIndex = random.Next(keys.Count);
-            Monster selectedMonster = monsterDB[keys[randomIndex]];
+            MonsterData selectedMonster = monsterDB[keys[randomIndex]];
 
             // 선택된 몬스터를 몬스터 목록에서 삭제
             monsterDB.Remove(keys[randomIndex]);
@@ -47,7 +47,7 @@ namespace OPTG_TextRPG
             return selectedMonster;
         }
 
-        public Monster RandomBossMonster()
+        public MonsterData RandomBossMonster()
         {
             return bossMonsterDB[0];
         }

@@ -14,8 +14,6 @@ namespace OPTG_TextRPG
         DungeonEvent dungeonEvent = new DungeonEvent();
         Random random = new Random();
         public int stage = 1;
-
-
         public StageDungeon()
         {
             monsterDB = DataManager.Instance.MonsterDB;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OPTG_TextRPG
 {
-    public class Monster
+    public class MonsterData
     {
         public string Name { get; }
         public int Lv { get; }
@@ -14,20 +14,14 @@ namespace OPTG_TextRPG
         public float Hp { get; set; }
         public bool IsDead { get; set; }
 
-        public Monster() { }
-        public Monster(string name, int lv, int atk, int hp)
+        public MonsterData() { }
+        public MonsterData(string name, int lv, int atk, int hp)
         {
             Name = name;
             Lv = lv;
             Atk = atk;
             Hp = hp;
 
-        }
-
-        // 몬스터 정보 출력을 위한 ToString 메서드 수정
-        public override string ToString()
-        {
-            return $"Lv.{Lv} {Name} HP: {Hp} 공격력: {Atk}";
         }
 
         public void CheckDead()

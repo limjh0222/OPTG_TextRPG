@@ -117,14 +117,14 @@ namespace OPTG_TextRPG
                                 GameManager.Instance.player.Hp += 50;
                                 Console.WriteLine("\n여신상에서 따뜻한 기운이 느껴진다!");
                                 Console.WriteLine("HP가 [50 회복] 되었다!");
-                                Thread.Sleep(1000);
+                                Console.ReadKey();
                             }
                             else
                             {
                                 GameManager.Instance.player.Hp -= 50;
                                 Console.WriteLine("\n여신상에서 불길한 기운이 느껴진다!");
                                 Console.WriteLine("HP가 [-50 감소] 되었다!");
-                                Thread.Sleep(1000);
+                                Console.ReadKey();
                             }
                             return;
 
