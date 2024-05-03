@@ -24,20 +24,13 @@ namespace OPTG_TextRPG
 
         }
 
-        public void CheckDead()
+        //깊은복사 생성자* - 참조
+        public MonsterData(MonsterData data)
         {
-            if (Hp <= 0)
-            {
-                IsDead = true;
-            }
-        }
-
-        public int MonsterAttack(float attack)
-        {
-            double minAttack = attack * 0.9;
-            double maxAttack = attack * 1.1;
-
-            return (int)Math.Ceiling(new Random().NextDouble() * (maxAttack - minAttack) + minAttack);
+            Name = data.Name;
+            Lv = data.Lv;
+            Atk = data.Atk;
+            Hp = data.Hp;
         }
     }
 }

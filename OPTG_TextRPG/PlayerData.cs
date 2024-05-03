@@ -30,12 +30,4 @@
         Mp = mp;
         Gold = gold;
     }
-
-    public int PlayerAttack(float attack)
-    {
-        double minAttack = attack * 0.9;
-        double maxAttack = attack * 1.1;
-
-        return (int)Math.Ceiling(new Random().NextDouble() * (maxAttack - minAttack) + minAttack);
-    }
 }
