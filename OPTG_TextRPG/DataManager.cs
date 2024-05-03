@@ -50,7 +50,7 @@ class DataManager
         ItemDB.Add(new Item("가벼운 갑옷", "돌격에 용이!", ItemType.ARMOR, 2, 3, 0, 2500));
         ItemDB.Add(new Item("무쇠 갑옷", "튼튼한 갑옷.", ItemType.ARMOR, 0, 6, 0, 3000));
 
-        ItemDB.Add(new Item("HP 포션", "체력을 회복시켜 주는 물약.", ItemType.PORTION, 0, 0, 10, 100));
+        //ItemDB.Add(new Item("HP 포션", "체력을 회복시켜 주는 물약.", ItemType.PORTION, 0, 0, 10, 100));
         // ItemDB.Add(new Item("MP 포션", "마나를 회복시켜 주는 물약", ItemType.PORTION, 0, 0, 10, 100));
     }
 }

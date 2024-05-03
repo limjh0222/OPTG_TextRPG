@@ -29,13 +29,6 @@ internal class ConsoleUtility
         Console.ResetColor();
     }
 
-    internal static void PrintMagenta(string str)
-    {
-        Console.ForegroundColor = ConsoleColor.Magenta;
-        Console.WriteLine(str);
-        Console.ResetColor();
-    }
-
     public static void PrintGreenHighlights(string str1, string str2, string str3 = "")
     {
         Console.Write(str1);
