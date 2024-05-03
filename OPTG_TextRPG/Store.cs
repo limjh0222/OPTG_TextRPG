@@ -16,7 +16,7 @@ namespace OPTG_TextRPG
             {
                 Console.Clear();
 
-                ConsoleUtility.PrintMagenta("■ 상점 ■");
+                ConsoleUtility.PrintColor(Color.MAGENTA, "■ 상점 ■");
                 ConsoleUtility.PrintYellowHighlights("필요한 아이템을 얻을 수 있는 ", "상점", "입니다.\n");
 
                 Console.WriteLine("\n[보유 골드]");
@@ -49,10 +49,8 @@ namespace OPTG_TextRPG
         {
             if (prompt != null)
             {
-                // 1초간 메시지를 띄운 다음에 다시 진행
-                Console.Clear();
-                ConsoleUtility.PrintMagenta(prompt);
-                Thread.Sleep(1000);
+                ConsoleUtility.PrintColor(Color.MAGENTA, prompt);
+                Console.ReadKey();
             }
 
             int choice = -1;
@@ -60,7 +58,7 @@ namespace OPTG_TextRPG
             {
                 Console.Clear();
 
-                ConsoleUtility.PrintMagenta("■ 상점 ■");
+                ConsoleUtility.PrintColor(Color.MAGENTA,"■ 상점 ■");
                 ConsoleUtility.PrintYellowHighlights("필요한 아이템을 얻을 수 있는 ", "상점", "입니다.\n");
 
                 Console.WriteLine("\n[보유 골드]");
@@ -87,7 +85,7 @@ namespace OPTG_TextRPG
                     // 1 : 이미 구매한 경우
                     if (GameManager.Instance.storeInventory[choice - 1].IsPurchased) // index 맞추기
                     {
-                        PurchaseMenu("이미 구매한 아이템입니다.");
+                        PurchaseMenu("\n이미 구매한 아이템입니다.");
                     }
                     // 2 : 돈이 충분해서 살 수 있는 경우
                     else if (GameManager.Instance.player.Gold >= GameManager.Instance.storeInventory[choice - 1].Price)

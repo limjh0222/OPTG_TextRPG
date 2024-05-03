@@ -60,6 +60,7 @@ public class GameManager
 
         DataManager.Instance.InitJob(name);
         player = DataManager.Instance.JobDB[choice];
+        player.Gold = 9999;
 
         inventory = new List<Item>();
 
@@ -100,10 +101,10 @@ public class GameManager
         switch (choice)
         {
             case 1:
-                StatusMenu();
+                Player.StatusMenu();
                 break;
             case 2:
-                Inventory.InventoryMenu();
+                Player.InventoryMenu();
                 break;
             case 3:
                 Store.StoreMenu();
@@ -113,44 +114,6 @@ public class GameManager
                 break;
         }
         MainMenu();
-    }
-
-    private void StatusMenu()
-    {
-        int choice = -1;
-        while (choice < 0)
-        {
-            Console.Clear();
-
-            ConsoleUtility.PrintMagenta("■ 상태보기 ■");
-            ConsoleUtility.PrintYellowHighlights("캐릭터의 ", "정보", "가 표기됩니다.\n");
-
-            ConsoleUtility.PrintYellowHighlights("\nLv. ", player.Level.ToString("00"), "\n");
-            ConsoleUtility.PrintGreenHighlights("", $"{player.Name}");
-            ConsoleUtility.PrintYellowHighlights(" ( ", $"{player.Job}", " )\n");
-
-            // TODO : 능력치 강화분을 표현하도록 변경
-
-            int bonusAtk = inventory.Select(item => item.IsEquipped ? item.Atk : 0).Sum();
-            int bonusDef = inventory.Select(item => item.IsEquipped ? item.Def : 0).Sum();
-            int bonusHp = inventory.Select(item => item.IsEquipped ? item.Hp : 0).Sum();
-            ConsoleUtility.PrintYellowHighlights("공격력 : ", (player.Atk + bonusAtk).ToString(), bonusAtk != 0 ? (bonusAtk > 0 ? $" (+{bonusAtk})\n" : $" ({bonusAtk})\n") : "\n");
-            ConsoleUtility.PrintYellowHighlights("방어력 : ", (player.Def + bonusDef).ToString(), bonusDef != 0 ? (bonusDef > 0 ? $" (+{bonusDef})\n" : $" ({bonusDef})\n") : "\n");
-            ConsoleUtility.PrintYellowHighlights("체 력 : ", (player.Hp + bonusHp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
-
-            ConsoleUtility.PrintYellowHighlights("Gold : ", player.Gold.ToString(), "\n");
-
-            Console.WriteLine("\n0. 뒤로가기\n");
-
-            choice = ConsoleUtility.PromptMenuChoice(0, 0);
-        }
-
-        switch (choice)
-        {
-            case 0:
-                MainMenu();
-                break;
-        }
     }
 }
 
