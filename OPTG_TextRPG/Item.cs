@@ -4,7 +4,8 @@
 public enum ItemType
 {
     WEAPON,
-    ARMOR
+    ARMOR,
+    PORTION
 }
 
 public class Item
@@ -231,7 +232,7 @@ public class Item
         if(IsEquipped)
         {
             // 장착 중이면 판매 x
-            ConsoleUtility.PrintMagenta("\n장착 중인 아이템입니다. 장착을 해제해주세요.");
+            ConsoleUtility.PrintColor(Color.MAGENTA, "\n장착 중인 아이템입니다. 장착을 해제해주세요.");
             Console.ReadKey();
         }
         else

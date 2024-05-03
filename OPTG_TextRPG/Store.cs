@@ -16,7 +16,7 @@ namespace OPTG_TextRPG
             {
                 Console.Clear();
 
-                ConsoleUtility.PrintMagenta("■ 상점 ■");
+                ConsoleUtility.PrintColor(Color.MAGENTA, "■ 상점 ■");
                 ConsoleUtility.PrintYellowHighlights("필요한 아이템을 얻을 수 있는 ", "상점", "입니다.\n");
 
                 Console.WriteLine("\n[보유 골드]");
@@ -49,7 +49,7 @@ namespace OPTG_TextRPG
         {
             if (prompt != null)
             {
-                ConsoleUtility.PrintMagenta(prompt);
+                ConsoleUtility.PrintColor(Color.MAGENTA, prompt);
                 Console.ReadKey();
             }
 
@@ -58,7 +58,7 @@ namespace OPTG_TextRPG
             {
                 Console.Clear();
 
-                ConsoleUtility.PrintMagenta("■ 상점 ■");
+                ConsoleUtility.PrintColor(Color.MAGENTA,"■ 상점 ■");
                 ConsoleUtility.PrintYellowHighlights("필요한 아이템을 얻을 수 있는 ", "상점", "입니다.\n");
 
                 Console.WriteLine("\n[보유 골드]");

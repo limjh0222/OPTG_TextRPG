@@ -1,4 +1,10 @@
 ﻿
+public enum Color
+{
+    RED = 12,
+    MAGENTA = 13
+    //여기에 사용하고 싶은 색상을 추가하세요.
+}
 
 internal class ConsoleUtility
 {
@@ -10,19 +16,18 @@ internal class ConsoleUtility
         {
             return choice;
         }
-        PrintRed("\n잘못된 입력입니다. 다시 입력해주세요.");
+        PrintColor(Color.RED, "\n잘못된 입력입니다. 다시 입력해주세요.");
         Console.ReadKey();
         return -1;
     }
 
-
-    public static void PrintRed(string str)
+    public static void PrintColor(Color color, string str)
     {
-        Console.ForegroundColor = ConsoleColor.Red;
+        //ConsoleUtility.PrintColor(Color.RED, "안녕하세요"); 형식으로 사용합니다. 
+        Console.ForegroundColor = (ConsoleColor)color;
         Console.WriteLine(str);
         Console.ResetColor();
     }
-    
 
     internal static void PrintMagenta(string str)
     {

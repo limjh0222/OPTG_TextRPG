@@ -122,7 +122,7 @@ public class GameManager
         {
             Console.Clear();
 
-            ConsoleUtility.PrintMagenta("■ 상태보기 ■");
+            ConsoleUtility.PrintColor(Color.MAGENTA, "■ 상태보기 ■");
             ConsoleUtility.PrintYellowHighlights("캐릭터의 ", "정보", "가 표기됩니다.\n");
 
             ConsoleUtility.PrintYellowHighlights("\nLv. ", player.Level.ToString("00"), "\n");

@@ -17,7 +17,8 @@ namespace OPTG_TextRPG
             {
                 Console.Clear();
 
-                ConsoleUtility.PrintMagenta("■ 인벤토리 ■");
+                ConsoleUtility.PrintColor(Color.MAGENTA, "■ 인벤토리 ■");
+
                 ConsoleUtility.PrintYellowHighlights("보유 중인 아이템을 ", "관리", "할 수 있습니다.\n");
 
                 Console.WriteLine("\n[아이템 목록]");
@@ -56,7 +57,8 @@ namespace OPTG_TextRPG
             {
                 Console.Clear();
 
-                ConsoleUtility.PrintMagenta("■ 인벤토리 - 장착 관리 ■");
+                ConsoleUtility.PrintColor(Color.MAGENTA, "■ 인벤토리 - 장착 관리 ■");
+
                 ConsoleUtility.PrintYellowHighlights("보유 중인 아이템을 ", "장착", "할 수 있습니다.\n");
 
                 Console.WriteLine("\n[아이템 목록]");
@@ -90,7 +92,7 @@ namespace OPTG_TextRPG
             {
                 Console.Clear();
 
-                ConsoleUtility.PrintMagenta("■ 인벤토리 - 아이템 판매 ■");
+                ConsoleUtility.PrintColor(Color.MAGENTA, "■ 인벤토리 - 아이템 판매 ■");
                 ConsoleUtility.PrintYellowHighlights("보유 중인 아이템을 ", "판매", "할 수 있습니다.\n");
 
                 Console.WriteLine("\n[보유 골드]");
