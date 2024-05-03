@@ -20,6 +20,7 @@ public class GameManager
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
+    DungeonEvent dungeonEvent = new DungeonEvent();
     public PlayerData player;
     public BattleManager battleManager;
     public List<Item> inventory {  get; set; }
@@ -31,6 +32,7 @@ public class GameManager
         {
             instance = this;
         }
+
         battleManager = new BattleManager();
         InitializeGame();
     }
@@ -55,15 +57,14 @@ public class GameManager
         ConsoleUtility.PrintYellowHighlights("\n플레이어의 ", "이름", "을 입력해주세요.\n");
         Console.Write(">> ");
         name = Console.ReadLine();
-        DataManager.Instance.InitJob(name);
 
+        DataManager.Instance.InitJob(name);
         player = DataManager.Instance.JobDB[choice];
         player.Gold = 9999;
 
         inventory = new List<Item>();
 
-        DataManager.Instance.InitMonster(); // 테스트 몬스터 생성
-
+        DataManager.Instance.InitMonster();
         DataManager.Instance.InitItem();
         storeInventory = DataManager.Instance.ItemDB;
     }
@@ -109,7 +110,7 @@ public class GameManager
                 Store.StoreMenu();
                 break;
             case 4:
-                battleManager.BatteleStart(player);
+                battleManager.BattleStart();
                 break;
         }
         MainMenu();

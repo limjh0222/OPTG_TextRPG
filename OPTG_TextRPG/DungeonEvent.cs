@@ -27,7 +27,6 @@ namespace OPTG_TextRPG
         public void DungeonBox()
         {
             Console.Clear();
-            FootPrint();
             while (true)
             {
                 Console.Clear();
@@ -91,7 +90,6 @@ namespace OPTG_TextRPG
         public void DungeonSanctuary()
         {
             Console.Clear();
-            FootPrint();
             while (true)
             {
                 Console.Clear();
