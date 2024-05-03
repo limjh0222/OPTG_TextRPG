@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 namespace OPTG_TextRPG
 {
 
-    public class StageDungeon
+    public class DungeonManager
     {
-        Dictionary<int, Monster> monsterDB = new Dictionary<int, Monster>();
-        Dictionary<int, Monster> bossMonsterDB = new Dictionary<int, Monster>();
-        List<Monster> monsters = new List<Monster>();
+        Dictionary<int, MonsterData> monsterDB = new Dictionary<int, MonsterData>();
+        Dictionary<int, MonsterData> bossMonsterDB = new Dictionary<int, MonsterData>();
+        List<MonsterData> monsters = new List<MonsterData>();
         DungeonEvent dungeonEvent = new DungeonEvent();
         Random random = new Random();
         public int stage = 1;
-        public StageDungeon()
+        public DungeonManager()
         {
             monsterDB = DataManager.Instance.MonsterDB;
             bossMonsterDB = DataManager.Instance.BossMonsterDB;
         }
 
-        public List<Monster> SpawnMonster()
+        public List<MonsterData> SpawnMonster()
         {
             monsters.Clear(); //몬스터 초기화
             stage = 1;
@@ -42,12 +42,12 @@ namespace OPTG_TextRPG
         }
 
 
-        private Monster RandomNormalMonster()
+        private MonsterData RandomNormalMonster()
         {
             //몬스터 정보를 랜덤하게 섞어줌
             return monsterDB[random.Next(monsterDB.Count)];
         }
-        public Monster RandomBossMonster()
+        public MonsterData RandomBossMonster()
         {
             //보스몬스터 선택
             return bossMonsterDB[0];

@@ -21,8 +21,7 @@ public class GameManager
     public static GameManager Instance { get { return instance; } }
 
     public PlayerData player;
-    public Battle battle;
-    public StageBattle stageBattle;
+    public BattleManager battleManager;
     public List<Item> inventory {  get; set; }
     public List<Item> storeInventory;
     
@@ -32,8 +31,7 @@ public class GameManager
         {
             instance = this;
         }
-        stageBattle = new StageBattle();
-        battle = new Battle();
+        battleManager = new BattleManager();
         InitializeGame();
     }
 
@@ -110,7 +108,7 @@ public class GameManager
                 Store.StoreMenu();
                 break;
             case 4:
-                stageBattle.BatteleStart(player);
+                battleManager.BatteleStart(player);
                 break;
         }
         MainMenu();
