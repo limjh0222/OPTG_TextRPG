@@ -16,9 +16,10 @@
     public int Mp { get; set; }
     public int Gold { get; set; }
     public bool IsDead { get; set; }
+    public Dictionary<int, Skill> Skills { get; private set; } // 스킬 정보 추가
 
     public PlayerData() { }
-    public PlayerData(string name, string job, int level, int atk, int def,int hp, int maxHp, int mp, int gold)
+    public PlayerData(string name, string job, int level, int atk, int def,int hp, int maxHp, int mp, int gold, Dictionary<int, Skill> skills)
     {
         Name = name;
         Job = job;
@@ -29,6 +30,7 @@
         Hp = hp;
         Mp = mp;
         Gold = gold;
+        Skills = skills; // 스킬 정보 추가
     }
 
     public int PlayerAttack(float attack)

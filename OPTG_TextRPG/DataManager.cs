@@ -16,8 +16,7 @@ class DataManager
             return instance;
         }
     }
-    // 플레이어 정보, 직업 정보, 스킬 정보
-    // public Dictionary<int, Player> SkillDB = new Dictionary<int, Player>(); // 추가기능 - 스킬 만들기
+    
     public List<Item> ItemDB = new List<Item>();
     public Dictionary<int, PlayerData> JobDB = new Dictionary<int, PlayerData>();
     public Dictionary<int, MonsterData> MonsterDB = new Dictionary<int, MonsterData>();
@@ -25,10 +24,10 @@ class DataManager
 
     public void InitJob(string name)
     {
-        JobDB.Add(1, new PlayerData  (name, "전사", 1, 30, 30, 100, 100, 30, 1500));
-        JobDB.Add(2, new PlayerData(name, "마법사", 1, 10, 10, 100, 100, 100, 1500));
-        JobDB.Add(3, new PlayerData  (name, "도적", 1, 25, 15, 100, 100, 60, 1500));
-        JobDB.Add(4, new PlayerData  (name, "궁수", 1, 20, 20, 100, 100, 80, 1500));
+        JobDB.Add(1, new PlayerData  (name, "전사", 1, 30, 30, 100, 100, 30, 1500, SkillManager.Instance.GetSkillsForJob(1)));
+        JobDB.Add(2, new PlayerData(name, "마법사", 1, 10, 10, 100, 100, 100, 1500, SkillManager.Instance.GetSkillsForJob(2)));
+        JobDB.Add(3, new PlayerData  (name, "도적", 1, 25, 15, 100, 100, 60, 1500, SkillManager.Instance.GetSkillsForJob(3)));
+        JobDB.Add(4, new PlayerData  (name, "궁수", 1, 20, 20, 100, 100, 80, 1500, SkillManager.Instance.GetSkillsForJob(4)));
     }
     public void InitMonster()
     {
