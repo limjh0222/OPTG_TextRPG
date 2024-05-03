@@ -75,7 +75,7 @@ public class SkillManager
         }
     }
 
-    public void Attack(PlayerData player, MonsterData monster, int skillId)
+    public void SkillAttack(PlayerData player, MonsterData monster, int skillId)
     {
         if (int.TryParse(player.Job, out int jobId))
         {
@@ -88,7 +88,7 @@ public class SkillManager
                     if (player.Mp >= skill.MpCost)
                     {
                         Console.WriteLine($"{player.Name}이(가) {monster.Name}을(를) {skill.Name}으로 공격합니다!");
-                        BattleManager(skill.Damage);
+                        //BattleManager(skill.Damage);
                         player.Mp -= skill.MpCost;
                     }
                     else
