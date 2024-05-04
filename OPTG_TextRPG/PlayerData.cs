@@ -20,7 +20,7 @@
 
     public PlayerData() { }
 
-    public PlayerData(string name, string job, int level, int atk, int def,int hp, int maxHp, int mp, int gold, Dictionary<int, Skill> skills)
+    public PlayerData(string name, string job, int level, int atk, int def, int maxHp, int mp, int gold, Dictionary<int, Skill> skills)
 
 
     {

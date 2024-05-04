@@ -32,15 +32,15 @@ class DataManager
         switch (job)
         {
             case 1:
-                return new PlayerData(name, "전사", 1, 30, 35, 200, 50, 1500,SkillManager.Instance.GetSkillsForJob(1)));
+                return new PlayerData(name, "전사", 1, 30, 35, 200, 50, 1500,SkillManager.Instance.GetSkillsForJob(1));
             case 2:
-                return new PlayerData(name, "마법사", 1, 15, 15, 100, 200, 1500, SkillManager.Instance.GetSkillsForJob(2)));
+                return new PlayerData(name, "마법사", 1, 15, 15, 100, 200, 1500, SkillManager.Instance.GetSkillsForJob(2));
             case 3:
-                return new PlayerData(name, "도적", 1, 20, 25, 180, 60, 1500, SkillManager.Instance.GetSkillsForJob(3)));
+                return new PlayerData(name, "도적", 1, 20, 25, 180, 60, 1500, SkillManager.Instance.GetSkillsForJob(3));
             case 4:
-                return new PlayerData(name, "궁수", 1, 25, 20, 1, 100, 1500, , SkillManager.Instance.GetSkillsForJob(4)));
+                return new PlayerData(name, "궁수", 1, 25, 20, 1, 100, 1500,  SkillManager.Instance.GetSkillsForJob(4));
             default: //테스트용.
-                return new PlayerData(name, "[GM]", 999, 999, 999, 999, 999, 9999);
+                return new PlayerData(name, "[GM]", 999, 999, 999, 999, 999, 9999, SkillManager.Instance.GetSkillsForJob(5));
         }
 
     }

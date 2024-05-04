@@ -61,6 +61,13 @@ public class SkillManager
             { 1, new Skill(1, "강력한 일격", 15, 10) }
         };
         jobSkills.Add(4, archerSkills);
+
+        Dictionary<int, Skill> GMSkills = new Dictionary<int, Skill>
+        {
+            { 1, new Skill(1, "정확한 사격", 999, 20) },
+            { 2, new Skill(2, "강력한 일격", 999, 10) }
+        };
+        jobSkills.Add(5, GMSkills);
     }
 
     public Dictionary<int, Skill> GetSkillsForJob(int jobId)
