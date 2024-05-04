@@ -8,8 +8,9 @@ namespace OPTG_TextRPG
 
     public class DungeonManager
     {
-        Dictionary<int, MonsterData> monsterDB = new Dictionary<int, MonsterData>();
-        Dictionary<int, MonsterData> bossMonsterDB = new Dictionary<int, MonsterData>();
+        Dictionary<int, MonsterData> NormalMonsterDB = new Dictionary<int, MonsterData>();
+        Dictionary<int, MonsterData> AdvancedMonsterDB = new Dictionary<int, MonsterData>();
+        Dictionary<int, MonsterData> BossMonsterDB = new Dictionary<int, MonsterData>();
         List<MonsterData> monsters = new List<MonsterData>();
         Random random = new Random();
         public int stage;
@@ -17,48 +18,59 @@ namespace OPTG_TextRPG
         public DungeonManager()
         {
             stage = 1;
-            monsterDB = DataManager.Instance.MonsterDB;
-            bossMonsterDB = DataManager.Instance.BossMonsterDB;
+            NormalMonsterDB = DataManager.Instance.NormalMonsterDB;
+            AdvancedMonsterDB = DataManager.Instance.AdvancedMonsterDB;
+            BossMonsterDB = DataManager.Instance.BossMonsterDB;
         }
 
         public List<MonsterData> SpawnMonster()
         {
             monsters.Clear(); //몬스터 초기화
+
             //스테이지별 몬스터 생성 방식
             if (stage % 5 == 0) //스테이지가 5단위 마다 보스 몬스터 생성
             {
                 monsters.Add(RandomBossMonster());
             }
-            else //그 외일때 1~4마리 사이 랜덤한 몬스터 생성
+            else if (stage <= 4) //스테이지가 4이하일때 노말몬스터 1~3마리 생성
             {
-                int numMonsters = random.Next(1, 5);
-                for (int i = 0; i < numMonsters; i++)
+                int normalMonsters = random.Next(1, 3);
+                for (int i = 0; i < normalMonsters; i++)
                 {
                     monsters.Add(RandomNormalMonster());
+                }
+            }
+            else if(stage >= 6)//6이상부터 어드밴스드 몬스터 1~4마리 생성
+            {
+                int AdvancedMonsters = random.Next(1, 4);
+                for (int i = 0; i < AdvancedMonsters; i++)
+                {
+                    monsters.Add(RandomAdvancedMonster());
                 }
             }
 
             return monsters;
         }
 
+
+
+        //각 몬스터 묶음마다 랜덤하게 섞어줌
         private MonsterData RandomNormalMonster()
         {
-            //몬스터 정보를 랜덤하게 섞어줌
-            return new MonsterData(monsterDB[random.Next(monsterDB.Count)]);
+            return new MonsterData(NormalMonsterDB[random.Next(NormalMonsterDB.Count)]);
+        }
+        private MonsterData RandomAdvancedMonster()
+        {
+            return new MonsterData(AdvancedMonsterDB[random.Next(AdvancedMonsterDB.Count)]);
         }
         public MonsterData RandomBossMonster()
         {
-            //보스몬스터 선택
-            return new MonsterData(bossMonsterDB[0]);
+            return new MonsterData(BossMonsterDB[random.Next(BossMonsterDB.Count)]);
         }
         // 스테이지 진행
         public void NextStage()
         {
             stage++;
-            //if (stage < 6) //현재 스테이지는 5까지 구현
-            //{
-            //    stage++;
-            //}
         }
     }
 }
