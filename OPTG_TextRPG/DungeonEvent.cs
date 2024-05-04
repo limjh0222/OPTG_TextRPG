@@ -13,6 +13,9 @@ namespace OPTG_TextRPG
         List<Item> itemDB;
         private GameManager gameManager;
         Random random = new Random();
+
+        string input;
+
         public DungeonEvent() { }
         public DungeonEvent(GameManager Manager)
         {
@@ -55,7 +58,8 @@ namespace OPTG_TextRPG
                                     Item newItem = Randomitem();
                                     GameManager.Instance.inventory.Add(newItem);
                                     Console.WriteLine("\n쓸만해 보이는 물건이 들어있다.");
-                                    Console.WriteLine($"[{newItem.Name}]을(를) 획득했다!");
+                                    Console.WriteLine($"[{newItem.Name}]을(를) 획득했다.");
+                                    Console.WriteLine("\n아무키나 누르세요.");
                                     Console.ReadKey();
                                 }
                                 else if (probability > 20 && probability <= 50)
@@ -63,6 +67,7 @@ namespace OPTG_TextRPG
                                     GameManager.Instance.player.Hp += 30;
                                     Console.WriteLine("\n몸에서 알수없는 기운이 느껴진다.");
                                     Console.WriteLine("HP가 [30 회복] 되었다!");
+                                    Console.WriteLine("\n아무키나 누르세요.");
                                     Console.ReadKey();
                                 }
                                 else
@@ -70,20 +75,27 @@ namespace OPTG_TextRPG
                                     GameManager.Instance.player.Hp -= 10;
                                     Console.WriteLine("\n앗! 상자속에는 함정이 들어있다!");
                                     Console.WriteLine("HP가 [-10 감소] 했다!");
+                                    Console.WriteLine("\n아무키나 누르세요.");
                                     Console.ReadKey();
                                 }
                             }
                             else
                             {
                                 Console.WriteLine("\n이런! 상자가 부서져버렸다!");
+<<<<<<< Updated upstream
                                 Console.WriteLine("부서진 상자속에는 아무것도 찾을 수 없었다.");
+=======
+                                Console.WriteLine("부서진 상자속에 아무것도 찾을 수 없었다.");
+                                Console.WriteLine("\n아무키나 누르세요.");
+>>>>>>> Stashed changes
                                 Console.ReadKey();
                             }
                             return;
                     }
                 }
                 Console.WriteLine("잘못된 입력입니다.");
-                Thread.Sleep(500);
+                Console.WriteLine("아무키나 누르세요.");
+                Console.ReadKey();
             }
         }
 
@@ -115,13 +127,19 @@ namespace OPTG_TextRPG
                                 GameManager.Instance.player.Hp += 50;
                                 Console.WriteLine("\n여신상에서 따뜻한 기운이 느껴진다!");
                                 Console.WriteLine("HP가 [50 회복] 되었다!");
+                                Console.WriteLine("\n아무키나 누르세요.");
                                 Console.ReadKey();
                             }
                             else
                             {
                                 GameManager.Instance.player.Hp -= 50;
                                 Console.WriteLine("\n여신상에서 불길한 기운이 느껴진다!");
+<<<<<<< Updated upstream
                                 Console.WriteLine("HP가 [-50 감소] 되었다!");
+=======
+                                Console.WriteLine("HP가 [-30 감소] 되었다!");
+                                Console.WriteLine("\n아무키나 누르세요.");
+>>>>>>> Stashed changes
                                 Console.ReadKey();
                             }
                             return;

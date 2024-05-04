@@ -25,10 +25,27 @@ class DataManager
 
     public void InitJob(string name)
     {
+<<<<<<< Updated upstream
         JobDB.Add(1, new PlayerData  (name, "전사", 1, 100, 30, 100, 100, 30, 1500));
         JobDB.Add(2, new PlayerData(name, "마법사", 1, 10, 10, 100, 100, 100, 1500));
         JobDB.Add(3, new PlayerData  (name, "도적", 1, 25, 15, 100, 100, 60, 1500));
         JobDB.Add(4, new PlayerData  (name, "궁수", 1, 20, 20, 100, 100, 80, 1500));
+=======
+        //직업전체를 불러오는게 아니라 선택할때만 그 해당하는 직업만 불러옴
+        switch (job)
+        {
+            case 1:
+                return new PlayerData(name, "전사", 1, 30, 35, 200, 50, 1500);
+            case 2:
+                return new PlayerData(name, "마법사", 1, 15, 15, 100, 200, 1500);
+            case 3:
+                return new PlayerData(name, "도적", 1, 20, 25, 180, 60, 1500);
+            case 4:
+                return new PlayerData(name, "궁수", 1, 25, 20, 1, 100, 1500);
+            default: //테스트용.
+                return new PlayerData(name, "[GM]", 999, 999, 999, 999, 999, 9999);
+        }
+>>>>>>> Stashed changes
     }
     public void InitMonster()
     {

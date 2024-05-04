@@ -176,9 +176,17 @@ namespace OPTG_TextRPG
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     Console.WriteLine($"HP {initialPlayerHp} -> {player.Hp}\n");
                     Console.WriteLine("눈앞이 캄캄하다. 여기서 죽는걸까..?");
+<<<<<<< Updated upstream
                     Console.WriteLine(">> Press any key...\n");
                     Console.Write(">> ");
                     Console.ReadLine();
+=======
+                    Console.WriteLine("\tPress any key...\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                    dungeonEvent.Bonfire();
+                    Thread.Sleep(2000);
+>>>>>>> Stashed changes
                     return true;
                 }
             }
@@ -237,6 +245,18 @@ namespace OPTG_TextRPG
                     }
                     if (player.Hp <= 0)
                     {
+                        Console.WriteLine("1. 다음\n");
+                        Console.Write(">> ");
+                        while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                        {
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Thread.Sleep(400);
+                            Console.SetCursorPosition(0, Console.CursorTop - 2);
+                            Console.WriteLine("                                                  ");
+                            Console.WriteLine("                                                  ");
+                            Console.SetCursorPosition(0, Console.CursorTop - 2);
+                            Console.Write(">> ");
+                        }
                         return;
                     }
 
