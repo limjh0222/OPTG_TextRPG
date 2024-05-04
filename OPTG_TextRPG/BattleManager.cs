@@ -176,9 +176,11 @@ namespace OPTG_TextRPG
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     Console.WriteLine($"HP {initialPlayerHp} -> {player.Hp}\n");
                     Console.WriteLine("눈앞이 캄캄하다. 여기서 죽는걸까..?");
-                    Console.WriteLine(">> Press any key...\n");
-                    Console.Write(">> ");
-                    Console.ReadLine();
+                    Console.WriteLine("\tPress any key...\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                    dungeonEvent.Bonfire();
+                    Thread.Sleep(2000);
                     return true;
                 }
             }
@@ -188,7 +190,7 @@ namespace OPTG_TextRPG
         public void PlayerTurn(MonsterData selectedMonster)
         {
             Console.Clear();
-            Console.WriteLine($"\nBattle start!!");
+            Console.WriteLine($"\n========== {player.Name}의 턴 ==========");
             Console.WriteLine($"\n{player.Name} 의 공격!");
             int playerAttack = PlayerAttack();
             float currentMonsterHp = selectedMonster.Hp;
@@ -211,36 +213,48 @@ namespace OPTG_TextRPG
 
         public void MonstersTurn()
         {
+            Console.Clear();
+            Console.WriteLine($"\n========== 몬스터 턴 ==========");
             foreach (MonsterData monster in monsterAppeared)
             {
                 if (!monster.IsDead)
                 {
-                    Console.Clear();
-                    Console.WriteLine($"\nBattle start!!");
                     Console.WriteLine($"\nLv.{monster.Lv} {monster.Name} 의 공격!");
                     int currentPlayerHp = player.Hp;
                     DamagerPlayer(player, monster.Atk);
                     Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monster.Atk}]\n");
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     Console.WriteLine($"HP {currentPlayerHp} -> {player.Hp}\n");
-                    Console.WriteLine("1. 다음\n");
-                    Console.Write(">> ");
-                    while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
-                    {
-                        Console.WriteLine("잘못된 입력입니다.");
-                        Thread.Sleep(400);
-                        Console.SetCursorPosition(0, Console.CursorTop - 2);
-                        Console.WriteLine("                                                  ");
-                        Console.WriteLine("                                                  ");
-                        Console.SetCursorPosition(0, Console.CursorTop - 2);
-                        Console.Write(">> ");
-                    }
+                    Thread.Sleep(300);
                     if (player.Hp <= 0)
                     {
+                        Console.WriteLine("1. 다음\n");
+                        Console.Write(">> ");
+                        while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                        {
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Thread.Sleep(400);
+                            Console.SetCursorPosition(0, Console.CursorTop - 2);
+                            Console.WriteLine("                                                  ");
+                            Console.WriteLine("                                                  ");
+                            Console.SetCursorPosition(0, Console.CursorTop - 2);
+                            Console.Write(">> ");
+                        }
                         return;
                     }
-
                 }
+            }
+            Console.WriteLine("1. 다음\n");
+            Console.Write(">> ");
+            while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                Thread.Sleep(400);
+                Console.SetCursorPosition(0, Console.CursorTop - 2);
+                Console.WriteLine("                                                  ");
+                Console.WriteLine("                                                  ");
+                Console.SetCursorPosition(0, Console.CursorTop - 2);
+                Console.Write(">> ");
             }
         }
 
