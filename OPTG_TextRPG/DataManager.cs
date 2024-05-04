@@ -28,15 +28,15 @@ class DataManager
         switch (job)
         {
             case 1:
-                return new PlayerData(name, "전사", 1, 25, 30, 100, 30, 1500);
+                return new PlayerData(name, "전사", 1, 30, 35, 200, 50, 1500);
             case 2:
-                return new PlayerData(name, "마법사", 1, 10, 10, 100, 100, 1500);
+                return new PlayerData(name, "마법사", 1, 15, 15, 100, 200, 1500);
             case 3:
-                return new PlayerData(name, "도적", 1, 20, 15, 100, 60, 1500);
+                return new PlayerData(name, "도적", 1, 20, 25, 180, 60, 1500);
             case 4:
-                return new PlayerData(name, "궁수", 1, 20, 20, 100, 80, 1500);
+                return new PlayerData(name, "궁수", 1, 25, 20, 1, 100, 1500);
             default: //테스트용.
-                return new PlayerData(name, "GM", 999, 999, 999, 999, 999, 9999);
+                return new PlayerData(name, "기호1번", 999, 999, 999, 999, 999, 9999);
         }
     }
     public void InitMonster()
