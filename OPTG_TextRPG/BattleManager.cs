@@ -63,7 +63,6 @@ namespace OPTG_TextRPG
 
         public bool Fight(int attackChoice)
         {
-
             int initialPlayerHp = player.Hp;
 
             while (true)
@@ -119,6 +118,9 @@ namespace OPTG_TextRPG
 
                 if (monsterAppeared.All(monster => monster.IsDead))
                 {
+
+                    int remainingPlayerHp = player.Hp;
+
                     Console.WriteLine("1. 다음\n");
                     Console.Write(">> ");
                     while (!int.TryParse(Console.ReadLine(), out  fightChoice) || fightChoice != 1)
@@ -131,14 +133,16 @@ namespace OPTG_TextRPG
                         Console.SetCursorPosition(0, Console.CursorTop - 2);
                         Console.Write(">> ");
                     }
+
                     Console.Clear();
+
                     Console.WriteLine("\nBattle!! - Result\n");
                     Console.WriteLine("Victory\n");
                     Console.WriteLine($"던전에서 몬스터를 {monsterAppeared.Count}마리를 잡았습니다.\n");
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
-                    Console.WriteLine($"HP {initialPlayerHp} -> {player.Hp}\n");
+                    Console.WriteLine($"HP {initialPlayerHp} -> {remainingPlayerHp}\n");
                     Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다. 어떻게 할까?\n");
-                    Console.WriteLine("1. 새로운 모험을 위해 올라간다.");
+                    Console.WriteLine("1. 새로운 던전에 도전한다.");
                     Console.WriteLine("0. 포기하고 마을로 돌아간다.\n");
                     Console.Write(">> ");
                     string nextInput = Console.ReadLine();
@@ -154,7 +158,7 @@ namespace OPTG_TextRPG
                                 monsterAppeared = dungeonManager.SpawnMonster();
                                 return false;
                             }
-                            else if (dungeonEventChance > 20 )
+                            else if (dungeonEventChance > 20 && dungeonEventChance <= 40)
                             {
                                 dungeonEvent.DungeonSanctuary();
                                 dungeonManager.NextStage();
@@ -187,10 +191,8 @@ namespace OPTG_TextRPG
                     Console.SetCursorPosition(0, Console.CursorTop - 2);
                     Console.Write(">> ");
                 }
+
                 MonstersTurn();
-                
-                int remainingPlayerHp = player.Hp; // 전투 종료 후 플레이어 체력 기록
-                int lostHp = initialPlayerHp - remainingPlayerHp; // 손실된 체력 계산
 
                 if (player.Hp <= 0)
                 {
@@ -258,7 +260,7 @@ namespace OPTG_TextRPG
                 {
                     Console.WriteLine($"\nLv.{monster.Lv} {monster.Name} 의 공격!");
                     int currentPlayerHp = player.Hp;
-                    int monsterActualAttack = monster.Atk - player.Def;
+                    int monsterActualAttack = monster.Atk - (int)(player.Def * 0.5);
                     if (monsterActualAttack < 0)
                     {
                         monsterActualAttack = 0;
@@ -311,12 +313,12 @@ namespace OPTG_TextRPG
             int hitRate = random.Next(1, 101);
             if (hitRate < 20)
             {
-                Console.WriteLine("빈틈 발견!!");
+                Console.WriteLine("\n[ 약점 발견!! ]");
                 return (int)(1.8 * Math.Ceiling(new Random().NextDouble() * (maxAttack - minAttack) + minAttack));
             }
             else if(hitRate >= 20 && hitRate < 30)
             {
-                Console.WriteLine("손이 미끄러졌다!!");
+                Console.WriteLine("\n[ 앗! 손이 미끄러졌다!! ]");
                 return (int)(0.5 * Math.Ceiling(new Random().NextDouble() * (maxAttack - minAttack) + minAttack));
             }
             else
