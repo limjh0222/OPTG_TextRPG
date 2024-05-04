@@ -177,10 +177,10 @@ namespace OPTG_TextRPG
                     Console.WriteLine($"HP {initialPlayerHp} -> {player.Hp}\n");
                     Console.WriteLine("눈앞이 캄캄하다. 여기서 죽는걸까..?");
                     Console.WriteLine("\tPress any key...\n");
-                    Console.Write(">> ");
-                    Console.ReadLine();
+                    Console.ReadKey();
+                    Console.Clear();
                     dungeonEvent.Bonfire();
-                    Console.ReadLine();
+                    Thread.Sleep(2000);
                     return true;
                 }
             }
@@ -228,6 +228,18 @@ namespace OPTG_TextRPG
                     Thread.Sleep(300);
                     if (player.Hp <= 0)
                     {
+                        Console.WriteLine("1. 다음\n");
+                        Console.Write(">> ");
+                        while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                        {
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Thread.Sleep(400);
+                            Console.SetCursorPosition(0, Console.CursorTop - 2);
+                            Console.WriteLine("                                                  ");
+                            Console.WriteLine("                                                  ");
+                            Console.SetCursorPosition(0, Console.CursorTop - 2);
+                            Console.Write(">> ");
+                        }
                         return;
                     }
                 }
