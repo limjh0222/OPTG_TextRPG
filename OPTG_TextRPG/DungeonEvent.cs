@@ -76,7 +76,7 @@ namespace OPTG_TextRPG
                             else
                             {
                                 Console.WriteLine("\n이런! 상자가 부서져버렸다!");
-                                Console.WriteLine("부서진 상자속에는 아무것도 찾을 수 없었다.");
+                                Console.WriteLine("부서진 상자속에서 아무것도 찾을 수 없었다.");
                                 Console.ReadKey();
                             }
                             return;
@@ -121,7 +121,7 @@ namespace OPTG_TextRPG
                             {
                                 GameManager.Instance.player.Hp -= 50;
                                 Console.WriteLine("\n여신상에서 불길한 기운이 느껴진다!");
-                                Console.WriteLine("HP가 [-50 감소] 되었다!");
+                                Console.WriteLine("HP가 [-30 감소] 되었다!");
                                 Console.ReadKey();
                             }
                             return;
@@ -206,6 +206,40 @@ namespace OPTG_TextRPG
             Console.WriteLine("\t\t\t\t*@@");
             Console.WriteLine("\t\t\t\t@@@");
             Console.WriteLine("\t\t\t\t#%*");
+        }
+
+        public void Bonfire()
+        {
+            Console.WriteLine("\t                   .~");
+            Console.WriteLine("\t                    :.");
+            Console.WriteLine("\t                   .*=");
+            Console.WriteLine("\t                *.=:!~*:=.*");
+            Console.WriteLine("\t                   .=!");
+            Console.WriteLine("\t                    ;!.");
+            Console.WriteLine("\t                     ~=");
+            Console.WriteLine("\t                     :=");
+            Console.WriteLine("\t##   #  ###  ##  #   ;,     ####  #### #### ####");
+            Console.WriteLine("\t##   # ##  # ##  #   ;*     ## ##  ##  ##   ## ##");
+            Console.WriteLine("\t ## #  ##  # ##  #    *.    ##  #  ##  ##   ##  #");
+            Console.WriteLine("\t  ##   ##  # ##  #    :     ##  #  ##  #### ##  #");
+            Console.WriteLine("\t  ##   ##  # ##  #    ,.    ##  #  ##  ##   ##  #");
+            Console.WriteLine("\t  ##   ##  # ##  #    !;    ## ##  ##  ##   ## ##");
+            Console.WriteLine("\t  ##    ###   ###     :,    ####  #### #### ####");
+            Console.WriteLine("\t                      -*.");
+            Console.WriteLine("\t                      :*.");
+            Console.WriteLine("\t                       ~");
+            Console.WriteLine("\t                     . ,");
+            Console.WriteLine("\t                          .");
+            Console.WriteLine("\t                - ~    ,; , :!");
+            Console.WriteLine("\t               ~ ~,  ;,,:;: :-!");
+            Console.WriteLine("\t               ;!!*=*! .-.=:~==");
+            Console.WriteLine("\t             ;.=**;, =-.  -,*** !");
+            Console.WriteLine("\t             !**=*!!;:,, ,-;*!;**");
+            Console.WriteLine("\t          :~!*=****!=!! .~;!;!!*!;:");
+            Console.WriteLine("\t      ~~;!!!====*!!**=**!**=!==**!!;~:.");
+            Console.WriteLine("\t  ::!****!*!***!***=*-***!;*!!*****!****;;");
+            Console.WriteLine("\t  .-:===***======*!!=****!!=***********=:.");
+            Console.WriteLine("\t     .-~===****=========****======***==.");
         }
     }
 }
