@@ -17,7 +17,7 @@
     private int mp;
     public int Mp
     {
-        get { return hp; }
+        get { return mp; }
         set { mp = Math.Min(value, MaxMp); } //Math.min() 함수는 주어진 숫자들 중 가장 작은 값을 반환
     }
     public int MaxMp { get; }
@@ -37,7 +37,7 @@
         Atk = atk;
         Def = def;
         MaxHp = maxHp;
-        hp = maxHp;
+        Hp = maxHp;
         MaxMp = maxMp;
         Mp = maxMp;
         Gold = gold;

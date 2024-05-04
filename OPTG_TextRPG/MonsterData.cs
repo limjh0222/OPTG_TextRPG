@@ -25,7 +25,7 @@ namespace OPTG_TextRPG
             DropGold = dropGold;
         }
 
-        //깊은복사 생성자* - 참조
+        //깊은복사 생성자*
         public MonsterData(MonsterData data)
         {
             Name = data.Name;
