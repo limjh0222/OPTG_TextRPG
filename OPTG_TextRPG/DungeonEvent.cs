@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -48,6 +49,7 @@ namespace OPTG_TextRPG
                     switch (Select)
                     {
                         case 0:
+                            FootPrint();
                             return;
                         case 1:
                             if (probability <= 50)
@@ -59,39 +61,79 @@ namespace OPTG_TextRPG
                                     GameManager.Instance.inventory.Add(newItem);
                                     Console.WriteLine("\n쓸만해 보이는 물건이 들어있다.");
                                     Console.WriteLine($"[{newItem.Name}]을(를) 획득했다.");
-                                    Console.WriteLine("\n아무키나 누르세요.");
-                                    Console.ReadKey();
+                                    Console.WriteLine("1. \n다음\n");
+                                    Console.Write(">> ");
+                                    while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                                    {
+                                        Console.WriteLine("잘못된 입력입니다.");
+                                        Thread.Sleep(400);
+                                        Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                        Console.WriteLine("                                                  ");
+                                        Console.WriteLine("                                                  ");
+                                        Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                        Console.Write(">> ");
+                                    }
                                 }
                                 else if (probability > 20 && probability <= 50)
                                 {
                                     GameManager.Instance.player.Hp += 30;
                                     Console.WriteLine("\n몸에서 알수없는 기운이 느껴진다.");
                                     Console.WriteLine("HP가 [30 회복] 되었다!");
-                                    Console.WriteLine("\n아무키나 누르세요.");
-                                    Console.ReadKey();
+                                    Console.WriteLine("1. \n다음\n");
+                                    Console.Write(">> ");
+                                    while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                                    {
+                                        Console.WriteLine("잘못된 입력입니다.");
+                                        Thread.Sleep(400);
+                                        Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                        Console.WriteLine("                                                  ");
+                                        Console.WriteLine("                                                  ");
+                                        Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                        Console.Write(">> ");
+                                    }
                                 }
                                 else
                                 {
                                     GameManager.Instance.player.Hp -= 10;
                                     Console.WriteLine("\n앗! 상자속에는 함정이 들어있다!");
                                     Console.WriteLine("HP가 [-10 감소] 했다!");
-                                    Console.WriteLine("\n아무키나 누르세요.");
-                                    Console.ReadKey();
+                                    Console.WriteLine("1. \n다음\n");
+                                    Console.Write(">> ");
+                                    while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                                    {
+                                        Console.WriteLine("잘못된 입력입니다.");
+                                        Thread.Sleep(400);
+                                        Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                        Console.WriteLine("                                                  ");
+                                        Console.WriteLine("                                                  ");
+                                        Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                        Console.Write(">> ");
+                                    }
                                 }
                             }
                             else
                             {
                                 Console.WriteLine("\n이런! 상자가 부서져버렸다!");
                                 Console.WriteLine("부서진 상자속에 아무것도 찾을 수 없었다.");
-                                Console.WriteLine("\n아무키나 누르세요.");
-                                Console.ReadKey();
+                                Console.WriteLine("1. \n다음\n");
+                                Console.Write(">> ");
+                                while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                                {
+                                    Console.WriteLine("잘못된 입력입니다.");
+                                    Thread.Sleep(400);
+                                    Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                    Console.WriteLine("                                                  ");
+                                    Console.WriteLine("                                                  ");
+                                    Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                    Console.Write(">> ");
+                                }
                             }
+                            FootPrint();
                             return;
                     }
                 }
                 Console.WriteLine("잘못된 입력입니다.");
-                Console.WriteLine("아무키나 누르세요.");
-                Console.ReadKey();
+                Thread.Sleep(500);
             }
         }
 
@@ -116,6 +158,7 @@ namespace OPTG_TextRPG
                     switch (Select)
                     {
                         case 0:
+                            FootPrint();
                             return;
                         case 1:
                             if (probability <= 50)
@@ -123,17 +166,43 @@ namespace OPTG_TextRPG
                                 GameManager.Instance.player.Hp += 50;
                                 Console.WriteLine("\n여신상에서 따뜻한 기운이 느껴진다!");
                                 Console.WriteLine("HP가 [50 회복] 되었다!");
-                                Console.WriteLine("\n아무키나 누르세요.");
-                                Console.ReadKey();
+                                Console.WriteLine("1. \n다음\n");
+                                Console.Write(">> ");
+                                while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                                {
+                                    Console.WriteLine("잘못된 입력입니다.");
+                                    Thread.Sleep(400);
+                                    Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                    Console.WriteLine("                                                  ");
+                                    Console.WriteLine("                                                  ");
+                                    Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                    Console.Write(">> ");
+                                }
                             }
                             else
                             {
-                                GameManager.Instance.player.Hp -= 50;
+                                GameManager.Instance.player.Hp -= 30;
+
+                                if (GameManager.Instance.player.Hp < 0)
+                                {
+                                    GameManager.Instance.player.Hp = 0;
+                                }
                                 Console.WriteLine("\n여신상에서 불길한 기운이 느껴진다!");
                                 Console.WriteLine("HP가 [-30 감소] 되었다!");
-                                Console.WriteLine("\n아무키나 누르세요.");
-                                Console.ReadKey();
+                                Console.WriteLine("1. \n다음\n");
+                                Console.Write(">> ");
+                                while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+                                {
+                                    Console.WriteLine("잘못된 입력입니다.");
+                                    Thread.Sleep(400);
+                                    Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                    Console.WriteLine("                                                  ");
+                                    Console.WriteLine("                                                  ");
+                                    Console.SetCursorPosition(0, Console.CursorTop - 2);
+                                    Console.Write(">> ");
+                                }
                             }
+                            FootPrint();
                             return;
 
                     }    

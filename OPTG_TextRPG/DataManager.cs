@@ -26,7 +26,7 @@ class DataManager
     {
         //직업전체를 불러오는게 아니라 선택할때만 그 해당하는 직업만 불러옴
         switch (job)
-        {
+        {   //이름, 직업, 레벨, 공격력, 방어력, MaxHP ,MaxMP ,골드
             case 1:
                 return new PlayerData(name, "전사", 1, 30, 35, 200, 50, 100,SkillManager.Instance.GetSkillsForJob(1));
             case 2:
