@@ -34,7 +34,7 @@ namespace OPTG_TextRPG
                 Console.WriteLine($"스테이지[{dungeonManager.stage}]\n");
                 foreach (var monster in monsterAppeared)
                 {
-                    Console.WriteLine($"Lv.{monster.Lv} {monster.Name} HP {monster.Hp}");
+                    Console.WriteLine($"Lv.{monster.Lv} {monster.Name} HP {(monster.IsDead ? "Dead" : monster.Hp.ToString())}");
                 }
                 Console.WriteLine("\n[내정보]");
                 Console.WriteLine($"Lv.{player.Level} {player.Name} {player.Job}");
