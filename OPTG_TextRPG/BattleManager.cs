@@ -197,33 +197,61 @@ namespace OPTG_TextRPG
 
         public bool SkillFight()
         {
-
             int initialPlayerHp = player.Hp;
-
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine($"\nBattle start!!");
+                Console.WriteLine($"스테이지[{dungeonManager.stage}]\n");
+                Console.WriteLine("[스킬 목록]");
+                foreach (var Skill in player.Skills)
+                {
+                    Console.WriteLine($"{Skill.Key}. {Skill.Value.Name} 데미지: {Skill.Value.Damage}, [소모 MP: {Skill.Value.MpCost}]");
+                }
+                Console.WriteLine("0. 취소\n");
+                Console.Write(">> ");
+                string input = Console.ReadLine();
+                int skillChoice;
+                if (int.TryParse(input, out skillChoice))
+                {
+                    if (skillChoice == 0)
+                        return false;
+                    else if (!player.Skills.ContainsKey(skillChoice))
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                        Thread.Sleep(400);
+                        continue;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(400);
+                    continue;
+                }
+
                 Console.Clear();
                 Console.WriteLine($"\nBattle start!!");
                 Console.WriteLine($"스테이지[{dungeonManager.stage}]\n");
                 for (int i = 0; i < monsterAppeared.Count; i++)
                 {
                     MonsterData monster = monsterAppeared[i];
+                    Console.ForegroundColor = monster.IsDead ? ConsoleColor.DarkGray : ConsoleColor.White;
                     Console.WriteLine($"[{i + 1}] Lv.{monster.Lv} {monster.Name} HP {(monster.IsDead ? "Dead" : monster.Hp.ToString())}");
+                    Console.ResetColor();
                 }
                 Console.WriteLine("\n[내정보]");
                 Console.WriteLine($"Lv.{player.Level} {player.Name} {player.Job}");
                 Console.WriteLine($"HP {player.Hp}/{player.MaxHp}\n");
                 Console.WriteLine("0. 취소\n");
                 Console.Write(">> ");
-                string input = Console.ReadLine();
-                int fightChoice;
-                if (int.TryParse(input, out fightChoice))
+                input = Console.ReadLine();
+                int monsterChoice;
+                if (int.TryParse(input, out monsterChoice))
                 {
-                    if (fightChoice == 0)
-                    {
-                        break;
-                    }
-                    else if ((fightChoice <= 0 || fightChoice > monsterAppeared.Count))
+                    if (monsterChoice == 0)
+                        return false;
+                    else if ((monsterChoice <= 0 || monsterChoice > monsterAppeared.Count))
                     {
                         Console.WriteLine("잘못된 입력입니다.");
                         Thread.Sleep(400);
@@ -231,64 +259,98 @@ namespace OPTG_TextRPG
                     }
                 }
 
-                MonsterData selectedMonster = monsterAppeared[fightChoice - 1];
+                MonsterData selectedMonster = monsterAppeared[monsterChoice - 1];
 
                 if (selectedMonster.IsDead)
                 {
-                    Console.WriteLine("죽은 몬스터 입니다.");
+                    Console.WriteLine("죽은 몬스터를 선택하였습니다.");
                     Thread.Sleep(400);
                     continue;
                 }
-                PlayerTurn(selectedMonster);
-                if (monsterAppeared.All(monster => monster.IsDead))
+                Skill skill = player.Skills[skillChoice];
+                if (player.Mp < skill.MpCost)
                 {
-                    Console.Clear();
-                    Console.WriteLine("\nBattle!! - Result\n");
-                    Console.WriteLine("Victory\n");
-                    Console.WriteLine($"던전에서 몬스터를 {monsterAppeared.Count}마리를 잡았습니다.\n");
-                    Console.WriteLine($"Lv.{player.Level} {player.Name}");
-                    Console.WriteLine($"HP {initialPlayerHp} -> {player.Hp}\n");
-                    Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다. 어떻게 할까?\n");
-                    Console.WriteLine("1. 새로운 모험을 위해 올라간다.");
-                    Console.WriteLine("0. 포기하고 마을로 돌아간다.\n");
-                    Console.Write(">> ");
-                    string nextInput = Console.ReadLine();
-                    switch (nextInput)
-                    {
-                        case "1":
-                            dungeonEvent.FootPrint();
-                            int dungeonEventChance = random.Next(1, 101);
-                            if (dungeonEventChance <= 20)
-                            {
-                                dungeonEvent.DungeonBox();
-                                dungeonManager.NextStage();
-                                monsterAppeared = dungeonManager.SpawnMonster();
-                                continue;
-                            }
-                            else if (dungeonEventChance > 20 && dungeonEventChance <= 40)
-                            {
-                                dungeonEvent.DungeonSanctuary();
-                                dungeonManager.NextStage();
-                                monsterAppeared = dungeonManager.SpawnMonster();
-                                continue;
-                            }
-                            else
-                            {
-                                dungeonManager.NextStage();
-                                monsterAppeared = dungeonManager.SpawnMonster();
-                                continue;
-                            }
-                        case "0":
-                            return true;
-                        default:
-                            Console.WriteLine("잘못된 입력입니다.");
-                            Thread.Sleep(400);
-                            break;
-                    }
+                    Console.WriteLine("마나가 부족하여 스킬을 사용할 수 없습니다!");
+                    Thread.Sleep(400);
+                    return false;
                 }
+                Console.WriteLine($"\n========== {player.Name}의 스킬 공격! ==========");
+
+                int playerAttack = skill.Damage;
+                selectedMonster.Hp -= playerAttack;
+                if (selectedMonster.Hp <= 0)
+                {
+                    selectedMonster.Hp = 0;
+                    selectedMonster.IsDead = true;
+                }
+                player.Mp -= skill.MpCost; // 마나 소모
+                Console.WriteLine($"Lv.{selectedMonster.Lv} {selectedMonster.Name}에게 -{playerAttack}데미지!!");
+                Thread.Sleep(1000);
+
+                foreach (var monster in monsterAppeared)
+                {
+                    Console.ForegroundColor = monster.IsDead ? ConsoleColor.DarkGray : ConsoleColor.White;
+                    Console.WriteLine($" Lv.{monster.Lv} {monster.Name} HP {monster.Hp} {(monster.IsDead ? "-> Dead" : "")}");
+                    Console.ResetColor();
+                }
+
+                if (selectedMonster.IsDead)
+                {
+                    Console.WriteLine($"{selectedMonster.Name}을(를) 처치했습니다!\n");
+
+                    if (monsterAppeared.All(monster => monster.IsDead))
+                    {
+                        Console.Clear();
+                        Console.WriteLine("\nBattle!! - Result\n");
+                        Console.WriteLine("Victory\n");
+                        Console.WriteLine($"던전에서 몬스터를 {monsterAppeared.Count}마리를 잡았습니다.\n");
+                        Console.WriteLine($"Lv.{player.Level} {player.Name}");
+                        Console.WriteLine($"HP {initialPlayerHp} -> {player.Hp}\n");
+                        Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다. 어떻게 할까?\n");
+                        Console.WriteLine("1. 새로운 모험을 위해 올라간다.");
+                        Console.WriteLine("0. 포기하고 마을로 돌아간다.\n");
+                        Console.Write(">> ");
+                        string nextInput = Console.ReadLine();
+                        switch (nextInput)
+                        {
+                            case "1":
+                                dungeonEvent.FootPrint();
+                                int dungeonEventChance = random.Next(1, 101);
+                                if (dungeonEventChance <= 20)
+                                {
+                                    dungeonEvent.DungeonBox();
+                                    dungeonManager.NextStage();
+                                    monsterAppeared = dungeonManager.SpawnMonster();
+                                    break;
+                                }
+                                else if (dungeonEventChance > 20 && dungeonEventChance <= 40)
+                                {
+                                    dungeonEvent.DungeonSanctuary();
+                                    dungeonManager.NextStage();
+                                    monsterAppeared = dungeonManager.SpawnMonster();
+                                    break;
+                                }
+                                else
+                                {
+                                    dungeonManager.NextStage();
+                                    monsterAppeared = dungeonManager.SpawnMonster();
+                                    break;
+                                }
+                            case "0":
+                                return true;
+                            default:
+                                Console.WriteLine("잘못된 입력입니다.");
+                                Thread.Sleep(400);
+                                break;
+                        }
+                        return false;
+                    }
+
+                }
+
                 Console.WriteLine("1. 다음\n");
                 Console.Write(">> ");
-                while (!int.TryParse(Console.ReadLine(), out fightChoice) || fightChoice != 1)
+                while (!int.TryParse(Console.ReadLine(), out monsterChoice) || monsterChoice != 1)
                 {
                     Console.WriteLine("잘못된 입력입니다.");
                     Thread.Sleep(400);
@@ -318,9 +380,17 @@ namespace OPTG_TextRPG
                     Thread.Sleep(2000);
                     return true;
                 }
+                return false;
             }
-            return false;
+
+
         }
+
+
+
+
+
+
 
 
         public void PlayerTurn(MonsterData selectedMonster)
@@ -357,20 +427,11 @@ namespace OPTG_TextRPG
                 {
                     Console.WriteLine($"\nLv.{monster.Lv} {monster.Name} 의 공격!");
                     int currentPlayerHp = player.Hp;
-
-                    int monsterActualAttack = monster.Atk - player.Def;
-                    if (monsterActualAttack < 0)
-                    {
-                        monsterActualAttack = 0;
-                    }
-
-                    DamagerPlayer(player, monsterActualAttack);
-                    
-                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monsterActualAttack}]\n");
+                    DamagerPlayer(player, monster.Atk);
+                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monster.Atk}]\n");
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     Console.WriteLine($"HP {currentPlayerHp} -> {player.Hp}\n");
                     Thread.Sleep(300);
-
                     if (player.Hp <= 0)
                     {
                         Console.WriteLine("1. 다음\n");
@@ -412,7 +473,7 @@ namespace OPTG_TextRPG
 
         }
 
-        private void DamageMonster(MonsterData monster,int Damage)
+        private void DamageMonster(MonsterData monster, int Damage)
         {
             monster.Hp -= Damage;
 
@@ -424,7 +485,7 @@ namespace OPTG_TextRPG
             }
         }
 
-        private void DamagerPlayer(PlayerData player,int Damage)
+        private void DamagerPlayer(PlayerData player, int Damage)
         {
             player.Hp -= Damage;
 
@@ -436,3 +497,5 @@ namespace OPTG_TextRPG
         }
     }
 }
+
+
