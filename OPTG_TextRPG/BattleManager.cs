@@ -34,7 +34,7 @@ namespace OPTG_TextRPG
                 Console.WriteLine($"스테이지[{dungeonManager.stage}]\n");
                 foreach (var monster in monsterAppeared)
                 {
-                    Console.WriteLine($"Lv.{monster.Lv} {monster.Name} HP {monster.Hp}");
+                    Console.WriteLine($"Lv.{monster.Lv} {monster.Name} HP {(monster.IsDead ? "Dead" : monster.Hp.ToString())}");
                 }
                 Console.WriteLine("\n[내정보]");
                 Console.WriteLine($"Lv.{player.Level} {player.Name} {player.Job}");
@@ -44,17 +44,16 @@ namespace OPTG_TextRPG
                 Console.Write(">> ");
                 string input = Console.ReadLine();
                 int attackChoice;
-                if (int.TryParse(input, out attackChoice) && attackChoice == 1)
+                if (int.TryParse(input, out attackChoice) && (attackChoice == 1 || attackChoice == 2))
                 {
-                    isExit = Fight();
-                    if (isExit)
+                    if(attackChoice == 1)
                     {
-                        break;
+                        isExit = Fight();
                     }
-                }
-                else if(int.TryParse(input, out attackChoice) && attackChoice == 2)
-                {
-                    isExit = SkillFight();
+                    else
+                    {
+                        isExit = SkillFight();
+                    }
                     if (isExit)
                     {
                         break;
@@ -137,20 +136,20 @@ namespace OPTG_TextRPG
                                 dungeonEvent.DungeonBox();
                                 dungeonManager.NextStage();
                                 monsterAppeared = dungeonManager.SpawnMonster();
-                                continue;
+                                return false;
                             }
                             else if (dungeonEventChance > 20 && dungeonEventChance <= 40)
                             {
                                 dungeonEvent.DungeonSanctuary();
                                 dungeonManager.NextStage();
                                 monsterAppeared = dungeonManager.SpawnMonster();
-                                continue;
+                                return false;
                             }
                             else
                             {
                                 dungeonManager.NextStage();
                                 monsterAppeared = dungeonManager.SpawnMonster();
-                                continue;
+                                return false;
                             }
                         case "0":
                             return true;
@@ -358,11 +357,20 @@ namespace OPTG_TextRPG
                 {
                     Console.WriteLine($"\nLv.{monster.Lv} {monster.Name} 의 공격!");
                     int currentPlayerHp = player.Hp;
-                    DamagerPlayer(player, monster.Atk);
-                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monster.Atk}]\n");
+
+                    int monsterActualAttack = monster.Atk - player.Def;
+                    if (monsterActualAttack < 0)
+                    {
+                        monsterActualAttack = 0;
+                    }
+
+                    DamagerPlayer(player, monsterActualAttack);
+                    
+                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monsterActualAttack}]\n");
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     Console.WriteLine($"HP {currentPlayerHp} -> {player.Hp}\n");
                     Thread.Sleep(300);
+
                     if (player.Hp <= 0)
                     {
                         Console.WriteLine("1. 다음\n");
