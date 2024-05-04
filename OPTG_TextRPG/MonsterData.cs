@@ -13,15 +13,16 @@ namespace OPTG_TextRPG
         public int Atk { get; }
         public float Hp { get; set; }
         public bool IsDead { get; set; }
+        public int DropGold { get; set; }
 
         public MonsterData() { }
-        public MonsterData(string name, int lv, int atk, int hp)
+        public MonsterData(string name, int lv, int atk, int hp, int dropGold)
         {
             Name = name;
             Lv = lv;
             Atk = atk;
             Hp = hp;
-
+            DropGold = dropGold;
         }
 
         //깊은복사 생성자* - 참조
@@ -31,6 +32,7 @@ namespace OPTG_TextRPG
             Lv = data.Lv;
             Atk = data.Atk;
             Hp = data.Hp;
+            DropGold = data.DropGold;
         }
     }
 }
