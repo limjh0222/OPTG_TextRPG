@@ -24,53 +24,53 @@ public class SkillManager
         }
     }
 
-    private Dictionary<int, Dictionary<int, Skill>> jobSkills;
+    private Dictionary<int, Dictionary<int, SkillData>> jobSkills;
 
     private SkillManager()
     {
-        jobSkills = new Dictionary<int, Dictionary<int, Skill>>();
+        jobSkills = new Dictionary<int, Dictionary<int, SkillData>>();
 
         // 전사 스킬
-        Dictionary<int, Skill> warriorSkills = new Dictionary<int, Skill>
+        Dictionary<int, SkillData> warriorSkills = new Dictionary<int, SkillData>
         {
-            { 1, new Skill(1, "강력한 일격", 40, 30) },
-            { 2, new Skill(2, "방패 강타", 30, 20) }
+            { 1, new SkillData(1, "강력한 일격", 40, 30) },
+            { 2, new SkillData(2, "방패 강타", 30, 20) }
         };
         jobSkills.Add(1, warriorSkills);
 
         // 마법사 스킬
-        Dictionary<int, Skill> mageSkills = new Dictionary<int, Skill>
+        Dictionary<int, SkillData> mageSkills = new Dictionary<int, SkillData>
         {
-            { 2, new Skill(2, "화염 폭발", 40, 30) },
-            { 3, new Skill(3, "얼음 창", 30, 25) }
+            { 2, new SkillData(2, "화염 폭발", 40, 30) },
+            { 3, new SkillData(3, "얼음 창", 30, 25) }
         };
         jobSkills.Add(2, mageSkills);
 
         // 도적 스킬
-        Dictionary<int, Skill> rogueSkills = new Dictionary<int, Skill>
+        Dictionary<int, SkillData> rogueSkills = new Dictionary<int, SkillData>
         {
-            { 3, new Skill(3, "연속 베기", 20, 20) },
-            { 4, new Skill(4, "기습 공격", 40, 30) }
+            { 3, new SkillData(3, "연속 베기", 20, 20) },
+            { 4, new SkillData(4, "기습 공격", 40, 30) }
         };
         jobSkills.Add(3, rogueSkills);
 
         // 궁수 스킬
-        Dictionary<int, Skill> archerSkills = new Dictionary<int, Skill>
+        Dictionary<int, SkillData> archerSkills = new Dictionary<int, SkillData>
         {
-            { 4, new Skill(4, "정확한 사격", 30, 20) },
-            { 1, new Skill(1, "강력한 일격", 15, 10) }
+            { 4, new SkillData(4, "정확한 사격", 30, 20) },
+            { 1, new SkillData(1, "강력한 일격", 15, 10) }
         };
         jobSkills.Add(4, archerSkills);
 
-        Dictionary<int, Skill> GMSkills = new Dictionary<int, Skill>
+        Dictionary<int, SkillData> GMSkills = new Dictionary<int, SkillData>
         {
-            { 1, new Skill(1, "정확한 사격", 999, 20) },
-            { 2, new Skill(2, "강력한 일격", 999, 10) }
+            { 1, new SkillData(1, "유니티망겜", 999, 1) },
+            { 2, new SkillData(2, "망할 C#", 999, 1) }
         };
         jobSkills.Add(5, GMSkills);
     }
 
-    public Dictionary<int, Skill> GetSkillsForJob(int jobId)
+    public Dictionary<int, SkillData> GetSkillsForJob(int jobId)
     {
         if (jobSkills.ContainsKey(jobId))
         {
@@ -78,7 +78,7 @@ public class SkillManager
         }
         else
         {
-            return new Dictionary<int, Skill>();
+            return new Dictionary<int, SkillData>();
         }
     }
 
@@ -91,7 +91,7 @@ public class SkillManager
                 var skills = jobSkills[jobId];
                 if (skills.ContainsKey(skillId))
                 {
-                    Skill skill = skills[skillId];
+                    SkillData skill = skills[skillId];
                     if (player.Mp >= skill.MpCost)
                     {
                         Console.WriteLine($"{player.Name}이(가) {monster.Name}을(를) {skill.Name}으로 공격합니다!");

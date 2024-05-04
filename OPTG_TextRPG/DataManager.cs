@@ -24,10 +24,6 @@ class DataManager
 
     public PlayerData InitJob(string name,int job)
     {
-
-
-
-
         //직업전체를 불러오는게 아니라 선택할때만 그 해당하는 직업만 불러옴
         switch (job)
         {
@@ -36,10 +32,9 @@ class DataManager
             case 2:
                 return new PlayerData(name, "마법사", 1, 15, 15, 100, 200, 1000, SkillManager.Instance.GetSkillsForJob(2));
             case 3:
-
                 return new PlayerData(name, "도적", 1, 20, 25, 180, 60, 1000, SkillManager.Instance.GetSkillsForJob(3));
             case 4:
-                return new PlayerData(name, "궁수", 1, 25, 20, 1, 100, 1000,  SkillManager.Instance.GetSkillsForJob(4));
+                return new PlayerData(name, "궁수", 1, 25, 20, 150, 100, 1000,  SkillManager.Instance.GetSkillsForJob(4));
       default: //테스트용.
                 return new PlayerData(name, "[GM]", 999, 999, 999, 999, 999, 99999, SkillManager.Instance.GetSkillsForJob(5));
         }
