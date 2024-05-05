@@ -31,8 +31,8 @@ namespace OPTG_TextRPG
                 int bonusHp = GameManager.Instance.inventory.Select(item => item.IsEquipped ? item.Hp : 0).Sum();
                 ConsoleUtility.PrintYellowHighlights("공격력 : ", (GameManager.Instance.player.Atk + bonusAtk).ToString(), bonusAtk != 0 ? (bonusAtk > 0 ? $" (+{bonusAtk})\n" : $" ({bonusAtk})\n") : "\n");
                 ConsoleUtility.PrintYellowHighlights("방어력 : ", (GameManager.Instance.player.Def + bonusDef).ToString(), bonusDef != 0 ? (bonusDef > 0 ? $" (+{bonusDef})\n" : $" ({bonusDef})\n") : "\n");
-                ConsoleUtility.PrintYellowHighlights("체 력 : ", (GameManager.Instance.player.MaxHp + bonusHp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
-                ConsoleUtility.PrintYellowHighlights("마 력 : ", (GameManager.Instance.player.MaxMp + bonusHp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
+                ConsoleUtility.PrintYellowHighlights("체 력 : ", (GameManager.Instance.player.Hp + bonusHp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
+                ConsoleUtility.PrintYellowHighlights("마 력 : ", (GameManager.Instance.player.Mp + bonusHp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
                 ConsoleUtility.PrintYellowHighlights("Gold : ", GameManager.Instance.player.Gold.ToString(), "\n");
 
                 Console.WriteLine("\n0. 뒤로가기\n");
