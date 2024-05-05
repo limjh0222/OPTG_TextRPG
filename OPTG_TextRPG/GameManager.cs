@@ -21,6 +21,7 @@ public class GameManager
     public static GameManager Instance { get { return instance; } }
 
     DungeonEvent dungeonEvent = new DungeonEvent();
+    public Tavern tavern;
     public PlayerData player;
     public BattleManager battleManager;
     public List<Item> inventory {  get; set; }
@@ -32,7 +33,7 @@ public class GameManager
         {
             instance = this;
         }
-
+        tavern = new Tavern();
         battleManager = new BattleManager();
         InitializeGame();
     }
@@ -45,7 +46,7 @@ public class GameManager
         while(choice < 0)
         {
             Console.Clear();
-            ConsoleUtility.PrintYellowHighlights("", "직업", "을 선택해주세요.\n");
+            ConsoleUtility.PrintYellowHighlights("\n", "직업", "을 선택해주세요.\n");
             Console.WriteLine("\n1. 전사");
             Console.WriteLine("2. 마법사");
             Console.WriteLine("3. 도적");
@@ -83,16 +84,17 @@ public class GameManager
             Console.Clear();
 
             // 1. 선택 멘트를 줌
-            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
+            Console.WriteLine("\n스파르타 마을에 오신 여러분 환영합니다.");
             ConsoleUtility.PrintYellowHighlights("이곳에서 던전으로 들어가기 전 ", "활동", "을 할 수 있습니다.\n");
 
             Console.WriteLine("\n1. 상태보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
-            Console.WriteLine("4. 던전 입장\n");
+            Console.WriteLine("4. 선술집");
+            Console.WriteLine("5. 던전으로\n");
 
             // 2. 선택한 결과를 검증함
-            choice = ConsoleUtility.PromptMenuChoice(1, 4);
+            choice = ConsoleUtility.PromptMenuChoice(1, 5);
         }
 
         // 3. 선택한 결과에 따라 보내줌
@@ -108,8 +110,21 @@ public class GameManager
                 Store.StoreMenu();
                 break;
             case 4:
-                battleManager.BattleStart();
+                tavern.TavernManu();
                 break;
+            case 5:
+                if(player.Hp == 0)
+                {
+                    Console.WriteLine("\n입구를 지키고있는 경비대가 당신을 막아섰습니다.");
+                    Console.WriteLine("경비대: 체력을 회복하지 않으면 입장하실 수 없습니다.\n\n");
+                    Console.WriteLine("선술집으로가서 회복해야한다.\n");
+                    Console.WriteLine("아무키나 입력해주세요.");
+                    Console.ReadKey();
+                    break;
+                }
+                else battleManager.BattleStart();
+                break;
+
         }
         MainMenu();
     }
