@@ -43,26 +43,26 @@ class DataManager
     public void InitMonster() // 이름, 레벨, 공격력, 체력, 골드
     {
         NormalMonsterDB.Add(0, new MonsterData("슬라임",  1, 10, 10, 50));
-        NormalMonsterDB.Add(1, new MonsterData("고블린",  2, 13, 15, 50));
-        NormalMonsterDB.Add(2, new MonsterData("구울",     2, 12, 24, 50));
-        NormalMonsterDB.Add(3, new MonsterData("미믹",     3, 11, 22, 50));
-        NormalMonsterDB.Add(4, new MonsterData("시궁창쥐", 2, 15, 18, 50));
-        NormalMonsterDB.Add(5, new MonsterData("스켈레톤", 3, 13, 23, 50));
-        NormalMonsterDB.Add(6, new MonsterData("오우거",   5, 16, 28, 50));
-        NormalMonsterDB.Add(7, new MonsterData("가고일",   6, 15, 20, 50));
-        NormalMonsterDB.Add(8, new MonsterData("리자드맨", 5, 13, 32, 50));
-        NormalMonsterDB.Add(9, new MonsterData("맹독충",   4, 14, 25, 50));
+        NormalMonsterDB.Add(1, new MonsterData("고블린",  2, 13, 15, 70));
+        NormalMonsterDB.Add(2, new MonsterData("구울",     2, 12, 24, 110));
+        NormalMonsterDB.Add(3, new MonsterData("미믹",     3, 11, 22, 500));
+        NormalMonsterDB.Add(4, new MonsterData("시궁창쥐", 2, 15, 18, 80));
+        NormalMonsterDB.Add(5, new MonsterData("스켈레톤", 3, 13, 23, 60));
+        NormalMonsterDB.Add(6, new MonsterData("오우거",   5, 16, 28, 100));
+        NormalMonsterDB.Add(7, new MonsterData("가고일",   6, 15, 20, 90));
+        NormalMonsterDB.Add(8, new MonsterData("리자드맨", 5, 13, 32, 70));
+        NormalMonsterDB.Add(9, new MonsterData("맹독충",   4, 14, 25, 40));
 
-        AdvancedMonsterDB.Add(0, new MonsterData("스켈레톤 나이트", 10, 15, 35, 100));
-        AdvancedMonsterDB.Add(1, new MonsterData("스켈레톤 워리어", 12, 13, 41, 100));
-        AdvancedMonsterDB.Add(2, new MonsterData("앨드리치", 11, 12, 32, 100));
-        AdvancedMonsterDB.Add(3, new MonsterData("바실리스크", 14, 20, 33, 100));
-        AdvancedMonsterDB.Add(4, new MonsterData("다크엘프", 12, 25, 36, 100));
-        AdvancedMonsterDB.Add(5, new MonsterData("미노타우르스", 15, 23, 42, 100));
-        AdvancedMonsterDB.Add(6, new MonsterData("뱀파이어", 14, 24, 33, 100));
-        AdvancedMonsterDB.Add(7, new MonsterData("사라맨더", 12, 15, 31, 100));
-        AdvancedMonsterDB.Add(8, new MonsterData("서큐버스", 16, 21, 27, 100));
-        AdvancedMonsterDB.Add(9, new MonsterData("와이번", 15, 24, 38, 100));
+        AdvancedMonsterDB.Add(0, new MonsterData("스켈레톤 나이트", 10, 15, 35, 150));
+        AdvancedMonsterDB.Add(1, new MonsterData("스켈레톤 워리어", 12, 13, 41, 180));
+        AdvancedMonsterDB.Add(2, new MonsterData("앨드리치", 11, 12, 32, 130));
+        AdvancedMonsterDB.Add(3, new MonsterData("바실리스크", 14, 20, 33, 170));
+        AdvancedMonsterDB.Add(4, new MonsterData("다크엘프", 12, 25, 36, 250));
+        AdvancedMonsterDB.Add(5, new MonsterData("미노타우르스", 15, 23, 42, 170));
+        AdvancedMonsterDB.Add(6, new MonsterData("뱀파이어", 14, 24, 33, 200));
+        AdvancedMonsterDB.Add(7, new MonsterData("사라맨더", 12, 15, 31, 140));
+        AdvancedMonsterDB.Add(8, new MonsterData("서큐버스", 16, 21, 27, 280));
+        AdvancedMonsterDB.Add(9, new MonsterData("와이번", 15, 24, 38, 300));
 
         BossMonsterDB.Add(0, new MonsterData("탐욕의 바르실", 20, 20, 70, 1000));
         BossMonsterDB.Add(1, new MonsterData("오만의 카시엘", 22, 21, 75, 1000));

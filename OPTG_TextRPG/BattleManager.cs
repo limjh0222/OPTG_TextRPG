@@ -28,7 +28,7 @@ namespace OPTG_TextRPG
             dungeonEvent.FootPrint();
             player = GameManager.Instance.player; //참조
             monsterAppeared = dungeonManager.SpawnMonster();
-            //dungeonManager.stage = 1; 던전 초기화 트리거
+            dungeonManager.stage = 1;
             initialPlayerHp = player.Hp;
             while (true)
             {
@@ -124,7 +124,14 @@ namespace OPTG_TextRPG
                 {
 
                     int remainingPlayerHp = player.Hp;
-
+                    int totalGold = 0;
+                    foreach (var monster in monsterAppeared)
+                    {
+                        // 몬스터로부터 획득한 골드를 랜덤하게 계산합니다.
+                        int monsterGold = random.Next((int)(monster.DropGold * 0.7), (int)(monster.DropGold * 1.2));
+                        totalGold += monsterGold;
+                    }
+                    player.Gold += totalGold;
                     Console.WriteLine("1. 다음\n");
                     Console.Write(">> ");
                     while (!int.TryParse(Console.ReadLine(), out  fightChoice) || fightChoice != 1)
@@ -142,7 +149,8 @@ namespace OPTG_TextRPG
 
                     Console.WriteLine("\nBattle!! - Result\n");
                     Console.WriteLine("Victory\n");
-                    Console.WriteLine($"던전에서 몬스터를 {monsterAppeared.Count}마리를 잡았습니다.\n");
+                    Console.WriteLine($"던전에서 몬스터를 {monsterAppeared.Count}마리를 잡았습니다.");
+                    Console.WriteLine($"획득한 골드: {totalGold} Gold\n");
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     Console.WriteLine($"HP {initialPlayerHp} -> {remainingPlayerHp}\n");
                     Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다. 어떻게 할까?\n");

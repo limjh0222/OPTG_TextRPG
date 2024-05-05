@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OPTG_TextRPG
 {
+
     public class Tavern
     {
         public void TavernManu()
@@ -18,7 +19,8 @@ namespace OPTG_TextRPG
                 Console.WriteLine("\n========== [스파르타 선술집] ==========");
                 Console.WriteLine("\n어머, 어서오세요. 모험가님.");
                 Console.WriteLine("스파르타 선술집에 오신걸 환영합니다.");
-                Console.WriteLine("찾으시는게 있으신가요?\n\n");
+                Console.WriteLine("찾으시는게 있으신가요?\n");
+                Console.WriteLine($"[소지한 골드: {GameManager.Instance.player.Gold} Gold]\n");
                 Console.WriteLine("1. 푹신한 침대! 따뜻한 목욕! \t [2500G]  (HP/MP 100% 회복)");
                 Console.WriteLine("2. 가게만의 특선 라구 스튜!  \t [1100G]  (HP/MP  40% 회복)");
                 Console.WriteLine("3. 시원한 슈와슈와맥주 한잔! \t  [600G]  (HP/MP  20% 회복)\n");
