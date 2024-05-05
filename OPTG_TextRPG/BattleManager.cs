@@ -27,8 +27,8 @@ namespace OPTG_TextRPG
             bool isExit = false;
             dungeonEvent.FootPrint();
             player = GameManager.Instance.player; //참조
-            monsterAppeared = dungeonManager.SpawnMonster();
             dungeonManager.stage = 1;
+            monsterAppeared = dungeonManager.SpawnMonster();
             initialPlayerHp = player.Hp;
             while (true)
             {
@@ -144,7 +144,8 @@ namespace OPTG_TextRPG
                         Console.WriteLine($"획득한 골드: {totalGold} Gold\n");
                         Console.WriteLine($"Lv.{player.Level} {player.Name}");
                         Console.WriteLine($"HP {initialPlayerHp} -> {remainingPlayerHp}\n");
-                        Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다. 어떻게 할까?\n");
+                        Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다.");
+                        Console.WriteLine(" 어떻게 할까?\n");
                         Console.WriteLine("1. 새로운 던전에 도전한다.");
                         Console.WriteLine("0. 포기하고 마을로 돌아간다.\n");
                         Console.Write(">> ");

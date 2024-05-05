@@ -59,8 +59,8 @@ namespace OPTG_TextRPG
         private MonsterData RandomNormalMonster()
         {
             MonsterData monster = new MonsterData(NormalMonsterDB[random.Next(NormalMonsterDB.Count)]);
-            monster.Hp += stage * 2;
-            monster.Atk += stage * 1;
+            monster.Hp += (stage -1) * 2;
+            monster.Atk += (stage -1) * 1;
             return monster;
         }
         private MonsterData RandomAdvancedMonster()
