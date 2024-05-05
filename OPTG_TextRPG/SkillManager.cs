@@ -41,24 +41,36 @@ public class SkillManager
         // 마법사 스킬
         Dictionary<int, SkillData> mageSkills = new Dictionary<int, SkillData>
         {
-            { 1, new SkillData(1, "화염 폭발", 40, 30) },
-            { 2, new SkillData(2, "얼음 창", 30, 25) }
+            { 1, new SkillData(1, "파이어 볼트   ", 25, 5) },
+            { 2, new SkillData(2, "아이스 애로우 ", 27, 10) },
+            { 3, new SkillData(2, "윈드커터      ", 30, 13) },
+            { 4, new SkillData(2, "스톤엣지      ", 34, 16) },
+            { 5, new SkillData(2, "그래비티      ", 36, 24) },
+            { 6, new SkillData(2, "인페르노      ", 42, 26) },
+            { 7, new SkillData(2, "프로즌 오브   ", 45, 31) },
+            { 8, new SkillData(2, "블리자드      ", 52, 35) },
+            { 9, new SkillData(2, "익스플로전    ", 80, 50) }
         };
         jobSkills.Add(2, mageSkills);
 
         // 도적 스킬
         Dictionary<int, SkillData> rogueSkills = new Dictionary<int, SkillData>
         {
-            { 1, new SkillData(1, "연속 베기", 20, 20) },
-            { 2, new SkillData(2, "기습 공격", 40, 30) }
+            { 1, new SkillData(1, "연속 베기", 35, 20) },
+            { 2, new SkillData(2, "기습 공격", 55, 27) },
+            { 3, new SkillData(2, "그림자 베기", 62, 36) },
+            { 4, new SkillData(2, "급소 찌르기", 74, 55) }
         };
         jobSkills.Add(3, rogueSkills);
 
         // 궁수 스킬
         Dictionary<int, SkillData> archerSkills = new Dictionary<int, SkillData>
         {
-            { 1, new SkillData(1, "정확한 사격", 30, 20) },
-            { 2, new SkillData(2, "강력한 일격", 15, 10) }
+            { 1, new SkillData(1, "재빠른 사격", 40, 25) },
+            { 2, new SkillData(2, "강력한 일격", 50, 28) },
+            { 3, new SkillData(2, "연속 사격", 60, 31) },
+            { 4, new SkillData(2, "화살비", 70, 42) },
+            { 5, new SkillData(2, "혼신의 일격", 80, 65) }
         };
         jobSkills.Add(4, archerSkills);
 
