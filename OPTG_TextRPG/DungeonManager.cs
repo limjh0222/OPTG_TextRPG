@@ -66,15 +66,15 @@ namespace OPTG_TextRPG
         private MonsterData RandomAdvancedMonster()
         {
             MonsterData monster = new MonsterData(AdvancedMonsterDB[random.Next(AdvancedMonsterDB.Count)]);
-            monster.Hp += stage * 2;
-            monster.Atk += stage * 1;
+            monster.Hp += (stage - 5) * 2;
+            monster.Atk += (stage - 5) * 1;
             return monster;
         }
         public MonsterData RandomBossMonster()
         {
             MonsterData monster = new MonsterData(BossMonsterDB[random.Next(BossMonsterDB.Count)]);
-            monster.Hp += stage * 2;
-            monster.Atk += stage * 1;
+            monster.Hp += (stage - 4) * 2;
+            monster.Atk += (stage - 4) * 1;
             return monster;
         }
         // 스테이지 진행
