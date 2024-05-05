@@ -33,15 +33,16 @@ namespace OPTG_TextRPG
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine($"\nBattle start!!");
-                Console.WriteLine($"스테이지[{dungeonManager.stage}]\n");
+                Console.WriteLine($"\n\t-- 스테이지[{dungeonManager.stage}] --\n");
+                Console.WriteLine($"======== [ 전투 시작!! ] ========\n");
                 foreach (var monster in monsterAppeared)
                 {
                     Console.WriteLine($"Lv.{monster.Lv} {monster.Name} HP {(monster.IsDead ? "Dead" : monster.Hp.ToString())}");
                 }
                 Console.WriteLine("\n[내정보]");
                 Console.WriteLine($"Lv.{player.Level} {player.Name} {player.Job}");
-                Console.WriteLine($"HP {player.Hp}/{player.MaxHp}\n");
+                Console.WriteLine($"HP {player.Hp}/{player.MaxHp}");
+                Console.WriteLine($"MP {player.Mp}/{player.MaxMp}\n");
                 Console.WriteLine("1. 공격");
                 Console.WriteLine("2. 스킬\n");
                 Console.Write(">> ");
@@ -69,8 +70,9 @@ namespace OPTG_TextRPG
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine($"\nBattle start!!");
-                Console.WriteLine($"스테이지[{dungeonManager.stage}]\n");
+                Console.WriteLine($"\n\t-- 스테이지[{dungeonManager.stage}] --\n");
+                Console.WriteLine($"[공격할 대상을 선택하세요.]\n");
+                
                 for (int i = 0; i < monsterAppeared.Count; i++)
                 {
                     MonsterData monster = monsterAppeared[i];
@@ -78,7 +80,8 @@ namespace OPTG_TextRPG
                 }
                 Console.WriteLine("\n[내정보]");
                 Console.WriteLine($"Lv.{player.Level} {player.Name} {player.Job}");
-                Console.WriteLine($"HP {player.Hp}/{player.MaxHp}\n");
+                Console.WriteLine($"HP {player.Hp}/{player.MaxHp}");
+                Console.WriteLine($"MP {player.Mp}/{player.MaxMp}\n");
                 Console.WriteLine("0. 취소\n");
                 Console.Write(">> ");
                 string input = Console.ReadLine();
@@ -331,7 +334,7 @@ namespace OPTG_TextRPG
         {
             SkillData skill;
 
-            Console.WriteLine("[스킬 목록]\n");
+            Console.WriteLine($"\n [스킬 목록] [현재 MP: {player.Mp}]\n");
             foreach (var Skill in player.Skills)
             {
                 Console.WriteLine($"{Skill.Key}. {Skill.Value.Name} 데미지: {Skill.Value.Damage}, [소모 MP: {Skill.Value.MpCost}]");
