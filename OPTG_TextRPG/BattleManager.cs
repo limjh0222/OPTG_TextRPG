@@ -18,6 +18,7 @@ namespace OPTG_TextRPG
         DungeonManager dungeonManager = new DungeonManager();
         Random random = new Random();
         PlayerData player;
+        int initialPlayerHp;
 
         public BattleManager() { }
         
@@ -27,6 +28,8 @@ namespace OPTG_TextRPG
             dungeonEvent.FootPrint();
             player = GameManager.Instance.player; //참조
             monsterAppeared = dungeonManager.SpawnMonster();
+            //dungeonManager.stage = 1; 던전 초기화 트리거
+            initialPlayerHp = player.Hp;
             while (true)
             {
                 Console.Clear();
@@ -63,8 +66,6 @@ namespace OPTG_TextRPG
 
         public bool Fight(int attackChoice)
         {
-            int initialPlayerHp = player.Hp;
-
             while (true)
             {
                 Console.Clear();
@@ -150,6 +151,7 @@ namespace OPTG_TextRPG
                     {
                         case "1":
                             dungeonEvent.FootPrint();
+                            initialPlayerHp = player.Hp;
                             int dungeonEventChance = random.Next(1, 101);
                             if (dungeonEventChance <= 20)
                             {
