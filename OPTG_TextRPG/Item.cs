@@ -47,7 +47,7 @@ public class Item
         if (withNumber)
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.Write($"{idx} ");
+            Console.Write(idx.ToString("D2") + " ");
             Console.ResetColor();
         }
         if (IsEquipped)
@@ -65,7 +65,7 @@ public class Item
 
         if (Atk != 0)
         {
-            Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{(Atk >= 0 ? ConsoleUtility.PadRightForMixedText(Atk.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Atk.ToString(), 4))}");
+            Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{(Atk >= 0 ? ConsoleUtility.PadRightForMixedText(Atk.ToString(), 2) : ConsoleUtility.PadRightForMixedText(Atk.ToString(), 4))}");
         }
         else
         {
@@ -74,21 +74,21 @@ public class Item
 
         if (Def != 0)
         {
-            Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{(Def >= 0 ? ConsoleUtility.PadRightForMixedText(Def.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Def.ToString(), 4))}");
+            Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{(Def >= 0 ? ConsoleUtility.PadRightForMixedText(Def.ToString(), 2) : ConsoleUtility.PadRightForMixedText(Def.ToString(), 4))}");
         }
         else
         {
             Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
         }
 
-        if (Hp != 0)
-        {
-            Console.Write($"체  력 {(Hp >= 0 ? "+" : "")}{(Hp >= 0 ? ConsoleUtility.PadRightForMixedText(Hp.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Hp.ToString(), 4))}");
-        }
-        else
-        {
-            Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
-        }
+        //if (Hp != 0)
+        //{
+        //    Console.Write($"체  력 {(Hp >= 0 ? "+" : "")}{(Hp >= 0 ? ConsoleUtility.PadRightForMixedText(Hp.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Hp.ToString(), 4))}");
+        //}
+        //else
+        //{
+        //    Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
+        //}
 
         Console.Write(" | ");
 
@@ -104,17 +104,17 @@ public class Item
         if (withNumber)
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.Write("{0} ", idx);
+            Console.Write(idx.ToString("D2")+ " ");
             Console.ResetColor();
             
         }
-        Console.Write(ConsoleUtility.PadRightForMixedText(Name, 20));
+        Console.Write(ConsoleUtility.PadRightForMixedText(Name, 14));
 
         Console.Write(" | ");
 
         if(Atk != 0)
         {
-            Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{(Atk >= 0 ? ConsoleUtility.PadRightForMixedText(Atk.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Atk.ToString(), 4))}");
+            Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{(Atk >= 0 ? ConsoleUtility.PadRightForMixedText(Atk.ToString(), 2) : ConsoleUtility.PadRightForMixedText(Atk.ToString(), 4))}");
         }
         else
         {
@@ -123,25 +123,25 @@ public class Item
 
         if (Def != 0)
         {
-            Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{(Def >= 0 ? ConsoleUtility.PadRightForMixedText(Def.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Def.ToString(), 4))}");
+            Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{(Def >= 0 ? ConsoleUtility.PadRightForMixedText(Def.ToString(), 2) : ConsoleUtility.PadRightForMixedText(Def.ToString(), 4))}");
         }
         else
         {
             Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
         }
 
-        if (Hp != 0)
-        {
-            Console.Write($"체  력 {(Hp >= 0 ? "+" : "")}{(Hp >= 0 ? ConsoleUtility.PadRightForMixedText(Hp.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Hp.ToString(), 4))}");
-        }
-        else
-        {
-            Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
-        }
+        //if (Hp != 0)
+        //{
+        //    Console.Write($"체  력 {(Hp >= 0 ? "+" : "")}{(Hp >= 0 ? ConsoleUtility.PadRightForMixedText(Hp.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Hp.ToString(), 4))}");
+        //}
+        //else
+        //{
+        //    Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
+        //}
 
         Console.Write(" | ");
 
-        Console.Write(ConsoleUtility.PadRightForMixedText(Desc, 30));
+        Console.Write(ConsoleUtility.PadRightForMixedText(Desc, 40));
 
         Console.Write(" | ");
 
@@ -162,7 +162,7 @@ public class Item
         if (withNumber)
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.Write("{0} ", idx);
+            Console.Write(idx.ToString("D2") + " ");
             Console.ResetColor();
 
         }
@@ -174,15 +174,15 @@ public class Item
             Console.Write("E");
             Console.ResetColor();
             Console.Write("]");
-            Console.Write(ConsoleUtility.PadRightForMixedText(Name, 17));
+            Console.Write(ConsoleUtility.PadRightForMixedText(Name, 14));
         }
-        else Console.Write(ConsoleUtility.PadRightForMixedText(Name, 20));
+        else Console.Write(ConsoleUtility.PadRightForMixedText(Name, 14));
 
         Console.Write(" | ");
 
         if (Atk != 0)
         {
-            Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{(Atk >= 0 ? ConsoleUtility.PadRightForMixedText(Atk.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Atk.ToString(), 4))}");
+            Console.Write($"공격력 {(Atk >= 0 ? "+" : "")}{(Atk >= 0 ? ConsoleUtility.PadRightForMixedText(Atk.ToString(), 2) : ConsoleUtility.PadRightForMixedText(Atk.ToString(), 4))}");
         }
         else
         {
@@ -191,16 +191,7 @@ public class Item
 
         if (Def != 0)
         {
-            Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{(Def >= 0 ? ConsoleUtility.PadRightForMixedText(Def.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Def.ToString(), 4))}");
-        }
-        else
-        {
-            Console.Write(ConsoleUtility.PadRightForMixedText("", 11));
-        }
-
-        if (Hp != 0)
-        {
-            Console.Write($"체  력 {(Hp >= 0 ? "+" : "")}{(Hp >= 0 ? ConsoleUtility.PadRightForMixedText(Hp.ToString(), 3) : ConsoleUtility.PadRightForMixedText(Hp.ToString(), 4))}");
+            Console.Write($"방어력 {(Def >= 0 ? "+" : "")}{(Def >= 0 ? ConsoleUtility.PadRightForMixedText(Def.ToString(), 2) : ConsoleUtility.PadRightForMixedText(Def.ToString(), 4))}");
         }
         else
         {
@@ -209,7 +200,7 @@ public class Item
 
         Console.Write(" | ");
 
-        Console.Write(ConsoleUtility.PadRightForMixedText(Desc, 30));
+        Console.Write(ConsoleUtility.PadRightForMixedText(Desc, 40));
 
         Console.Write(" | ");
 
