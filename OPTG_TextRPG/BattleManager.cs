@@ -127,82 +127,58 @@ namespace OPTG_TextRPG
                     int totalGold = 0;
                     foreach (var monster in monsterAppeared)
                     {
-                        // 몬스터로부터 획득한 골드를 랜덤하게 계산합니다.
                         int monsterGold = random.Next((int)(monster.DropGold * 0.7), (int)(monster.DropGold * 1.2));
                         totalGold += monsterGold;
                     }
                     player.Gold += totalGold;
-                    Console.WriteLine("1. 다음\n");
-                    Console.Write(">> ");
-                    while (!int.TryParse(Console.ReadLine(), out  fightChoice) || fightChoice != 1)
-                    {
-                        Console.WriteLine("잘못된 입력입니다.");
-                        Thread.Sleep(400);
-                        Console.SetCursorPosition(0, Console.CursorTop - 2);
-                        Console.WriteLine("                                                  ");
-                        Console.WriteLine("                                                  ");
-                        Console.SetCursorPosition(0, Console.CursorTop - 2);
-                        Console.Write(">> ");
-                    }
 
                     Console.Clear();
 
-                    Console.WriteLine("\nBattle!! - Result\n");
-                    Console.WriteLine("Victory\n");
-                    Console.WriteLine($"던전에서 몬스터를 {monsterAppeared.Count}마리를 잡았습니다.");
-                    Console.WriteLine($"획득한 골드: {totalGold} Gold\n");
-                    Console.WriteLine($"Lv.{player.Level} {player.Name}");
-                    Console.WriteLine($"HP {initialPlayerHp} -> {remainingPlayerHp}\n");
-                    Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다. 어떻게 할까?\n");
-                    Console.WriteLine("1. 새로운 던전에 도전한다.");
-                    Console.WriteLine("0. 포기하고 마을로 돌아간다.\n");
-                    Console.Write(">> ");
-                    string nextInput = Console.ReadLine();
-                    switch (nextInput)
+                    int choice = -1;
+                    while (choice < 0)
                     {
-                        case "1":
-                            dungeonEvent.FootPrint();
-                            initialPlayerHp = player.Hp;
-                            int dungeonEventChance = random.Next(1, 101);
-                            if (dungeonEventChance <= 20)
-                            {
-                                dungeonEvent.DungeonBox();
-                                dungeonManager.NextStage();
-                                monsterAppeared = dungeonManager.SpawnMonster();
-                                return false;
-                            }
-                            else if (dungeonEventChance > 20 && dungeonEventChance <= 40)
-                            {
-                                dungeonEvent.DungeonSanctuary();
-                                dungeonManager.NextStage();
-                                monsterAppeared = dungeonManager.SpawnMonster();
-                                return false;
-                            }
-                            else
-                            {
-                                dungeonManager.NextStage();
-                                monsterAppeared = dungeonManager.SpawnMonster();
-                                return false;
-                            }
-                        case "0":
-                            return true;
-                        default:
-                            Console.WriteLine("잘못된 입력입니다.");
-                            Thread.Sleep(400);
-                            break;
+                        Console.Clear();
+                        Console.WriteLine("\nBattle!! - Result\n");
+                        Console.WriteLine("Victory\n");
+                        Console.WriteLine($"던전에서 몬스터를 {monsterAppeared.Count}마리를 잡았습니다.");
+                        Console.WriteLine($"획득한 골드: {totalGold} Gold\n");
+                        Console.WriteLine($"Lv.{player.Level} {player.Name}");
+                        Console.WriteLine($"HP {initialPlayerHp} -> {remainingPlayerHp}\n");
+                        Console.WriteLine("눈 앞에 올라갈 수 있는 계단이 보인다. 어떻게 할까?\n");
+                        Console.WriteLine("1. 새로운 던전에 도전한다.");
+                        Console.WriteLine("0. 포기하고 마을로 돌아간다.\n");
+                        Console.Write(">> ");
+                        choice = ConsoleUtility.PromptMenuChoice(0, 1);
+                        switch (choice)
+                        {
+                            case 1:
+                                dungeonEvent.FootPrint();
+                                initialPlayerHp = player.Hp;
+                                int dungeonEventChance = random.Next(1, 101);
+                                if (dungeonEventChance <= 20)
+                                {
+                                    dungeonEvent.DungeonBox();
+                                    dungeonManager.NextStage();
+                                    monsterAppeared = dungeonManager.SpawnMonster();
+                                    return false;
+                                }
+                                else if (dungeonEventChance > 20 && dungeonEventChance <= 40)
+                                {
+                                    dungeonEvent.DungeonSanctuary();
+                                    dungeonManager.NextStage();
+                                    monsterAppeared = dungeonManager.SpawnMonster();
+                                    return false;
+                                }
+                                else
+                                {
+                                    dungeonManager.NextStage();
+                                    monsterAppeared = dungeonManager.SpawnMonster();
+                                    return false;
+                                }
+                            case 0:
+                                return true;
+                        }
                     }
-                }
-                Console.WriteLine("1. 다음\n");
-                Console.Write(">> ");
-                while (!int.TryParse(Console.ReadLine(),out fightChoice) || fightChoice != 1)
-                {
-                    Console.WriteLine("잘못된 입력입니다.");
-                    Thread.Sleep(400);
-                    Console.SetCursorPosition(0, Console.CursorTop - 2);
-                    Console.WriteLine("                                                  ");
-                    Console.WriteLine("                                                  ");
-                    Console.SetCursorPosition(0, Console.CursorTop - 2);
-                    Console.Write(">> ");
                 }
 
                 MonstersTurn();
@@ -259,6 +235,18 @@ namespace OPTG_TextRPG
             else
             {
                 Console.WriteLine($"HP {currentMonsterHp} -> {(selectedMonster.IsDead ? "Dead" : selectedMonster.Hp.ToString())}\n");
+            }
+            Console.WriteLine("1. 다음\n");
+            Console.Write(">> ");
+            while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                Thread.Sleep(400);
+                Console.SetCursorPosition(0, Console.CursorTop - 2);
+                Console.WriteLine("                                                  ");
+                Console.WriteLine("                                                  ");
+                Console.SetCursorPosition(0, Console.CursorTop - 2);
+                Console.Write(">> ");
             }
             return true;
         }
