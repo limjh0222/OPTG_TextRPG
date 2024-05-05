@@ -10,7 +10,7 @@ namespace OPTG_TextRPG
     {
         public string Name { get; }
         public int Lv { get; }
-        public int Atk { get; }
+        public int Atk { get; set; }
         public float Hp { get; set; }
         public bool IsDead { get; set; }
         public int DropGold { get; set; }

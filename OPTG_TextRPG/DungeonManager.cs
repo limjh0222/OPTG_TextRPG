@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace OPTG_TextRPG
 {
@@ -57,20 +58,30 @@ namespace OPTG_TextRPG
         //각 몬스터 묶음마다 랜덤하게 섞어줌
         private MonsterData RandomNormalMonster()
         {
-            return new MonsterData(NormalMonsterDB[random.Next(NormalMonsterDB.Count)]);
+            MonsterData monster = new MonsterData(NormalMonsterDB[random.Next(NormalMonsterDB.Count)]);
+            monster.Hp += stage * 2;
+            monster.Atk += stage * 1;
+            return monster;
         }
         private MonsterData RandomAdvancedMonster()
         {
-            return new MonsterData(AdvancedMonsterDB[random.Next(AdvancedMonsterDB.Count)]);
+            MonsterData monster = new MonsterData(AdvancedMonsterDB[random.Next(AdvancedMonsterDB.Count)]);
+            monster.Hp += stage * 2;
+            monster.Atk += stage * 1;
+            return monster;
         }
         public MonsterData RandomBossMonster()
         {
-            return new MonsterData(BossMonsterDB[random.Next(BossMonsterDB.Count)]);
+            MonsterData monster = new MonsterData(BossMonsterDB[random.Next(BossMonsterDB.Count)]);
+            monster.Hp += stage * 2;
+            monster.Atk += stage * 1;
+            return monster;
         }
         // 스테이지 진행
         public void NextStage()
         {
             stage++;
         }
+        
     }
 }
