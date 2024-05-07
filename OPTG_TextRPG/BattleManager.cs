@@ -177,6 +177,7 @@ namespace OPTG_TextRPG
                                     return false;
                                 }
                             case 0:
+                                dungeonEvent.FootPrint();
                                 return true;
                         }
                     }

@@ -214,12 +214,16 @@ public class Item
             GameManager.Instance.player.Atk -= this.Atk;
             GameManager.Instance.player.Def -= this.Def;
             GameManager.Instance.player.Hp -= this.Hp;
+            ConsoleUtility.PrintYellowHighlights("해당 아이템을 ", "장착 해제", " 하였습니다.");
+            Console.ReadKey();
         }
         else
         {
             GameManager.Instance.player.Atk += this.Atk;
             GameManager.Instance.player.Def += this.Def;
             GameManager.Instance.player.Hp += this.Hp;
+            ConsoleUtility.PrintYellowHighlights("해당 아이템을 ", "장착", " 하였습니다.");
+            Console.ReadKey();
         }
 
         IsEquipped = !IsEquipped;
@@ -228,6 +232,9 @@ public class Item
     internal void Purchase()
     {
         IsPurchased = true;
+        ConsoleUtility.PrintYellowHighlights("해당 아이템을 ", $"{Price}G", "");
+        ConsoleUtility.PrintYellowHighlights("에 ", "구매", " 하였습니다.");
+        Console.ReadKey();
     }
 
     internal void Sale()
@@ -245,6 +252,9 @@ public class Item
             GameManager.Instance.player.Gold += (int)(Price * 0.8);
             IsPurchased = false;
             GameManager.Instance.inventory.Remove(this);
+            ConsoleUtility.PrintYellowHighlights("해당 아이템을 ", $"{(int)(Price * 0.8)}G", "");
+            ConsoleUtility.PrintYellowHighlights("에 ", "판매", " 하였습니다.");
+            Console.ReadKey();
         }
     }
 }
