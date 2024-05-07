@@ -41,15 +41,15 @@ public class SkillManager
         // 마법사 스킬
         Dictionary<int, SkillData> mageSkills = new Dictionary<int, SkillData>
         {
-            { 1, new SkillData(1, "파이어 볼트   ", 25, 5) },
-            { 2, new SkillData(2, "아이스 애로우 ", 27, 10) },
-            { 3, new SkillData(2, "윈드커터      ", 30, 13) },
-            { 4, new SkillData(2, "스톤엣지      ", 34, 16) },
-            { 5, new SkillData(2, "그래비티      ", 36, 24) },
-            { 6, new SkillData(2, "인페르노      ", 42, 26) },
-            { 7, new SkillData(2, "프로즌 오브   ", 45, 31) },
-            { 8, new SkillData(2, "블리자드      ", 52, 35) },
-            { 9, new SkillData(2, "익스플로전    ", 80, 50) }
+            { 1, new SkillData(1, "파이어 볼트", 25, 5) },
+            { 2, new SkillData(2, "아이스 애로우", 27, 10) },
+            { 3, new SkillData(2, "윈드 커터", 30, 13) },
+            { 4, new SkillData(2, "스톤 엣지", 34, 16) },
+            { 5, new SkillData(2, "그래 비티", 36, 24) },
+            { 6, new SkillData(2, "인페르노", 42, 26) },
+            { 7, new SkillData(2, "프로즌오브", 45, 31) },
+            { 8, new SkillData(2, "블리자드", 52, 35) },
+            { 9, new SkillData(2, "익스플로전", 80, 50) }
         };
         jobSkills.Add(2, mageSkills);
 
