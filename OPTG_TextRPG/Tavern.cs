@@ -62,7 +62,7 @@ namespace OPTG_TextRPG
             {
                 if (GameManager.Instance.player.Hp == GameManager.Instance.player.MaxHp && GameManager.Instance.player.Mp == GameManager.Instance.player.MaxMp)
                 {
-                    Console.WriteLine("\n체력과 마력이 이미 최대치 입니다!");
+                    ConsoleUtility.PrintColor(Color.RED, "\n체력과 마력이 이미 최대치 입니다!");
                     Thread.Sleep(1000);
                 }
                 else
@@ -70,13 +70,13 @@ namespace OPTG_TextRPG
                     GameManager.Instance.player.Gold -= 2000;
                     GameManager.Instance.player.Hp += GameManager.Instance.player.MaxHp;
                     GameManager.Instance.player.Mp += GameManager.Instance.player.MaxMp;
-                    Console.WriteLine("\n체력과 마력이 [100%] 회복되었습니다!");
+                    ConsoleUtility.PrintColor(Color.DARKYELLOW, "\n체력과 마력이 [100%] 회복되었습니다!");
                     Thread.Sleep(1000);
                 }
             }
             else
             {
-                Console.WriteLine("\n골드가 부족하여 회복할 수 없습니다.");
+                ConsoleUtility.PrintColor(Color.RED, "\nGold가 부족합니다.");
                 Thread.Sleep(1000);
             }
         }
@@ -87,20 +87,20 @@ namespace OPTG_TextRPG
             {
                 if (GameManager.Instance.player.Hp == GameManager.Instance.player.MaxHp)
                 {
-                    Console.WriteLine("\n체력이 이미 최대치 입니다!");
+                    ConsoleUtility.PrintColor(Color.RED, "\n체력이 이미 최대치 입니다!");
                     Thread.Sleep(1000);
                 }
                 else
                 {
                     GameManager.Instance.player.Gold -= 1100;
                     GameManager.Instance.player.Hp += (int)(GameManager.Instance.player.MaxHp * 0.4);
-                    Console.WriteLine("\n체력이 [40%] 회복되었습니다!");
+                    ConsoleUtility.PrintColor(Color.DARKYELLOW, "\n체력이 [40%] 회복되었습니다!");
                     Thread.Sleep(1000);
                 }
             }
             else
             {
-                Console.WriteLine("\n골드가 부족하여 회복할 수 없습니다.");
+                ConsoleUtility.PrintColor(Color.RED, "\nGold가 부족합니다.");
                 Thread.Sleep(1000);
             }
         }
@@ -110,20 +110,20 @@ namespace OPTG_TextRPG
             {
                 if (GameManager.Instance.player.Hp == GameManager.Instance.player.MaxHp)
                 {
-                    Console.WriteLine("\n체력이 이미 최대치 입니다!");
+                    ConsoleUtility.PrintColor(Color.RED, "\n체력이 이미 최대치 입니다!");
                     Thread.Sleep(1000);
                 }
                 else
                 {
                     GameManager.Instance.player.Gold -= 600;
                     GameManager.Instance.player.Hp += (int)(GameManager.Instance.player.MaxHp * 0.2);
-                    Console.WriteLine("\n체력이 [20%] 회복되었습니다!");
+                    ConsoleUtility.PrintColor(Color.DARKYELLOW, "\n체력이 [20%] 회복되었습니다!");
                     Thread.Sleep(1000);
                 }
             }
             else
             {
-                Console.WriteLine("\n골드가 부족하여 회복할 수 없습니다.");
+                ConsoleUtility.PrintColor(Color.RED, "\nGold가 부족합니다.");
                 Thread.Sleep(1000);
             }
         }
@@ -134,20 +134,20 @@ namespace OPTG_TextRPG
             {
                 if (GameManager.Instance.player.Mp == GameManager.Instance.player.MaxMp)
                 {
-                    Console.WriteLine("\n마력이 이미 최대치 입니다!");
+                    ConsoleUtility.PrintColor(Color.RED, "\n마력이 이미 최대치 입니다!");
                     Thread.Sleep(1000);
                 }
                 else
                 {
                     GameManager.Instance.player.Gold -= 1000;
                     GameManager.Instance.player.Mp += (int)(GameManager.Instance.player.MaxMp * 0.6);
-                    Console.WriteLine("\n마력이 [60%] 회복되었습니다!");
+                    ConsoleUtility.PrintColor(Color.DARKYELLOW, "\n마력이 [60%] 회복되었습니다!");
                     Thread.Sleep(1000);
                 }
             }
             else
             {
-                Console.WriteLine("\n골드가 부족하여 회복할 수 없습니다.");
+                ConsoleUtility.PrintColor(Color.RED, "\nGold가 부족합니다.");
                 Thread.Sleep(1000);
             }
         }
@@ -157,20 +157,20 @@ namespace OPTG_TextRPG
             {
                 if (GameManager.Instance.player.Mp == GameManager.Instance.player.MaxMp)
                 {
-                    Console.WriteLine("\n마력이 이미 최대치 입니다!");
+                    ConsoleUtility.PrintColor(Color.RED, "\n마력이 이미 최대치 입니다!");
                     Thread.Sleep(1000);
                 }
                 else
                 {
                     GameManager.Instance.player.Gold -= 500;
                     GameManager.Instance.player.Mp += (int)(GameManager.Instance.player.MaxMp * 0.3);
-                    Console.WriteLine("\n마력이 [30%] 회복되었습니다!");
+                    ConsoleUtility.PrintColor(Color.DARKYELLOW, "\n마력이 [30%] 회복되었습니다!");
                     Thread.Sleep(1000);
                 }
             }
             else
             {
-                Console.WriteLine("\n골드가 부족하여 회복할 수 없습니다.");
+                ConsoleUtility.PrintColor(Color.RED, "\nGold가 부족합니다.");
                 Thread.Sleep(1000);
             }
         }

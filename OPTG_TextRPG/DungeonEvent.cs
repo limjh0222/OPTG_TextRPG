@@ -65,7 +65,7 @@ namespace OPTG_TextRPG
                                     Console.Write(">> ");
                                     while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
                                     {
-                                        Console.WriteLine("잘못된 입력입니다.");
+                                        ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                                         Thread.Sleep(400);
                                         Console.SetCursorPosition(0, Console.CursorTop - 2);
                                         Console.WriteLine("                                                  ");
@@ -84,7 +84,7 @@ namespace OPTG_TextRPG
                                     Console.Write(">> ");
                                     while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
                                     {
-                                        Console.WriteLine("잘못된 입력입니다.");
+                                        ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                                         Thread.Sleep(400);
                                         Console.SetCursorPosition(0, Console.CursorTop - 2);
                                         Console.WriteLine("                                                  ");
@@ -102,7 +102,7 @@ namespace OPTG_TextRPG
                                     Console.Write(">> ");
                                     while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
                                     {
-                                        Console.WriteLine("잘못된 입력입니다.");
+                                        ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                                         Thread.Sleep(400);
                                         Console.SetCursorPosition(0, Console.CursorTop - 2);
                                         Console.WriteLine("                                                  ");
@@ -120,7 +120,7 @@ namespace OPTG_TextRPG
                                 Console.Write(">> ");
                                 while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
                                 {
-                                    Console.WriteLine("잘못된 입력입니다.");
+                                    ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                                     Thread.Sleep(400);
                                     Console.SetCursorPosition(0, Console.CursorTop - 2);
                                     Console.WriteLine("                                                  ");
@@ -133,7 +133,7 @@ namespace OPTG_TextRPG
                             return;
                     }
                 }
-                Console.WriteLine("잘못된 입력입니다.");
+                ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                 Thread.Sleep(500);
             }
         }
@@ -172,7 +172,7 @@ namespace OPTG_TextRPG
                                 Console.Write(">> ");
                                 while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
                                 {
-                                    Console.WriteLine("잘못된 입력입니다.");
+                                    ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                                     Thread.Sleep(400);
                                     Console.SetCursorPosition(0, Console.CursorTop - 2);
                                     Console.WriteLine("                                                  ");
@@ -195,7 +195,7 @@ namespace OPTG_TextRPG
                                 Console.Write(">> ");
                                 while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
                                 {
-                                    Console.WriteLine("잘못된 입력입니다.");
+                                    ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                                     Thread.Sleep(400);
                                     Console.SetCursorPosition(0, Console.CursorTop - 2);
                                     Console.WriteLine("                                                  ");
@@ -209,7 +209,7 @@ namespace OPTG_TextRPG
 
                     }    
                 }
-                Console.WriteLine("잘못된 입력입니다.");
+                ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                 Thread.Sleep(500);
             }
 

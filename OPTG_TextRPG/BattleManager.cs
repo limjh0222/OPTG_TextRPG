@@ -58,7 +58,7 @@ namespace OPTG_TextRPG
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다.");
+                    ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                     Thread.Sleep(500);
                     continue;
                 }
@@ -94,14 +94,14 @@ namespace OPTG_TextRPG
                     }
                     else if((fightChoice <= 0 || fightChoice > monsterAppeared.Count))
                     {
-                        Console.WriteLine("잘못된 입력입니다.");
+                        ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                         Thread.Sleep(400);
                         continue;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다.");
+                    ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                     Thread.Sleep(400);
                     continue;
                 }
@@ -109,7 +109,7 @@ namespace OPTG_TextRPG
 
                 if (selectedMonster.IsDead)
                 {
-                    Console.WriteLine("죽은 몬스터 입니다.");
+                    ConsoleUtility.PrintColor(Color.RED, "죽은 몬스터 입니다.");
                     Thread.Sleep(400);
                     continue;
                 }
@@ -241,7 +241,7 @@ namespace OPTG_TextRPG
             Console.Write(">> ");
             while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
             {
-                Console.WriteLine("잘못된 입력입니다.");
+                ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                 Thread.Sleep(400);
                 Console.SetCursorPosition(0, Console.CursorTop - 2);
                 Console.WriteLine("                                                  ");
@@ -280,7 +280,7 @@ namespace OPTG_TextRPG
                         Console.Write(">> ");
                         while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
                         {
-                            Console.WriteLine("잘못된 입력입니다.");
+                            ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                             Thread.Sleep(400);
                             Console.SetCursorPosition(0, Console.CursorTop - 2);
                             Console.WriteLine("                                                  ");
@@ -296,7 +296,7 @@ namespace OPTG_TextRPG
             Console.Write(">> ");
             while (!int.TryParse(Console.ReadLine(), out int fightChoice) || fightChoice != 1)
             {
-                Console.WriteLine("잘못된 입력입니다.");
+                ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                 Thread.Sleep(400);
                 Console.SetCursorPosition(0, Console.CursorTop - 2);
                 Console.WriteLine("                                                  ");
@@ -315,12 +315,12 @@ namespace OPTG_TextRPG
             int hitRate = random.Next(1, 101);
             if (hitRate < 20)
             {
-                Console.WriteLine("\n[ 약점 발견!! ]");
+                ConsoleUtility.PrintColor(Color.DARKYELLOW, "\n[ 약점 발견!! ]");
                 return (int)(1.8 * Math.Ceiling(new Random().NextDouble() * (maxAttack - minAttack) + minAttack));
             }
             else if(hitRate >= 20 && hitRate < 30)
             {
-                Console.WriteLine("\n[ 앗! 손이 미끄러졌다!! ]");
+                ConsoleUtility.PrintColor(Color.MAGENTA, "\n[ 앗! 손이 미끄러졌다!! ]");
                 return (int)(0.5 * Math.Ceiling(new Random().NextDouble() * (maxAttack - minAttack) + minAttack));
             }
             else
@@ -347,7 +347,7 @@ namespace OPTG_TextRPG
                         return -1;
                     else if (!player.Skills.ContainsKey(skillChoice))
                     {
-                        Console.WriteLine("잘못된 입력입니다.");
+                        ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                         Thread.Sleep(400);
                         Console.SetCursorPosition(0, Console.CursorTop - 2);
                         Console.WriteLine("                                                  ");
@@ -361,7 +361,7 @@ namespace OPTG_TextRPG
                         skill = player.Skills[skillChoice];
                         if (player.Mp < skill.MpCost)
                         {
-                            Console.WriteLine("마나가 부족하여 스킬을 사용할 수 없습니다!");
+                            ConsoleUtility.PrintColor(Color.RED, "마나가 부족하여 스킬을 사용할 수 없습니다!");
                             Thread.Sleep(400);
                             return -1;
                         }
@@ -374,7 +374,7 @@ namespace OPTG_TextRPG
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다.");
+                    ConsoleUtility.PrintColor(Color.RED, "잘못된 입력입니다.");
                     Thread.Sleep(400);
                     Console.SetCursorPosition(0, Console.CursorTop - 2);
                     Console.WriteLine("                                                  ");
