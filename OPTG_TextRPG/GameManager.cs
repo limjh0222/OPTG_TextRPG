@@ -52,7 +52,7 @@ public class GameManager
             Console.WriteLine("3. 도적");
             Console.WriteLine("4. 궁수\n");
 
-            choice = ConsoleUtility.PromptMenuChoice(1, 5);
+            choice = ConsoleUtility.PromptMenuChoice(1, 5); // 최종 제출 때 수정 1,4
         }
 
         ConsoleUtility.PrintYellowHighlights("\n플레이어의 ", "이름", "을 입력해주세요.\n");

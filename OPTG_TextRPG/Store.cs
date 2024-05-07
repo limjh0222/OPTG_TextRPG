@@ -49,7 +49,7 @@ namespace OPTG_TextRPG
         {
             if (prompt != null)
             {
-                ConsoleUtility.PrintColor(Color.MAGENTA, prompt);
+                ConsoleUtility.PrintColor(Color.DARKYELLOW, prompt);
                 Console.ReadKey();
             }
 

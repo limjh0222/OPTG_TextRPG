@@ -209,6 +209,19 @@ public class Item
 
     internal void ToggleEquipStatus()
     {
+        if (IsEquipped)
+        {
+            GameManager.Instance.player.Atk -= this.Atk;
+            GameManager.Instance.player.Def -= this.Def;
+            GameManager.Instance.player.Hp -= this.Hp;
+        }
+        else
+        {
+            GameManager.Instance.player.Atk += this.Atk;
+            GameManager.Instance.player.Def += this.Def;
+            GameManager.Instance.player.Hp += this.Hp;
+        }
+
         IsEquipped = !IsEquipped;
     }
 
@@ -223,7 +236,7 @@ public class Item
         if(IsEquipped)
         {
             // 장착 중이면 판매 x
-            ConsoleUtility.PrintColor(Color.MAGENTA, "\n장착 중인 아이템입니다. 장착을 해제해주세요.");
+            ConsoleUtility.PrintColor(Color.DARKYELLOW, "\n장착 중인 아이템입니다. 장착을 해제해주세요.");
             Console.ReadKey();
         }
         else

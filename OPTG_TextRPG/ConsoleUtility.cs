@@ -1,6 +1,7 @@
 ﻿
 public enum Color
 {
+    DARKYELLOW = 6,
     RED = 12,
     MAGENTA = 13
     //여기에 사용하고 싶은 색상을 추가하세요.

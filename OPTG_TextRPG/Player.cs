@@ -9,7 +9,6 @@ namespace OPTG_TextRPG
 {
     public class Player
     {
-
         public static void StatusMenu()
         {
             int choice = -1;
@@ -29,10 +28,10 @@ namespace OPTG_TextRPG
                 int bonusAtk = GameManager.Instance.inventory.Select(item => item.IsEquipped ? item.Atk : 0).Sum();
                 int bonusDef = GameManager.Instance.inventory.Select(item => item.IsEquipped ? item.Def : 0).Sum();
                 int bonusHp = GameManager.Instance.inventory.Select(item => item.IsEquipped ? item.Hp : 0).Sum();
-                ConsoleUtility.PrintYellowHighlights("공격력 : ", (GameManager.Instance.player.Atk + bonusAtk).ToString(), bonusAtk != 0 ? (bonusAtk > 0 ? $" (+{bonusAtk})\n" : $" ({bonusAtk})\n") : "\n");
-                ConsoleUtility.PrintYellowHighlights("방어력 : ", (GameManager.Instance.player.Def + bonusDef).ToString(), bonusDef != 0 ? (bonusDef > 0 ? $" (+{bonusDef})\n" : $" ({bonusDef})\n") : "\n");
-                ConsoleUtility.PrintYellowHighlights("체 력 : ", (GameManager.Instance.player.Hp + bonusHp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
-                ConsoleUtility.PrintYellowHighlights("마 력 : ", (GameManager.Instance.player.Mp + bonusHp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
+                ConsoleUtility.PrintYellowHighlights("공격력 : ", (GameManager.Instance.player.Atk).ToString(), bonusAtk != 0 ? (bonusAtk > 0 ? $" (+{bonusAtk})\n" : $" ({bonusAtk})\n") : "\n");
+                ConsoleUtility.PrintYellowHighlights("방어력 : ", (GameManager.Instance.player.Def).ToString(), bonusDef != 0 ? (bonusDef > 0 ? $" (+{bonusDef})\n" : $" ({bonusDef})\n") : "\n");
+                ConsoleUtility.PrintYellowHighlights("체 력 : ", (GameManager.Instance.player.Hp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n");
+                ConsoleUtility.PrintYellowHighlights("마 력 : ", (GameManager.Instance.player.Mp).ToString(), bonusHp != 0 ? (bonusHp > 0 ? $" (+{bonusHp})\n" : $" ({bonusHp})\n") : "\n"); // 마력 아이템 구현 x -> bonusHp를 bonusMP로 바꿔줘야 함
                 ConsoleUtility.PrintYellowHighlights("Gold : ", GameManager.Instance.player.Gold.ToString(), "\n");
 
                 Console.WriteLine("\n0. 뒤로가기\n");
