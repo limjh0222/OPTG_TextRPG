@@ -11,9 +11,9 @@ Unity 4기 원펀치쓰리강냉이(A13조)의 텍스트 RPG 게임 제작 프�
 
 ### 🦷 팀원들
 * 김보근 - Player&Skills
-* 권유리 - DataManager
-* 임재훈 - GameManager
-* 정해성 - Monster&Battle
+* 권유리 - DataManager, Store
+* 임재훈 - GameManager, Inventory
+* 정해성 - Monster&Battle, 선술집 구현
 
 
 ![sdf](https://github.com/limjh0222/OPTG_TextRPG/assets/167185915/ff7bc44c-609d-4510-ae25-7fa556ca1e20)
